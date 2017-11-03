@@ -12,6 +12,7 @@
 
 .idea/
 .mvn/
+*.iml
 
 # Package Files #
 *.jar
