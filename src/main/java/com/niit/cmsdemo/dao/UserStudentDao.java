@@ -1,4 +1,8 @@
 package com.niit.cmsdemo.dao;
 
-public class UserStudentDao {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserStudentDao {
+
 }

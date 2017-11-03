@@ -1,4 +1,7 @@
 package com.niit.cmsdemo.dao;
 
-public class StuSourceDao {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface StuSourceDao {
 }
