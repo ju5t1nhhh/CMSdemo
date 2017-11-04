@@ -31,7 +31,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         User user= (User) SecurityUtils.getSubject().getPrincipal();//User{id=1, username='admin', password='3ef7164d1f6167cb9f2658c07d3c2f0a', enable=1}
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("userid",user.getLoginId());
-        List<Permission> permissionList = permissionService.loadUserResources(map);
+        List<Permission> permissionList = permissionService.findConditions(map);
         // 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         for(Permission permission: permissionList){
@@ -45,7 +45,7 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //获取用户的输入的账号.
         String username = (String)token.getPrincipal();
-        User user = userService.selectByUsername(username);
+        User user = userService.findByUserId(username);
         if(user==null) throw new UnknownAccountException();
 //        if (0==user.getEnable()) {
 //            throw new LockedAccountException(); // 帐号锁定

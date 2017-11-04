@@ -1,7 +1,15 @@
 package com.niit.cmsdemo.service;
 
-import org.springframework.stereotype.Service;
+import com.niit.cmsdemo.domain.UserRole;
 
-@Service
+import java.util.List;
+
 public interface UserRoleService {
+
+    void addUserRole(UserRole userRole);
+
+    void delUserRole(Long[] ids);
+
+    List<UserRole> findAll();
+
 }

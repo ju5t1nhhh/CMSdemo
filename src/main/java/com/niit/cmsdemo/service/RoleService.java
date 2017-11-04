@@ -1,8 +1,17 @@
 package com.niit.cmsdemo.service;
 
-import org.springframework.stereotype.Service;
+import com.niit.cmsdemo.domain.Role;
 
-@Service
+import java.util.List;
+
 public interface RoleService {
+
+    void addRole(Role role);
+
+    void delRole(Integer[] roleIds);
+
+    void updateRole(Role role);
+
+    List<Role> findAll();
 
 }

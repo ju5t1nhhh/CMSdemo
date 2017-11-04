@@ -66,6 +66,14 @@
 			<artifactId>thymeleaf-extras-shiro</artifactId>
 			<version>1.2.1</version>
 		</dependency>
+		<!--
+			add by runner
+		-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.1.0</version>
+		</dependency>
 
 	</dependencies>
 
