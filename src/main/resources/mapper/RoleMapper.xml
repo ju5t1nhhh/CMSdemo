@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niit.cmsdemo.dao.RoleDao">
+    <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="create_name" property="create_name"/>
+        <result column="update_name" property="update_name"/>
+    </resultMap>
+</mapper>

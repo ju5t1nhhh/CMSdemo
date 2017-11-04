@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niit.cmsdemo.dao.StudentDao">
+    <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="age" property="age"/>
+        <result column="phone" property="phone"/>
+        <result column="qq_wechat" property="qq_wechat"/>
+        <result column="email" property="email"/>
+        <result column="college" property="college"/>
+        <result column="major" property="major"/>
+        <result column="walkin_date" property="walkin_date"/>
+        <result column="interview_note" property="interview_note"/>
+        <result column="marks" property="marks"/>
+        <result column="intention" property="intention"/>
+        <result column="student_source" property="student_source"/>
+        <result column="follow_up" property="follow_up"/>
+        <result column="classification" property="classification"/>
+        <result column="create_name" property="create_name"/>
+        <result column="update_name" property="update_name"/>
+    </resultMap>
+</mapper>

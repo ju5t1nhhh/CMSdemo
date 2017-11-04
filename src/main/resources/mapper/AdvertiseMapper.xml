@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.niit.cmsdemo.dao.AdvertiseDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Advertise">
-
+        <id column="id" property="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="url" property="url"/>
+        <result column="create_name" property="create_name"/>
+        <result column="update_name" property="update_name"/>
     </resultMap>
 </mapper>
