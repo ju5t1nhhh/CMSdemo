@@ -77,7 +77,7 @@ public class ShiroConfig {
         //自定义加载权限资源关系
         List<Permission> permissionList = permissionService.findAll();
         for (Permission permission: permissionList) {
-            if(StringUtil.isNotEmpty(permission.getUrl()){
+            if(StringUtil.isNotEmpty(permission.getUrl())){
                 String permi = "perms[" + permission.getUrl() + "]";
                 filterChainDefinitionMap.put(permission.getUrl(),permi);
             }
