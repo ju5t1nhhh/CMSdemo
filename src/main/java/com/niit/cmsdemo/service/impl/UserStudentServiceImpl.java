@@ -12,7 +12,7 @@ import java.util.Map;
 public class UserStudentServiceImpl implements UserStudentService {
     @Override
     public void addUserStudent(UserStudent userStudent) {
-        
+
     }
 
     @Override
