@@ -1,10 +1,21 @@
 package com.niit.cmsdemo.service;
 
 import com.niit.cmsdemo.domain.User;
-import org.springframework.stereotype.Service;
 
-@Service
+import java.util.List;
+import java.util.Map;
+
 public interface UserService {
 
-    User selectByUsername(String username);
+    void addUser(User user);
+
+    void delUser(String[] userIds);
+
+    void updateUser(User user);
+
+    User findByUserId(String userId);
+
+    List<User> findAll();
+
+    List<User> findConditions(Map<String,Object> map);
 }

@@ -15,6 +15,8 @@ public interface UserDao {
 
     Integer updateOne(User user);
 
+    User selectById(String userId);
+
     List<User> selectAll();
 
     List<User> selectConditions(Map<String,Object> map);

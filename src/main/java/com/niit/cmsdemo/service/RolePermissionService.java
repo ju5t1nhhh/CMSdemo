@@ -1,7 +1,15 @@
 package com.niit.cmsdemo.service;
 
-import org.springframework.stereotype.Service;
+import com.niit.cmsdemo.domain.Permission;
 
-@Service
+import java.util.List;
+
 public interface RolePermissionService {
+
+    void addRolePerm(Integer roleId,Long[] permIds);
+
+    void delRolePermByRoleId(Integer roleId);
+
+    List<Permission> findPermsByRoleId(Integer roleId);
+
 }
