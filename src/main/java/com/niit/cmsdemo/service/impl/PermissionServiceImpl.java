@@ -11,4 +11,9 @@ public class PermissionServiceImpl implements PermissionService {
     public List<Permission> loadUserResources(Map<String, Object> map) {
         return null;
     }
+
+    @Override
+    public List<Permission> queryAll() {
+        return null;
+    }
 }
