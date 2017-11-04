@@ -9,4 +9,28 @@ import java.util.Map;
 
 @Service
 public class PermissionServiceImpl implements PermissionService {
+    @Override
+    public void addPermission(Permission permission) {
+
+    }
+
+    @Override
+    public void delPermissions(Long[] permIds) {
+
+    }
+
+    @Override
+    public void updatePermission(Permission permission) {
+
+    }
+
+    @Override
+    public List<Permission> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Permission> findConditions(Map<String, Object> map) {
+        return null;
+    }
 }
