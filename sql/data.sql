@@ -39,7 +39,7 @@ VALUES
 INSERT INTO
 `user_role`
 VALUES
-(1,3,now(),now());
+('admin',3,now(),now());
 
 #role_permission表初始数据
 INSERT INTO

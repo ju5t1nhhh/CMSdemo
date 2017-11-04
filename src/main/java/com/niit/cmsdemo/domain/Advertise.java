@@ -1,5 +1,6 @@
 package com.niit.cmsdemo.domain;
 
+<<<<<<< HEAD
 
 import java.util.Date;
 
@@ -35,6 +36,39 @@ public class Advertise {
 
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
+=======
+import java.io.Serializable;
+import java.util.Date;
+
+public class Advertise implements Serializable{
+
+    private static final long serialVersionUID = -2150732924042876369L;
+
+    private Long id;
+    private String userId;
+    private String url;
+    private Date createTime;
+    private Date updateTime;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
     }
 
     public String getUrl() {
@@ -45,6 +79,7 @@ public class Advertise {
         this.url = url;
     }
 
+<<<<<<< HEAD
     public Date getCreate_time() {
         return create_time;
     }
@@ -59,5 +94,32 @@ public class Advertise {
 
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
+=======
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Advertise{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", url='" + url + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
     }
 }

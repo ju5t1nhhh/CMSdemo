@@ -74,7 +74,7 @@ CREATE TABLE `role_permission`(
 DROP TABLE IF EXISTS `advertise`;
 CREATE TABLE `advertise`(
   `id` INT(12) NOT NULL AUTO_INCREMENT COMMENT 'ad自增ID',
-  `user_id` INT(4) NOT NULL COMMENT '角色ID',
+  `user_id` VARCHAR(20) NOT NULL COMMENT '用户ID',
   `url` VARCHAR(200) NOT NULL COMMENT '广告URL',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,

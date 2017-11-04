@@ -1,5 +1,6 @@
 package com.niit.cmsdemo.domain;
 
+<<<<<<< HEAD
 import java.util.Date;
 
 public class Student {
@@ -51,6 +52,43 @@ public class Student {
     }
 
     public void setId(Integer id) {
+=======
+import java.io.Serializable;
+import java.util.Date;
+
+public class Student implements Serializable{
+
+    private static final long serialVersionUID = 303796631910021406L;
+
+    private Long id;
+    private String name;
+    private Character gender;
+    private Integer age;
+    private String phone;
+    private String qqWechat;
+    private String email;
+    private String college;
+    private String major;
+    private Date walkinDate;
+    private String interviewNote;
+    private Integer marks;
+    private String intention;
+    private String studentSource;
+    private String followUp;
+    private String classification;
+    private Date createTime;
+    private Date updateTime;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
         this.id = id;
     }
 
@@ -62,11 +100,19 @@ public class Student {
         this.name = name;
     }
 
+<<<<<<< HEAD
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
+=======
+    public Character getGender() {
+        return gender;
+    }
+
+    public void setGender(Character gender) {
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
         this.gender = gender;
     }
 
@@ -86,12 +132,21 @@ public class Student {
         this.phone = phone;
     }
 
+<<<<<<< HEAD
     public String getQq_wechat() {
         return qq_wechat;
     }
 
     public void setQq_wechat(String qq_wechat) {
         this.qq_wechat = qq_wechat;
+=======
+    public String getQqWechat() {
+        return qqWechat;
+    }
+
+    public void setQqWechat(String qqWechat) {
+        this.qqWechat = qqWechat;
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
     }
 
     public String getEmail() {
@@ -118,6 +173,7 @@ public class Student {
         this.major = major;
     }
 
+<<<<<<< HEAD
     public Date getWalkin_date() {
         return walkin_date;
     }
@@ -132,6 +188,22 @@ public class Student {
 
     public void setInterview_note(String interview_note) {
         this.interview_note = interview_note;
+=======
+    public Date getWalkinDate() {
+        return walkinDate;
+    }
+
+    public void setWalkinDate(Date walkinDate) {
+        this.walkinDate = walkinDate;
+    }
+
+    public String getInterviewNote() {
+        return interviewNote;
+    }
+
+    public void setInterviewNote(String interviewNote) {
+        this.interviewNote = interviewNote;
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
     }
 
     public Integer getMarks() {
@@ -150,6 +222,7 @@ public class Student {
         this.intention = intention;
     }
 
+<<<<<<< HEAD
     public String getStudent_source() {
         return student_source;
     }
@@ -164,6 +237,22 @@ public class Student {
 
     public void setFollow_up(String follow_up) {
         this.follow_up = follow_up;
+=======
+    public String getStudentSource() {
+        return studentSource;
+    }
+
+    public void setStudentSource(String studentSource) {
+        this.studentSource = studentSource;
+    }
+
+    public String getFollowUp() {
+        return followUp;
+    }
+
+    public void setFollowUp(String followUp) {
+        this.followUp = followUp;
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
     }
 
     public String getClassification() {
@@ -174,6 +263,7 @@ public class Student {
         this.classification = classification;
     }
 
+<<<<<<< HEAD
     public Date getCreate_time() {
         return create_time;
     }
@@ -188,5 +278,45 @@ public class Student {
 
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
+=======
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                ", age=" + age +
+                ", phone='" + phone + '\'' +
+                ", qqWechat='" + qqWechat + '\'' +
+                ", email='" + email + '\'' +
+                ", college='" + college + '\'' +
+                ", major='" + major + '\'' +
+                ", walkinDate=" + walkinDate +
+                ", interviewNote='" + interviewNote + '\'' +
+                ", marks=" + marks +
+                ", intention='" + intention + '\'' +
+                ", studentSource='" + studentSource + '\'' +
+                ", followUp='" + followUp + '\'' +
+                ", classification='" + classification + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+>>>>>>> 51b4b38c087f7457ff0210accdab3d730613d78f
     }
 }
