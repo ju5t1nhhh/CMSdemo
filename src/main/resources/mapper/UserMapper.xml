@@ -8,7 +8,24 @@
         <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="update_time" property="updateTime" jdbcType="DATE"/>
     </resultMap>
-    <select id="selectAllUser" resultMap="BaseResultMap">
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.User">
+        INSERT INTO USER VALUES(#{login_id},#{username},#{password},now(),now())
+    </insert>
+    <delete id="deleteOne" parameterType="java.lang.String">
+        DELETE FROM USER WHERE id = #{id}
+    </delete>
+    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.User">
+        UPDATE USER SET
+        login_id = #{login_id},
+        username = #{username},
+        password = #{password},
+        create_time = now(),
+        update_time = now()
+    </update>
+    <select id="selectAll"  resultMap="BaseResultMap">
         SELECT * FROM USER
+    </select>
+    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT * FROM USER WHERE id = #{id}
     </select>
 </mapper>
