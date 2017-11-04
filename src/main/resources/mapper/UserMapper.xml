@@ -8,4 +8,7 @@
         <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="update_time" property="updateTime" jdbcType="DATE"/>
     </resultMap>
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        SELECT * FROM USER
+    </select>
 </mapper>
