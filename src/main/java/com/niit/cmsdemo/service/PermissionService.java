@@ -10,4 +10,6 @@ import java.util.Map;
 public interface PermissionService {
 
     public List<Permission> loadUserResources(Map<String,Object> map);
+
+    List<Permission> queryAll();
 }
