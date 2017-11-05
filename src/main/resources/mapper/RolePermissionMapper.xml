@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.niit.cmsdemo.dao.RolePermissionDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.RolePermission">
-        <result column="role_id" property="role_id"/>
-        <result column="perm_id" property="perm_id"/>
-        <result column="create_name" property="create_name"/>
-        <result column="update_name" property="update_name"/>
+        <result column="role_id" property="roleId"/>
+        <result column="perm_id" property="permId"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
+    <select id="selectPermIdsByRoleId" parameterType="java.lang.Integer" resultType="java.lang.Long">
+        SELECT perm_id FROM role_permission WHERE role_id = #{roleId}
+    </select>
+    <select id="selectRoleIdsByPermId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT role_id FROM role_permission WHERE perm_id = #{permId}
+    </select>
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.RolePermission">
+        INSERT INTO role_permission VALUES (#{roleId},#{permId},now(),now())
+    </insert>
+    <delete id="deleteOne">
+        DELETE FROM role_permission WHERE role_id= #{arg0} and perm_id = #{arg1}
+    </delete>
 </mapper>

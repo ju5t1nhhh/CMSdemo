@@ -5,8 +5,24 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="type" property="type"/>
-        <result column="parent_id" property="parent_id"/>
-        <result column="create_name" property="create_name"/>
-        <result column="update_name" property="update_name"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
+    <select id="selectByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM stu_source WHERE parent_id = #{parentId}
+    </select>
+    <select id="selectByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM stu_source WHERE TYPE = #{type}
+    </select>
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.StuSource">
+        INSERT INTO stu_source VALUES (#{id},#{name},#{type},#{parentId},now(),now());
+    </insert>
+    <delete id="deleteOne" parameterType="java.lang.Long">
+        DELETE FROM stu_source WHERE id = #{id}
+    </delete>
+    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.StuSource">
+        UPDATE stu_source SET name = #{name},type = #{type},parent_id = #{parentId},
+        create_time = now(),update_time = now() WHERE id = #{id}
+    </update>
 </mapper>

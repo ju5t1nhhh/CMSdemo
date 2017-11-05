@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.niit.cmsdemo.dao.UserDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.User">
-        <id column="login_id" property="login_id" jdbcType="VARCHAR"/>
+        <id column="login_id" property="loginId" jdbcType="VARCHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
-        <result column="update_time" property="updateTime" jdbcType="DATE"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.User">
-        INSERT INTO USER VALUES(#{login_id},#{username},#{password},now(),now())
+        INSERT INTO USER VALUES(#{loginId},#{username},#{password},now(),now())
     </insert>
     <delete id="deleteOne" parameterType="java.lang.String">
-        DELETE FROM USER WHERE id = #{id}
+        DELETE FROM USER WHERE login_id = #{id}
     </delete>
     <update id="updateOne" parameterType="com.niit.cmsdemo.domain.User">
         UPDATE USER SET
-        login_id = #{login_id},
+        login_id = #{loginId},
         username = #{username},
         password = #{password},
         create_time = now(),
@@ -25,7 +25,24 @@
     <select id="selectAll"  resultMap="BaseResultMap">
         SELECT * FROM USER
     </select>
-    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
-        SELECT * FROM USER WHERE id = #{id}
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT * FROM USER WHERE login_id = #{id}
     </select>
+
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM USER WHERE 1 = 1
+        <if test="loginId != null">
+            and login_id = #{loginId}
+        </if>
+        <if test="username != null">
+            and username = #{username}
+        </if>
+        <if test="password != null">
+            and password = #{password}
+        </if>
+        <if test="date != null">
+            and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}
+        </if>
+    </select>
+
 </mapper>

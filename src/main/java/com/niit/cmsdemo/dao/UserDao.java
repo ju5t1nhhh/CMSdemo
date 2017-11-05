@@ -19,6 +19,7 @@ public interface UserDao {
 
     List<User> selectAll();
 
+//  在map中时间用变量date去存，格式是%Y-%m-%d
     List<User> selectConditions(Map<String,Object> map);
 
 }

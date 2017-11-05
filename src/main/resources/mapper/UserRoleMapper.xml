@@ -2,9 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.niit.cmsdemo.dao.UserRoleDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.UserRole">
-        <result column="user_id" property="user_id"/>
-        <result column="role_id" property="role_id"/>
-        <result column="create_name" property="create_name"/>
-        <result column="update_name" property="update_name"/>
+        <result column="user_id" property="userId"/>
+        <result column="role_id" property="roleId"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.UserRole">
+        insert into user_role values (#{userId},#{roleId},now(),now());
+    </insert>
+    <delete id="deleteOne" >
+        DELETE FROM user_role WHERE user_id = #{arg0} and role_id = #{arg1}
+    </delete>
+    <select id="selectRoleIdsByUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT role_id FROM user_role WHERE user_id = #{userId}
+    </select>
+    <select id="selectUserIdsByRoleId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT user_id FROM user_role WHERE role_id = #{roleId}
+    </select>
 </mapper>

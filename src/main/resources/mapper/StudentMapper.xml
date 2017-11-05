@@ -7,18 +7,97 @@
         <result column="gender" property="gender"/>
         <result column="age" property="age"/>
         <result column="phone" property="phone"/>
-        <result column="qq_wechat" property="qq_wechat"/>
+        <result column="qq_wechat" property="qqWechat"/>
         <result column="email" property="email"/>
         <result column="college" property="college"/>
         <result column="major" property="major"/>
-        <result column="walkin_date" property="walkin_date"/>
-        <result column="interview_note" property="interview_note"/>
+        <result column="walkin_date" property="walkinDate"/>
+        <result column="interview_note" property="interviewNote"/>
         <result column="marks" property="marks"/>
         <result column="intention" property="intention"/>
-        <result column="student_source" property="student_source"/>
-        <result column="follow_up" property="follow_up"/>
+        <result column="student_source" property="studentSource"/>
+        <result column="follow_up" property="followUp"/>
         <result column="classification" property="classification"/>
-        <result column="create_name" property="create_name"/>
-        <result column="update_name" property="update_name"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM student WHERE 1 = 1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        <if test="gender != null">
+            and gender = #{gender}
+        </if>
+        <if test="age != null">
+            and age = #{age}
+        </if>
+        <if test="qqWechat != null">
+            and qq_wechat = #{qqWechat}
+        </if>
+        <if test="phone != null">
+            and phone = #{phone}
+        </if>
+        <if test="email != null">
+            and email = #{email}
+        </if>
+        <if test="college != null">
+            and college = #{college}
+        </if>
+        <if test="major != null">
+            and major = #{major}
+        </if>
+        <if test="walkinDate != null">
+            and walkin_date = #{walkinDate}
+        </if>
+        <if test="interviewNote != null">
+            and interview_note = #{interviewNote}
+        </if>
+        <if test="marks != null">
+            and marks = #{marks}
+        </if>
+        <if test="intention != null">
+            and intention = #{intention}
+        </if>
+        <if test="studentSource != null">
+            and student_source = #{studentSource}
+        </if>
+        <if test="followUp != null">
+            and follow_up = #{followUp}
+        </if>
+        <if test="classification != null">
+            and classification = #{classification}
+        </if>
+        <if test="date != null">
+            and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}
+        </if>
+    </select>
+    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.Student">
+        UPDATE student SET name = #{name},gender = #{gender},age = #{age},
+        phone = #{phone},qq_wechat = #{qqWechat},email = #{email},college = #{college}
+        ,major = #{major},walkin_date = #{walkinDate},interview_note = #{interviewNote},marks = #{marks}
+        ,intention = #{intention},student_source = #{studentSource},follow_up = #{followUp},classification = #{classification}
+        ,create_time = now(),update_time = now() WHERE id = #{id}
+    </update>
+
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Student">
+        INSERT INTO student VALUES (#{id},#{name},#{gender},#{age},
+        #{phone},#{qqWechat},#{email},#{college}
+        ,#{major},#{walkinDate},#{interviewNote},#{marks}
+        ,#{intention},#{studentSource},#{followUp},#{classification}
+        ,now(),now())
+    </insert>
+
+    <delete id="deleteOne" parameterType="java.lang.Long">
+        DELETE FROM student WHERE id = #{id}
+    </delete>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM student
+    </select>
+
+
 </mapper>

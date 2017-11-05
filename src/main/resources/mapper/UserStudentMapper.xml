@@ -2,9 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.niit.cmsdemo.dao.UserStudentDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.UserStudent">
-        <result column="user_id" property="user_id"/>
-        <result column="stu_id" property="stu_id"/>
-        <result column="create_name" property="create_name"/>
-        <result column="update_name" property="update_name"/>
+        <result column="user_id" property="userId"/>
+        <result column="stu_id" property="stuId"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.UserStudent">
+        INSERT INTO user_student VALUES (#{userId},#{stuId},now(),now())
+    </insert>
+    <delete id="deleteOne" >
+        DELETE from user_student WHERE user_id = #{userId} and stu_id = #{stuId}
+    </delete>
+    <select id="selectStuIdsByUserId" parameterType="java.lang.String" resultType="java.lang.Long">
+        SELECT stu_id FROM user_student WHERE user_id = #{userId}
+    </select>
 </mapper>
