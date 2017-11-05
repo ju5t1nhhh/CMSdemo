@@ -22,9 +22,10 @@ public interface RoleDao {
     List<Role> selectAll();
 
     /**
-     * 多条件查询角色
+     * 多条件查询广告
      * @param map
-     * @return
+     * 在map中时间用变量date去存，格式是%Y-%m-%d
+     * @return list
      */
     List<Role> selectConditions(Map<String,Object> map);
 

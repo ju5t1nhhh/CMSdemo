@@ -19,7 +19,12 @@ public interface UserDao {
 
     List<User> selectAll();
 
-//  在map中时间用变量date去存，格式是%Y-%m-%d
+    /**
+     * 多条件查询广告
+     * @param map
+     * 在map中时间用变量date去存，格式是%Y-%m-%d
+     * @return list
+     */
     List<User> selectConditions(Map<String,Object> map);
 
 }
