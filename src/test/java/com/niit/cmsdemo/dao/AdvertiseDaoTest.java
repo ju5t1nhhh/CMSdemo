@@ -45,7 +45,7 @@ public class AdvertiseDaoTest {
     @Test
     public void selectConditions() throws Exception {
         Map map = new HashMap<>();
-        map.put("date","2017-11-04");
+        map.put("date","2017-11-06");
         List<Advertise> list = advertiseDao.selectConditions(map);
         for (int i = 0;i < list.size();i++){
             System.out.println(list.get(i));
