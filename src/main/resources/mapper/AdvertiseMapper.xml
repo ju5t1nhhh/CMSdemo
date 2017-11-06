@@ -12,13 +12,13 @@
     <select id="selectConditions" resultMap="BaseResultMap">
         SELECT * FROM advertise WHERE 1 = 1
         <if test="id != null">
-            and id = {id}
+            and id = #{id}
         </if>
         <if test="userId != null">
-            and user_id  = {userId}
+            and user_id  = #{userId}
         </if>
         <if test="url != null">
-            and url  = {url}
+            and url  = #{url}
         </if>
         <if test="date != null">
             and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}

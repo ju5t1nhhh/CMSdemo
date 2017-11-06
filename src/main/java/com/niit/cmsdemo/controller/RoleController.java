@@ -2,6 +2,8 @@ package com.niit.cmsdemo.controller;
 
 
 
+import com.niit.cmsdemo.domain.Role;
+import com.niit.cmsdemo.service.RoleService;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,8 +27,8 @@ public class RoleController {
 
     @RequestMapping
     public  Map<String,Object> getAll(Role role, String draw,
-                             @RequestParam(required = false, defaultValue = "1") int start,
-                             @RequestParam(required = false, defaultValue = "10") int length){
+                                      @RequestParam(required = false, defaultValue = "1") int start,
+                                      @RequestParam(required = false, defaultValue = "10") int length){
 
         Map<String,Object> map = new HashMap<>();
         PageInfo<Role> pageInfo = roleService.selectByPage(role, start, length);

@@ -5,11 +5,12 @@
         <id column="login_id" property="loginId" jdbcType="VARCHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.User">
-        INSERT INTO USER VALUES(#{loginId},#{username},#{password},now(),now())
+        INSERT INTO USER VALUES(#{loginId},#{username},#{password},#{status},now(),now())
     </insert>
     <delete id="deleteOne" parameterType="java.lang.String">
         DELETE FROM USER WHERE login_id = #{id}
@@ -19,6 +20,7 @@
         login_id = #{loginId},
         username = #{username},
         password = #{password},
+        status=#{status},
         create_time = now(),
         update_time = now()
     </update>

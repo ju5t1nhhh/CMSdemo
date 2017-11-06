@@ -16,7 +16,6 @@
         <result column="marks" property="marks"/>
         <result column="intention" property="intention"/>
         <result column="student_source" property="studentSource"/>
-        <result column="follow_up" property="followUp"/>
         <result column="classification" property="classification"/>
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -65,9 +64,6 @@
         <if test="studentSource != null">
             and student_source = #{studentSource}
         </if>
-        <if test="followUp != null">
-            and follow_up = #{followUp}
-        </if>
         <if test="classification != null">
             and classification = #{classification}
         </if>
@@ -79,7 +75,7 @@
         UPDATE student SET name = #{name},gender = #{gender},age = #{age},
         phone = #{phone},qq_wechat = #{qqWechat},email = #{email},college = #{college}
         ,major = #{major},walkin_date = #{walkinDate},interview_note = #{interviewNote},marks = #{marks}
-        ,intention = #{intention},student_source = #{studentSource},follow_up = #{followUp},classification = #{classification}
+        ,intention = #{intention},student_source = #{studentSource},classification = #{classification}
         ,create_time = now(),update_time = now() WHERE id = #{id}
     </update>
 
@@ -87,7 +83,7 @@
         INSERT INTO student VALUES (#{id},#{name},#{gender},#{age},
         #{phone},#{qqWechat},#{email},#{college}
         ,#{major},#{walkinDate},#{interviewNote},#{marks}
-        ,#{intention},#{studentSource},#{followUp},#{classification}
+        ,#{intention},#{studentSource},#{classification}
         ,now(),now())
     </insert>
 
