@@ -135,7 +135,7 @@ CREATE TABLE `follow_up`(
 #user_student表
 DROP TABLE IF EXISTS `user_student`;
 CREATE TABLE `user_student`(
-  `user_id` INT(4) NOT NULL COMMENT '用户ID',
+  `user_id` VARCHAR(20) NOT NULL COMMENT '用户ID',
   `stu_id` INT(8) NOT NULL COMMENT '学生ID',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
