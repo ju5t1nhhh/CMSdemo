@@ -10,6 +10,7 @@ public class User implements Serializable{
     private String loginId;
     private String username;
     private String password;
+    private Integer status;
     private Date createTime;
     private Date updateTime;
 
@@ -41,6 +42,14 @@ public class User implements Serializable{
         this.password = password;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -63,6 +72,7 @@ public class User implements Serializable{
                 "loginId='" + loginId + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

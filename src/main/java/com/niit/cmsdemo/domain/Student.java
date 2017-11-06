@@ -21,7 +21,6 @@ public class Student implements Serializable{
     private Integer marks;
     private String intention;
     private String studentSource;
-    private String followUp;
     private String classification;
     private Date createTime;
     private Date updateTime;
@@ -142,14 +141,6 @@ public class Student implements Serializable{
         this.studentSource = studentSource;
     }
 
-    public String getFollowUp() {
-        return followUp;
-    }
-
-    public void setFollowUp(String followUp) {
-        this.followUp = followUp;
-    }
-
     public String getClassification() {
         return classification;
     }
@@ -191,7 +182,6 @@ public class Student implements Serializable{
                 ", marks=" + marks +
                 ", intention='" + intention + '\'' +
                 ", studentSource='" + studentSource + '\'' +
-                ", followUp='" + followUp + '\'' +
                 ", classification='" + classification + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
