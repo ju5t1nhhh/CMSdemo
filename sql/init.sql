@@ -9,6 +9,7 @@ CREATE TABLE `user`(
   `login_id` VARCHAR(20) NOT NULL COMMENT '登录ID',
   `username` VARCHAR(20) NOT NULL COMMENT '用户名',
   `password` VARCHAR(20) NOT NULL COMMENT '密码',
+  `status` INT(4) NOT NULL DEFAULT 1 COMMENT '状态 1-开启 2-锁定',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
   PRIMARY KEY (`login_id`),
@@ -130,7 +131,6 @@ CREATE TABLE `follow_up`(
   KEY `follow_up_create_time_INDEX` (`create_time`),
   KEY `follow_up_update_time_INDEX` (`update_time`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 #user_student表
 DROP TABLE IF EXISTS `user_student`;

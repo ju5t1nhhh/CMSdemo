@@ -8,8 +8,7 @@ INSERT INTO
 `role`(`name`,`create_time`,`update_time`)
 VALUES
 ('user',now(),now()),
-('manager',now(),now()),
-('superman',now(),now());
+('admin',now(),now());
 
 #permission表初始数据
 INSERT INTO
@@ -39,17 +38,14 @@ VALUES
 INSERT INTO
 `user_role`
 VALUES
-('admin',3,now(),now());
+('admin',2,now(),now());
 
 #role_permission表初始数据
 INSERT INTO
 `role_permission`
 VALUES
-(1,1,now(),now()),(1,2,now(),now()),(1,4,now(),now()),(1,5,now(),now()),(1,6,now(),now()),(1,7,now(),now()),
-(1,8,now(),now()),(1,9,now(),now()),(1,16,now(),now()),(1,17,now(),now()),(1,18,now(),now()),
-(2,1,now(),now()),(2,2,now(),now()),(2,5,now(),now()),(2,6,now(),now()),(2,7,now(),now()),(2,8,now(),now()),
-(2,9,now(),now()),(2,10,now(),now()),
-(3,1,now(),now()),(3,2,now(),now()),(3,3,now(),now()),(3,4,now(),now()),(3,5,now(),now()),(3,6,now(),now()),
-(3,7,now(),now()),(3,8,now(),now()),(3,9,now(),now()),(3,10,now(),now()),(3,11,now(),now()),(3,12,now(),now()),
-(3,13,now(),now()),(3,14,now(),now()),(3,15,now(),now()),(3,16,now(),now()),(3,17,now(),now()),(3,18,now(),now()),
-(3,19,now(),now());
+(1,1,now(),now()),(1,2,now(),now()),(1,4,now(),now()),(1,5,now(),now()),(1,6,now(),now()),(1,7,now(),now()),(1,8,now(),now()),
+(1,9,now(),now()),(1,16,now(),now()),(1,17,now(),now()),(1,18,now(),now()),(2,1,now(),now()),(2,2,now(),now()),(2,3,now(),now()),
+(2,4,now(),now()),(2,5,now(),now()),(2,6,now(),now()),(2,7,now(),now()),(2,8,now(),now()),(2,9,now(),now()),
+(2,10,now(),now()),(2,11,now(),now()),(2,12,now(),now()),(2,13,now(),now()),(2,14,now(),now()),(2,15,now(),now()),(2,16,now(),now()),
+(2,17,now(),now()),(2,18,now(),now()),(2,19,now(),now());
