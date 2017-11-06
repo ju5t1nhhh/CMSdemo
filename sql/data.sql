@@ -1,7 +1,9 @@
+USE `cmsdemo`;
+
 #user表初始数据
 INSERT INTO
 `user`
-VALUES('admin','admin','admin',now(),now());
+VALUES('admin','admin','admin',1,now(),now());
 
 #role表初始数据
 INSERT INTO
