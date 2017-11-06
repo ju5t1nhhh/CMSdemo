@@ -1,14 +1,14 @@
 package com.niit.cmsdemo.dao;
 
-import com.niit.cmsdemo.domain.RolePermission;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RolePermissionDao {
 
-    Integer insertOne(RolePermission rolePermission);
+    Integer insertOne(@Param("roleId")Integer roleId,@Param("permId")Long permId);
 
-    Integer deleteOne(Integer roleId,Long permId);
+    Integer deleteOne(@Param("roleId") Integer roleId,@Param("permId") Long permId);
 
     /**
      * 根据 权限id 查询 角色ids

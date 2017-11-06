@@ -7,13 +7,20 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
+
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.UserStudent">
-        INSERT INTO user_student VALUES (#{userId},#{stuId},now(),now())
+        INSERT INTO `user_student` VALUES (#{userId},#{stuId},now(),now())
     </insert>
+
     <delete id="deleteOne" >
-        DELETE from user_student WHERE user_id = #{userId} and stu_id = #{stuId}
+        DELETE from `user_student` WHERE `user_id` = #{userId} and `stu_id` = #{stuId}
     </delete>
+
     <select id="selectStuIdsByUserId" parameterType="java.lang.String" resultType="java.lang.Long">
-        SELECT stu_id FROM user_student WHERE user_id = #{userId}
+        SELECT `stu_id` FROM `user_student` WHERE `user_id` = #{userId}
+    </select>
+
+    <select id="selectUserIdByStuId" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT `user_id` FROM `user_student` WHERE `stu_id` = #{stuId}
     </select>
 </mapper>

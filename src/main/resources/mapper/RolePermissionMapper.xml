@@ -7,16 +7,21 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-    <select id="selectPermIdsByRoleId" parameterType="java.lang.Integer" resultType="java.lang.Long">
-        SELECT perm_id FROM role_permission WHERE role_id = #{roleId}
-    </select>
-    <select id="selectRoleIdsByPermId" parameterType="java.lang.Long" resultType="java.lang.Integer">
-        SELECT role_id FROM role_permission WHERE perm_id = #{permId}
-    </select>
-    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.RolePermission">
-        INSERT INTO role_permission VALUES (#{roleId},#{permId},now(),now())
+
+    <insert id="insertOne">
+        INSERT INTO `role_permission` VALUES (#{roleId},#{permId},now(),now())
     </insert>
+
     <delete id="deleteOne">
-        DELETE FROM role_permission WHERE role_id= #{arg0} and perm_id = #{arg1}
+        DELETE FROM `role_permission` WHERE role_id= #{roleId} and perm_id = #{permId}
     </delete>
+
+    <select id="selectRoleIdsByPermId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        SELECT `role_id` FROM `role_permission` WHERE perm_id = #{permId}
+    </select>
+
+    <select id="selectPermIdsByRoleId" parameterType="java.lang.Integer" resultType="java.lang.Long">
+        SELECT `perm_id` FROM `role_permission` WHERE role_id = #{roleId}
+    </select>
+
 </mapper>

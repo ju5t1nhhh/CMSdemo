@@ -9,33 +9,41 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <select id="selectConditions" resultMap="BaseResultMap">
-        SELECT * FROM advertise WHERE 1 = 1
-        <if test="id != null">
-            and id = #{id}
-        </if>
-        <if test="stuId != null">
-            and stu_id  = #{stuId}
-        </if>
-        <if test="note != null">
-            and note  = #{note}
-        </if>
-        <if test="date != null">
-            and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}
-        </if>
-    </select>
-
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM follow_up
-    </select>
-
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.FollowUp">
-        INSERT INTO follow_up VALUES(#{id},#{stuId},#{note},now(),now())
+        INSERT INTO `follow_up` VALUES(#{id},#{stuId},#{note},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
-        DELETE FROM follow_up WHERE id = #{id}
+        DELETE FROM `follow_up` WHERE id = #{id}
     </delete>
 
+    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.FollowUp">
+        UPDATE `follow_up`
+        <set>
+            <if test="stuId != null">`stu_id`=#{stuId},</if>
+            <if test="note != null and note.length()>0">`note`=#{note},</if>
+            `update_time`=now()
+        </set>
+        WHERE `id`=#{id}
+    </update>
+
+    <select id="selectOne" resultMap="BaseResultMap">
+        SELECT * FROM `follow_up` WHERE `id`=#{id}
+    </select>
+
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM `follow_up`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="stuId != null and stuId.length()>0">
+                AND `stu_id`=#{stuId}
+            </if>
+            <if test="note != null and note.length()>0">
+                AND `note` LIKE CONCAT('%',#{note},'%')
+            </if>
+            <if test="startDate !=null and endDate != null">
+                AND `create_time` BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </trim>
+    </select>
 
 </mapper>

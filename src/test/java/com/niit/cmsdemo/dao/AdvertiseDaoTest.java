@@ -3,9 +3,10 @@ package com.niit.cmsdemo.dao;
 import com.niit.cmsdemo.domain.Advertise;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.annotation.Resource;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,19 +14,18 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class AdvertiseDaoTest {
 
-    @Autowired
+    @Resource
     private AdvertiseDao advertiseDao;
 
     @Test
     public void insertOne() throws Exception {
-        Advertise advertise = new Advertise();
-        advertise.setId(3L);
-        advertise.setUrl("1111");
-        advertise.setUserId("1111");
+        Advertise advertise=new Advertise();
+        advertise.setUserId("jackie233");
+        advertise.setUrl("www.kiki.com");
         advertiseDao.insertOne(advertise);
     }
 
@@ -35,20 +35,17 @@ public class AdvertiseDaoTest {
     }
 
     @Test
-    public void selectAll() throws Exception {
-        List<Advertise> list = advertiseDao.selectAll();
-        for(int i = 0;i < list.size();i++){
-            System.out.println(list.get(i));
-        }
+    public void selectOne() throws Exception {
+        System.out.println(advertiseDao.selectOne(1L));
     }
 
     @Test
     public void selectConditions() throws Exception {
-        Map map = new HashMap<>();
-        map.put("date","2017-11-06");
-        List<Advertise> list = advertiseDao.selectConditions(map);
-        for (int i = 0;i < list.size();i++){
-            System.out.println(list.get(i));
+        Map<String,Object> map=new HashMap<>();
+        map.put("url","baidu");
+        List<Advertise> advertises=advertiseDao.selectConditions(map);
+        for(Advertise advertise:advertises){
+            System.out.println(advertise);
         }
     }
 

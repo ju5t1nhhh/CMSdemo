@@ -1,40 +1,42 @@
 package com.niit.cmsdemo.dao;
 
-import com.niit.cmsdemo.domain.UserRole;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-@RunWith(SpringRunner.class)
+import javax.annotation.Resource;
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class UserRoleDaoTest {
 
-    @Autowired
+    @Resource
     private UserRoleDao userRoleDao;
 
     @Test
     public void insertOne() throws Exception {
-        UserRole userRole = new UserRole();
-        userRole.setRoleId(1L);
-        userRole.setUserId("111");
-        userRoleDao.insertOne(userRole);
+        userRoleDao.insertOne("jackie77233",1);
     }
 
     @Test
     public void deleteOne() throws Exception {
+        userRoleDao.deleteOne("john233",1);
     }
 
     @Test
     public void selectRoleIdsByUserId() throws Exception {
-        System.out.println(userRoleDao.selectRoleIdsByUserId("1"));
+        Integer[] ids=userRoleDao.selectRoleIdsByUserId("jackie233");
+        for(Integer id:ids){
+            System.out.println(id);
+        }
     }
 
     @Test
     public void selectUserIdsByRoleId() throws Exception {
-        System.out.println(userRoleDao.selectUserIdsByRoleId(1));
+        String[] ids=userRoleDao.selectUserIdsByRoleId(1);
+        for(String id:ids){
+            System.out.println(id);
+        }
     }
 
 }

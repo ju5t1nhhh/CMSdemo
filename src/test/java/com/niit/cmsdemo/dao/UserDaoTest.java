@@ -3,55 +3,57 @@ package com.niit.cmsdemo.dao;
 import com.niit.cmsdemo.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class UserDaoTest {
-    @Autowired
+
+    @Resource
     private UserDao userDao;
 
     @Test
-    public void  insert() throws Exception{
-        User user = new User();
-        user.setUsername("admin");
-        user.setLoginId("admin");
-        user.setPassword("admin");
+    public void insertOne() throws Exception {
+        User user=new User();
+        user.setLoginId("jiji");
+        user.setUsername("lala");
+        user.setPassword("coco");
+        user.setStatus(1);
         userDao.insertOne(user);
     }
 
     @Test
-    public void  update() throws Exception{
-        User user = new User();
-        user.setUsername("admins");
-        user.setLoginId("admins");
-        user.setPassword("admins");
-        userDao.updateOne(user);
+    public void deleteOne() throws Exception {
+        userDao.deleteOne("phil233");
     }
 
     @Test
-    public void  select() throws Exception{
-        System.out.println(userDao.selectAll());
-        System.out.println(userDao.selectById("admin"));
-        System.out.println(userDao.deleteOne("admin"));
+    public void updateOne() throws Exception {
+        User user=userDao.selectOne("john233");
+        user.setUsername("hahaha");
     }
 
     @Test
-    public void moreconditon() throws Exception{
-        Map map = new HashMap<>();
-        map.put("date","2017-11-04");
-        List<User> list = userDao.selectConditions(map);
-        for (int i = 0;i < list.size();i++){
-            System.out.println(list.get(i));
+    public void selectOne() throws Exception {
+        System.out.println(userDao.selectOne("jackie233"));
+    }
+
+    @Test
+    public void selectConditions() throws Exception {
+        Map<String,Object> map=new HashMap<>();
+        map.put("name","n");
+        List<User> users=userDao.selectConditions(map);
+        for(User user:users){
+            System.out.println(user);
         }
     }
+
 }

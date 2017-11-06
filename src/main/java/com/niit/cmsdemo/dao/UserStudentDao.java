@@ -1,14 +1,14 @@
 package com.niit.cmsdemo.dao;
 
-import com.niit.cmsdemo.domain.UserStudent;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserStudentDao {
 
-    Integer insertOne(UserStudent userStudent);
+    Integer insertOne(@Param("userId") String userId,@Param("stuId")Long stuId);
 
-    Integer deleteOne(String userId,Long stuId);
+    Integer deleteOne(@Param("userId")String userId,@Param("stuId")Long stuId);
 
     /**
      * 根据 用户ID 查询 学生
@@ -16,5 +16,7 @@ public interface UserStudentDao {
      * @return
      */
     Long[] selectStuIdsByUserId(String userId);
+
+    String selectUserIdByStuId(Long stuId);
 
 }

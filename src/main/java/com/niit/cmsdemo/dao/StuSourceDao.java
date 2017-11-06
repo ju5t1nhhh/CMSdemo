@@ -4,6 +4,7 @@ import com.niit.cmsdemo.domain.StuSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface StuSourceDao {
@@ -14,18 +15,8 @@ public interface StuSourceDao {
 
     Integer updateOne(StuSource stuSource);
 
-    /**
-     * 根据 type 查询 1-菜单 2-可选值
-     * @param type
-     * @return
-     */
-    List<StuSource> selectByType(Integer type);
+    StuSource selectOne(Integer id);
 
-    /**
-     * 根据父结点查询
-     * @param parentId
-     * @return
-     */
-    List<StuSource> selectByParentId(Integer parentId);
+    List<StuSource> selectConditions(Map<String,Object> map);
 
 }

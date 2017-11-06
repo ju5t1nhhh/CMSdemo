@@ -15,11 +15,7 @@ public interface RoleDao {
 
     Integer updateOne(Role role);
 
-    /**
-     * 查询所有角色
-     * @return
-     */
-    List<Role> selectAll();
+    Role selectOne(Integer id);
 
     /**
      * 多条件查询广告

@@ -15,7 +15,7 @@ public interface StudentDao {
 
     Integer updateOne(Student student);
 
-    List<Student> selectAll();
+    Student selectOne(Long id);
     /**
      * 多条件查询广告
      * @param map

@@ -11,13 +11,11 @@ public interface UserDao {
 
     Integer insertOne(User user);
 
-    Integer deleteOne(String userId);
+    Integer deleteOne(String loginId);
 
     Integer updateOne(User user);
 
-    User selectById(String userId);
-
-    List<User> selectAll();
+    User selectOne(String loginId);
 
     /**
      * 多条件查询广告

@@ -8,6 +8,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 @SpringBootTest
@@ -21,26 +25,36 @@ public class FollowUpDaoTest {
     public void insertOne() throws Exception {
         FollowUp followUp=new FollowUp();
         followUp.setStuId(1L);
-        followUp.setNote("watch 666");
+        followUp.setNote("bangbangda");
         followUpDao.insertOne(followUp);
     }
 
     @Test
     public void deleteOne() throws Exception {
-        followUpDao.deleteOne(4L);
+        followUpDao.deleteOne(3L);
     }
 
     @Test
     public void updateOne() throws Exception {
-
+        FollowUp followUp=followUpDao.selectOne(1L);
+        followUp.setNote("lalala");
+        followUpDao.updateOne(followUp);
     }
 
     @Test
-    public void selectAll() throws Exception {
+    public void selectOne() throws Exception {
+        System.out.println(followUpDao.selectOne(1L));
     }
 
     @Test
     public void selectConditions() throws Exception {
+        Map<String,Object> map=new HashMap<>();
+        map.put("stuId","1");
+        map.put("note","oo");
+        List<FollowUp> followUps=followUpDao.selectConditions(map);
+        for(FollowUp followUp:followUps){
+            System.out.println(followUp);
+        }
     }
 
 }

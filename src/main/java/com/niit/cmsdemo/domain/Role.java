@@ -7,7 +7,7 @@ public class Role implements Serializable{
 
     private static final long serialVersionUID = 2633064455554920110L;
 
-    private Long id;
+    private Integer id;
     private String name;
     private Date createTime;
     private Date updateTime;
@@ -16,11 +16,11 @@ public class Role implements Serializable{
         return serialVersionUID;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

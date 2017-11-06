@@ -9,33 +9,34 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <select id="selectConditions" resultMap="BaseResultMap">
-        SELECT * FROM advertise WHERE 1 = 1
-        <if test="id != null">
-            and id = #{id}
-        </if>
-        <if test="userId != null">
-            and user_id  = #{userId}
-        </if>
-        <if test="url != null">
-            and url  = #{url}
-        </if>
-        <if test="date != null">
-            and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}
-        </if>
-    </select>
-
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM advertise
-    </select>
-
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Advertise">
-        INSERT INTO advertise VALUES(#{id},#{userId},#{url},now(),now())
+        INSERT INTO `advertise`
+        VALUES(#{id},#{userId},#{url},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
-        DELETE FROM advertise WHERE id = #{id}
+        DELETE FROM `advertise`
+        WHERE `id`=#{id}
     </delete>
 
+    <select id="selectOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT * FROM `advertise`
+        WHERE `id`=#{id}
+    </select>
+
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM `advertise`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="userId != null and userId.length()>0">
+                AND `user_id`=#{userId}
+            </if>
+            <if test="url != null and url.length()>0">
+                AND `url` LIKE CONCAT('%',#{url},'%')
+            </if>
+            <if test="startDate !=null and endDate != null">
+                AND `create_time` BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </trim>
+    </select>
 
 </mapper>

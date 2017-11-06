@@ -20,67 +20,10 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-    <select id="selectConditions" resultMap="BaseResultMap">
-        SELECT * FROM student WHERE 1 = 1
-        <if test="id != null">
-            and id = #{id}
-        </if>
-        <if test="name != null">
-            and name = #{name}
-        </if>
-        <if test="gender != null">
-            and gender = #{gender}
-        </if>
-        <if test="age != null">
-            and age = #{age}
-        </if>
-        <if test="qqWechat != null">
-            and qq_wechat = #{qqWechat}
-        </if>
-        <if test="phone != null">
-            and phone = #{phone}
-        </if>
-        <if test="email != null">
-            and email = #{email}
-        </if>
-        <if test="college != null">
-            and college = #{college}
-        </if>
-        <if test="major != null">
-            and major = #{major}
-        </if>
-        <if test="walkinDate != null">
-            and walkin_date = #{walkinDate}
-        </if>
-        <if test="interviewNote != null">
-            and interview_note = #{interviewNote}
-        </if>
-        <if test="marks != null">
-            and marks = #{marks}
-        </if>
-        <if test="intention != null">
-            and intention = #{intention}
-        </if>
-        <if test="studentSource != null">
-            and student_source = #{studentSource}
-        </if>
-        <if test="classification != null">
-            and classification = #{classification}
-        </if>
-        <if test="date != null">
-            and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}
-        </if>
-    </select>
-    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.Student">
-        UPDATE student SET name = #{name},gender = #{gender},age = #{age},
-        phone = #{phone},qq_wechat = #{qqWechat},email = #{email},college = #{college}
-        ,major = #{major},walkin_date = #{walkinDate},interview_note = #{interviewNote},marks = #{marks}
-        ,intention = #{intention},student_source = #{studentSource},classification = #{classification}
-        ,create_time = now(),update_time = now() WHERE id = #{id}
-    </update>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Student">
-        INSERT INTO student VALUES (#{id},#{name},#{gender},#{age},
+        INSERT INTO `student`
+        VALUES (#{id},#{name},#{gender},#{age},
         #{phone},#{qqWechat},#{email},#{college}
         ,#{major},#{walkinDate},#{interviewNote},#{marks}
         ,#{intention},#{studentSource},#{classification}
@@ -88,12 +31,78 @@
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
-        DELETE FROM student WHERE id = #{id}
+        DELETE FROM `student` WHERE `id` = #{id}
     </delete>
 
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM student
+    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.Student">
+        UPDATE `student`
+        <set>
+            <if test="name != null and name.length()>0">`name`=#{name},</if>
+            <if test="gender != null">`gender`=#{gender},</if>
+            <if test="age != null">`age`=#{age},</if>
+            <if test="phone != null and phone.length()>0">`phone`=#{phone},</if>
+            <if test="qqWechat != null and qqWechat.length()>0">`qq_echat`=#{qqWechat},</if>
+            <if test="email != null and email.length()>0">`email`=#{email},</if>
+            <if test="college != null and college.length()>0">`college`=#{college},</if>
+            <if test="major != null and major.length()>0">`major`=#{major},</if>
+            <if test="walkinDate != null">`walkin_date`=#{walkinDate},</if>
+            <if test="interviewNote != null and interviewNote.length()>0">`interview_note`=#{interviewNote},</if>
+            <if test="marks != null">`marks`=#{marks},</if>
+            <if test="intention != null and intention.length()>0">`intention`=#{intention},</if>
+            <if test="studentSource != null and studentSource.length()>0">`student_source`=#{studentSource},</if>
+            <if test="classification != null and classification.length()>0">`classification`=#{classification},</if>
+            `update_time`=now()
+        </set>
+        WHERE `id`=#{id}
+    </update>
+
+    <select id="selectOne" resultMap="BaseResultMap">
+        SELECT * FROM `student` WHERE `id`=#{id}
     </select>
 
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM `student`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="name != null and name.length()>0">
+                AND `name` LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="gender != null">
+                AND `gender`=#{gender}
+            </if>
+            <if test="age != null">
+                AND `age`=#{age}
+            </if>
+            <if test="phone != null and phone.length()>0">
+                AND `phone` LIKE CONCAT('%',#{phone},'%')
+            </if>
+            <if test="qqWechat != null and qqWechat.length()>0">
+                AND `qq_wechat` LIKE CONCAT('%',#{qqWechat},'%')
+            </if>
+            <if test="email != null and email.length()>0">
+                AND `email` LIKE CONCAT('%',#{email},'%')
+            </if>
+            <if test="college != null and college.length()>0">
+                AND `college` LIKE CONCAT('%',#{college},'%')
+            </if>
+            <if test="major != null and major.length()>0">
+                AND `major` LIKE CONCAT('%',#{major},'%')
+            </if>
+            <if test="walkinDate != null">
+                AND DATE_FORMAT(`walkin_date`,'%Y-%m-%d')=#{walkinDate}
+            </if>
+            <if test="marks != null">
+                AND `marks`=#{marks}
+            </if>
+            <if test="studentSource != null and studentSource.length()>0">
+                AND `student_source`=#{studentSource}
+            </if>
+            <if test="classification != null and classification.length()>0">
+                AND `classification`=#{classification}
+            </if>
+            <if test="startDate !=null and endDate != null">
+                AND `create_time` BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </trim>
+    </select>
 
 </mapper>

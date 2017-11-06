@@ -15,11 +15,7 @@ public interface PermissionDao {
 
     Integer updateOne(Permission permission);
 
-    /**
-     *查询所有权限
-     * @return
-     */
-    List<Permission> selectAll();
+    Permission selectOne(Long id);
 
     /**
      * 多条件查询广告

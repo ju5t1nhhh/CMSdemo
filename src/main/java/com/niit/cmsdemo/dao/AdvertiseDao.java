@@ -13,11 +13,7 @@ public interface AdvertiseDao {
 
     Integer deleteOne(Long id);
 
-    /**
-     * 查询所有广告
-     * @return
-     */
-    List<Advertise> selectAll();
+    Advertise selectOne(Long id);
 
     /**
      * 多条件查询广告

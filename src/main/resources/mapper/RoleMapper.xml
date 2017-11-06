@@ -7,30 +7,38 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-    <select id="selectConditions" resultMap="BaseResultMap">
-        SELECT * FROM role WHERE 1 = 1
-        <if test="id != null">
-            and id = #{id}
-        </if>
-        <if test="name != null">
-            and name = #{name}
-        </if>
-        <if test="date != null">
-            and DATE_FORMAT(create_time,'%Y-%m-%d') = #{date}
-        </if>
-    </select>
+
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Role">
-        INSERT INTO role VALUES (#{id},#{name},now(),now())
+        INSERT INTO `role` VALUES (#{id},#{name},now(),now())
     </insert>
-    <delete id="deleteOne" parameterType="java.lang.Long">
-        DELETE FROM role WHERE id = #{id}
+
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE FROM `role` WHERE id = #{id}
     </delete>
+
     <update id="updateOne" parameterType="com.niit.cmsdemo.domain.Role">
-        UPDATE role SET name = #{name},create_time = now(),update_time = now()
+        UPDATE `role`
+        <set>
+            <if test="name != null and name.length()>0">`name`=#{name},</if>
+            `update_time`=now()
+        </set>
         WHERE id = #{id}
     </update>
-    <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM role
+
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM `role` WHERE `id`=#{id}
+    </select>
+
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM `role`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="name != null and name.length()>0">
+                AND `name`=#{name}
+            </if>
+            <if test="startDate !=null and endDate != null">
+                AND `create_time` BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </trim>
     </select>
 
 </mapper>

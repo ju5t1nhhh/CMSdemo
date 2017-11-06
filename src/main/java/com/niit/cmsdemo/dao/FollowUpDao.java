@@ -15,7 +15,7 @@ public interface FollowUpDao {
 
     Integer updateOne(FollowUp followUp);
 
-    List<FollowUp> selectAll();
+    FollowUp selectOne(Long id);
 
     List<FollowUp> selectConditions(Map<String,Object> map);
 }
