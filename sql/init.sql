@@ -101,7 +101,6 @@ CREATE TABLE `student`(
   `marks` INT(4) COMMENT '笔试成绩',
   `intention` VARCHAR(100) COMMENT '学习意愿',
   `student_source` VARCHAR(100) COMMENT '学生来源',
-  `follow_up` TEXT COMMENT '后续记录 用,;隔开 ex:19701001,nice;19770203,good;',
   `classification` CHAR COMMENT '学生分类 A,B,C',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
@@ -117,6 +116,21 @@ CREATE TABLE `student`(
   KEY `student_create_time_INDEX` (`create_time`),
   KEY `student_update_time_INDEX` (`update_time`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#follow_up表
+DROP TABLE IF EXISTS `follow_up`;
+CREATE TABLE `follow_up`(
+  `id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '跟进ID',
+  `stu_id` INT(12) NOT NULL COMMENT '学生ID',
+  `note` TEXT COMMENT '记录',
+  `create_time` DATETIME NOT NULL,
+  `update_time` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `follow_up_stu_id_INDEX` (`stu_id`),
+  KEY `follow_up_create_time_INDEX` (`create_time`),
+  KEY `follow_up_update_time_INDEX` (`update_time`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 #user_student表
 DROP TABLE IF EXISTS `user_student`;
