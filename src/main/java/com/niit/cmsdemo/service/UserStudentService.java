@@ -12,8 +12,6 @@ public interface UserStudentService {
 
     void delUserStudent(List<UserStudent> userStudents);
 
-    List<Student> findAll();
-
     List<Student> findConditions(Map<String,Object> map);
 
 }

@@ -13,8 +13,6 @@ public interface PermissionService {
 
     void updatePermission(Permission permission);
 
-    List<Permission> findAll();
-
     List<Permission> findConditions(Map<String,Object> map);
 
 }

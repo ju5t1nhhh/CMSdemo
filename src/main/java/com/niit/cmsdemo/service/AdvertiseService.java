@@ -7,17 +7,15 @@ import java.util.Map;
 
 public interface AdvertiseService {
 
-    void addAdvertise(Advertise advertise);
+    void addAdvertise(Advertise advertise,String userId);
 
     /**
      *
      * @param adIds 多个要删除的id
      */
-    void delAdvertise(Long[] adIds);
-
-    List<Advertise> findAll();
+    void delAdvertise(Long[] adIds,String userId);
 
     //service层要检查map里是否存在该用户没有的权限
-    List<Advertise> findConditions(Map<String,Object> map);
+    List<Advertise> findConditions(Map<String,Object> map,String userId);
 
 }

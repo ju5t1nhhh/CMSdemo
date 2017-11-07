@@ -23,8 +23,9 @@ public class StudentDaoTest {
     @Test
     public void insertOne() throws Exception {
         Student student=new Student();
-        student.setName("Kris Wu");
+        student.setName("Kris TTT");
         studentDao.insertOne(student);
+        System.out.println(student.getId());
     }
 
     @Test

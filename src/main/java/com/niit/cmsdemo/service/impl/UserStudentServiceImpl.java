@@ -20,10 +20,6 @@ public class UserStudentServiceImpl implements UserStudentService {
 
     }
 
-    @Override
-    public List<Student> findAll() {
-        return null;
-    }
 
     @Override
     public List<Student> findConditions(Map<String, Object> map) {

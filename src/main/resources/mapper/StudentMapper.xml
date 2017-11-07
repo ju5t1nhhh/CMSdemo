@@ -21,7 +21,7 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Student">
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Student" keyProperty="id">
         INSERT INTO `student`
         VALUES (#{id},#{name},#{gender},#{age},
         #{phone},#{qqWechat},#{email},#{college}
@@ -63,6 +63,12 @@
     <select id="selectConditions" resultMap="BaseResultMap">
         SELECT * FROM `student`
         <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="ids != null">
+                AND `id` IN
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="name != null and name.length()>0">
                 AND `name` LIKE CONCAT('%',#{name},'%')
             </if>
