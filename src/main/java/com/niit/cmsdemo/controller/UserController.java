@@ -6,6 +6,7 @@ import com.niit.cmsdemo.domain.UserRole;
 import com.niit.cmsdemo.service.UserRoleService;
 import com.niit.cmsdemo.service.UserService;
 
+import com.niit.cmsdemo.util.PasswordHelper;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,19 +27,19 @@ public class UserController {
     @Resource
     private UserRoleService userRoleService;
 
-    @RequestMapping
-    public Map<String,Object> getAll(User user, String draw,
-                                     @RequestParam(required = false, defaultValue = "1") int start,
-                                     @RequestParam(required = false, defaultValue = "10") int length){
-        Map<String,Object> map = new HashMap<>();
-        PageInfo<User> pageInfo = userService.selectByPage(user, start, length);
-        System.out.println("pageInfo.getTotal():"+pageInfo.getTotal());
-        map.put("draw",draw);
-        map.put("recordsTotal",pageInfo.getTotal());
-        map.put("recordsFiltered",pageInfo.getTotal());
-        map.put("data", pageInfo.getList());
-        return map;
-    }
+//    @RequestMapping
+//    public Map<String,Object> getAll(User user, String draw,
+//                                     @RequestParam(required = false, defaultValue = "1") int start,
+//                                     @RequestParam(required = false, defaultValue = "10") int length){
+//        Map<String,Object> map = new HashMap<>();
+//        PageInfo<User> pageInfo = userService.selectByPage(user, start, length);
+//        System.out.println("pageInfo.getTotal():"+pageInfo.getTotal());
+//        map.put("draw",draw);
+//        map.put("recordsTotal",pageInfo.getTotal());
+//        map.put("recordsFiltered",pageInfo.getTotal());
+//        map.put("data", pageInfo.getList());
+//        return map;
+//    }
 
 
     /**
@@ -49,7 +50,7 @@ public class UserController {
      */
     @RequestMapping("/saveUserRoles")
     public String saveUserRoles(UserRole userRole){
-        if(StringUtils.isEmpty(userRole.getUserid()))
+        if(StringUtils.isEmpty(userRole.getUserId()))
             return "error";
         try {
             userRoleService.addUserRole(userRole);
@@ -62,14 +63,14 @@ public class UserController {
 
     @RequestMapping(value = "/add")
     public String add(User user) {
-        User u = userService.selectByUsername(user.getUsername());
+        User u = userService.findByUserId(user.getUsername());
         if(u != null)
             return "error";
         try {
-            user.setEnable(1);
+            user.setStatus(1);
             PasswordHelper passwordHelper = new PasswordHelper();
             passwordHelper.encryptPassword(user);
-            userService.save(user);
+            userService.addUser(user);
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +79,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete")
-    public String delete(Integer id){
+    public String delete(String[] id){
       try{
           userService.delUser(id);
           return "success";
