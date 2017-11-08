@@ -47,9 +47,9 @@ public class MyShiroRealm extends AuthorizingRealm {
         String username = (String)token.getPrincipal();
         User user = userService.findByUserId(username);
         if(user==null) throw new UnknownAccountException();
-//        if (0==user.getEnable()) {
-//            throw new LockedAccountException(); // 帐号锁定
-//        }
+        if (2==user.getStatus()) {
+            throw new LockedAccountException(); // 帐号锁定
+        }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user, //用户
                 user.getPassword(), //密码

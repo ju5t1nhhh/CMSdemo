@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class ManageController {
+public class StudentController {
 
 //    添加学生基本信息
     @RequestMapping(value = "/addNewStudent",method = RequestMethod.POST)
-    public String addNewStudent(HttpServletRequest request){
+    public String addNewStudent(){
 
     }
 //    获得管理者的学生列表

@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by yangqj on 2017/4/21.
- */
+/**登录页面**/
+
 @Controller
 public class HomeController {
-    @RequestMapping(value="/login",method= RequestMethod.GET)
+    @RequestMapping(value={ "/login","/"},method= RequestMethod.GET)
     public String login(){
         return "login";
     }

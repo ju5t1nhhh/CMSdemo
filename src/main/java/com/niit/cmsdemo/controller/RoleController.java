@@ -3,6 +3,8 @@ package com.niit.cmsdemo.controller;
 
 
 import com.niit.cmsdemo.domain.Role;
+import com.niit.cmsdemo.domain.RolePermission;
+import com.niit.cmsdemo.service.RolePermissionService;
 import com.niit.cmsdemo.service.RoleService;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,34 +25,35 @@ public class RoleController {
     @Resource
     private RoleService roleService;
     @Resource
-    private RoleResourcesService roleResourcesService;
+    private RolePermissionService rolePermissionService;
 
-    @RequestMapping
-    public  Map<String,Object> getAll(Role role, String draw,
-                                      @RequestParam(required = false, defaultValue = "1") int start,
-                                      @RequestParam(required = false, defaultValue = "10") int length){
-
-        Map<String,Object> map = new HashMap<>();
-        PageInfo<Role> pageInfo = roleService.selectByPage(role, start, length);
-        map.put("draw",draw);
-        map.put("recordsTotal",pageInfo.getTotal());
-        map.put("recordsFiltered",pageInfo.getTotal());
-        map.put("data", pageInfo.getList());
-        return map;
-    }
+//    @RequestMapping
+//    public  Map<String,Object> getAll(Role role, String draw,
+//                                      @RequestParam(required = false, defaultValue = "1") int start,
+//                                      @RequestParam(required = false, defaultValue = "10") int length){
+//
+//        Map<String,Object> map = new HashMap<>();
+//        PageInfo<Role> pageInfo = roleService.selectByPage(role, start, length);
+//        map.put("draw",draw);
+//        map.put("recordsTotal",pageInfo.getTotal());
+//        map.put("recordsFiltered",pageInfo.getTotal());
+//        map.put("data", pageInfo.getList());
+//        return map;
+//    }
 
     @RequestMapping("/rolesWithSelected")
     public List<Role> rolesWithSelected(Integer uid){
-        return roleService.queryRoleListWithSelected(uid);
+
+        return roleService.findAll(uid);
     }
 
     //分配角色
     @RequestMapping("/saveRoleResources")
-    public String saveRoleResources(RoleResources roleResources){
-        if(StringUtils.isEmpty(roleResources.getRoleid()))
+    public String saveRoleResources(RolePermission rolePermission){
+        if(StringUtils.isEmpty(rolePermission.getRoleId()))
             return "error";
         try {
-            roleResourcesService.addRoleResources(roleResources);
+            rolePermissionService.addRolePerm(rolePermission);
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +64,7 @@ public class RoleController {
     @RequestMapping(value = "/add")
     public String add(Role role) {
         try {
-            roleService.save(role);
+            roleService.updateRole(role);
             return "success";
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +73,7 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/delete")
-    public String delete(Integer id){
+    public String delete(Integer[] id){
         try{
             roleService.delRole(id);
             return "success";
@@ -79,7 +82,4 @@ public class RoleController {
             return "fail";
         }
     }
-
-
-
 }
