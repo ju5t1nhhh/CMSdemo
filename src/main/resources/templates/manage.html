@@ -8,7 +8,7 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" align="center">
 		<div class="starter-template">
 			<h1 align="center">NIIT System</h1><br/><br/>
 		</div>
@@ -25,6 +25,7 @@
 						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
 							<li><a href="#StudentsList" data-toggle="tab">Students List</a></li>
 							<li><a data-toggle="modal" data-target="#NewStudent">New Student</a></li>
+							<li><a href="#SearchStudents" data-toggle="tab">Search Students</a></li>
 						</ul>
 					</li>
 					<li>
@@ -32,720 +33,149 @@
 					</li>
 				</ul>
 			</div>
-			<div class="col-sm-12">
-				<div id="myTabContent1" class="tab-content">
-					<div class="tab-pane fade in active" id="Employer">
-						<div class="col-sm-2" id="myScrollspy">
-							<ul id="myTab2" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="125">
-								<hr/>
-								<li><a href="#section-1" data-toggle="pill">用户管理</a></li>
-								<li><a href="#section-2" data-toggle="pill">角色管理</a></li>
-								<li><a href="#section-3" data-toggle="pill">资源管理</a></li>
-							</ul>
-						</div>
-						<br/>
-						<div id="myTabContent2" class="tab-content">
-							<div class="col-sm-10 tab-pane fade in active" id="section-1">
-								<div class="col-sm-10"></div>
-								<div class="col-sm-2">
-									<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewUser">
-										New User
-									</button>
-								</div><br/><br/>
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>User ID</th>
-											<th>User Name</th>
-											<th>Password</th>
-											<th>Create Time</th>
-											<th>Update Time</th>
-											<th>Operation</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>560001</td>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>
-												<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditUser">
-													Edit
-												</button>
-												<button class="btn btn-xs btn-danger" onclick="">
-													Delete
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+		</div>
 
-							<div class="col-sm-10 tab-pane fade in active" id="section-2">
-								<div class="col-sm-10"></div>
-								<div class="col-sm-2">
-									<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewRole">
-										New Role
-									</button>
-								</div><br/><br/>
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Name</th>
-											<th>Create Time</th>
-											<th>Update Time</th>
-											<th>Operation</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>560001</td>
-											<td>Tanmay</td>
-											<td>
-												<button class="btn btn-xs btn-info"  data-toggle="modal" data-target="#EditRole">
-													Edit
-												</button>
-												<button class="btn btn-xs btn-danger" onclick="">
-													Delete
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
 
-							<div class="col-sm-10 tab-pane fade in active" id="section-3">
-								<div class="col-sm-10"></div>
-								<div class="col-sm-2">
-									<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewPermission">
-										New Permission
-									</button>
-								</div><br/><br/>
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Name</th>
-											<th>Url</th>
-											<th>Type</th>
-											<th>Parent ID</th>
-											<th>Create Time</th>
-											<th>Update Time</th>
-											<th>Operation</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>560001</td>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>560001</td>
-											<td>More</td>
-											<td>
-												<button class="btn btn-xs btn-info"  data-toggle="modal" data-target="#EditPermission">
-													Edit
-												</button>
-												<button class="btn btn-xs btn-danger" onclick="">
-													Delete
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
+		<!-- tab content -->
+		<div class="tab-content">
+			<br/>
+			<div class="tab-pane fade in active" id="Employer">
+				<div class="row">
+					<div class="col-sm-2" id="myScrollspy">
+						<ul id="myTab2" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="125">
+							<li><a href="#UserMgmt" data-toggle="pill">User</a></li>
+							<li><a href="#RoleMgmt" data-toggle="pill">Role</a></li>
+							<li><a href="#ResourceMgmt" data-toggle="pill">Resource</a></li>
+							<li><a href="#Report" data-toggle="pill">Report</a></li>
+						</ul>
 					</div>
-
-					<div class="tab-pane fade in active" id="StudentsList">
-						<br/>	
-						<table class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Date</th>
-									<th>Name</th>
-									<th>Gender</th>
-									<th>Age</th>
-									<th>Phone No</th>
-									<th>Email</th>
-									<th>College Name</th>
-									<th>Details</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Tanmay</td>
-									<td>Bangalore</td>
-									<td>560001</td>
-									<td>Tanmay</td>
-									<td>Bangalore</td>
-									<td>560001</td>
-									<td>Tanmay</td>
-									<td>
-										<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Details">
-											More
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-					<div class="tab-pane fade in active" id="Task">
-						<br/>
-						<form class="form-horizontal" role="form">
-							<label class="col-sm-1 control-label">Url: </label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
-							</div>
+					<div class="tab-content col-sm-10">
+						<div class="tab-pane fade in active" id="UserMgmt">
+							<div class="col-sm-10"></div>
 							<div class="col-sm-2">
-								<button type="button" class="btn btn-primary" id="urladdbtn">
-									Add
+								<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewUser">
+									New User
 								</button>
-							</div>
-							<br/><br/><br/>
-							<div class="col-sm-12">
-								<table class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th class="col-sm-10">Submitted Url</th>
-											<th class="col-sm-2">Delete</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>www.baidu.com</td>
-											<td>
-												<button class="btn btn-danger btn-xs" onclick="">
-													<span class="glyphicon glyphicon-remove"></span>
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								New User:
-							</h3>
+							</div><br/><br/>
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>User ID</th>
+										<th>User Name</th>
+										<th>Create Time</th>
+										<th>Update Time</th>
+										<th>Operation</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>
+											<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditUser">
+												Edit
+											</button>
+											<button class="btn btn-xs btn-danger" onclick="">
+												Delete
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">User ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="loginId" style="width: 90%"/>
-									</div>
-								</div>
 
-								<div class="form-group">
-									<label class="col-sm-2 control-label">User Name: </label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control" id="username" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Password: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="upassword" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Create Time: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="ucreateTime" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Update Time </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="uupdateTime" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
+						<div class="tab-pane fade in active" id="RoleMgmt">
+							<div class="col-sm-10"></div>
+							<div class="col-sm-2">
+								<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewRole">
+									New Role
+								</button>
+							</div><br/><br/>
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Create Time</th>
+										<th>Update Time</th>
+										<th>Operation</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>560001</td>
+										<td>Tanmay</td>
+										<td>
+											<button class="btn btn-xs btn-info"  data-toggle="modal" data-target="#EditRole">
+												Edit
+											</button>
+											<button class="btn btn-xs btn-danger" onclick="">
+												Delete
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitu">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
+
+						<div class="tab-pane fade in active" id="ResourceMgmt">
+							<div class="col-sm-10"></div>
+							<div class="col-sm-2">
+								<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewPermission">
+									New Permission
+								</button>
+							</div><br/><br/>
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Url</th>
+										<th>Type</th>
+										<th>Parent ID</th>
+										<th>Create Time</th>
+										<th>Update Time</th>
+										<th>Operation</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>560001</td>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>560001</td>
+										<td>More</td>
+										<td>
+											<button class="btn btn-xs btn-info"  data-toggle="modal" data-target="#EditPermission">
+												Edit
+											</button>
+											<button class="btn btn-xs btn-danger" onclick="">
+												Delete
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
 
-			<div class="modal fade" id="NewRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								New Role:
-							</h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="rid" style="width: 90%"/>
+						<div class="tab-pane fade in active" id="Report">
+							<div class="col-sm-10">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Date: </label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Name: </label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control" id="rname" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Create Time: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="rcreateTime" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Update Time </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="rupdateTime" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitr">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-
-			<div class="modal fade" id="NewPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								New Permission:
-							</h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="pid" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Name: </label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control" id="pname" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Url: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="purl" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Type: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="ptype" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Parent ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="parentId" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Create Time: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="pcreateTime" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Update Time </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="pupdateTime" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitp">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-
-			<div class="modal fade" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								Edit User:
-							</h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">User ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="euid" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">User Name: </label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control" id="eusername" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Password: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="eupassword" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Create Time: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="eucreateTime" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Update Time </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="euupdateTime" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submiteu">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-
-			<div class="modal fade" id="EditRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								Edit Role:
-							</h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="erid" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Name: </label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control" id="ername" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Create Time: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="ercreateTime" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Update Time </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="erupdateTime" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submiter">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-
-			<div class="modal fade" id="EditPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								Edit Permission:
-							</h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="epid" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Name: </label>
-									<div class="col-sm-10">
-										<input type="password" class="form-control" id="eppassword" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Url: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="epurl" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Type: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="eptype" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Parent ID: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="epparentId" style="width: 90%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Create Time: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="epcreateTime" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Update Time </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="epupdateTime" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitep">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-
-			<div class="modal fade" id="NewStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">
-								New Student:
-							</h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Date: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nsdate" style="width: 90%"/>
-									</div>
-
-									<label class="col-sm-2 control-label">Name: </label>
-									<div class="col-sm-4">
-										<input type="password" class="form-control" id="nsname" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Gender: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nsgender" style="width: 90%"/>
-									</div>
-									<label class="col-sm-2 control-label">Age: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nsage" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Phone No: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nsphonenum" style="width: 90%"/>
-									</div>								
-									<label class="col-sm-2 control-label">Email: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nsemail" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">College Name: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nscollegename" style="width: 90%"/>
-									</div>
-									<label class="col-sm-2 control-label">Major: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="nsmajor" style="width: 90%"/>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitns">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-
-			<div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title" id="myModalLabel">Detailed Information: </h3>
-						</div>
-						<div class="modal-body">
-							<form class="form-horizontal" role="form">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Date: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtdate" style="width: 90%"/>
-									</div>
-
-									<label class="col-sm-2 control-label">Name: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtname" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Gender: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtgender" style="width: 90%"/>
-									</div>
-									<label class="col-sm-2 control-label">Age: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtage" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Phone No: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtphonenum" style="width: 90%"/>
-									</div>								
-									<label class="col-sm-2 control-label">Email: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtemail" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">College Name: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtcollegename" style="width: 90%"/>
-									</div>
-									<label class="col-sm-2 control-label">Major: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtmajor" style="width: 90%"/>
-									</div>
-								</div>
-								<hr/>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Walk-in Date: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>
-									</div>
-									<label class="col-sm-2 control-label">Marks: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtmarks" style="width: 90%"/>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Interview Situation: </label>
-									<div class="col-sm-10">
-										<textarea class="form-control" id="dtinsit" style="width: 96%" rows="4"></textarea>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Source: </label>
-									<div class="col-sm-5">
-										<select class="form-control" style="width: 92%">
-											<option>Web</option>
-											<option>bala</option>
-											<option>bala</option>
-										</select>
-									</div>
-									<div class="col-sm-5">
-										<select class="form-control" style="width: 92%">
-											<option>Job Market</option>
-											<option>Bala</option>
-											<option>Bala</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Intention: </label>
-									<div class="col-sm-4">
-										<input type="text" class="form-control" id="dtintention" style="width: 90%"/>
-									</div>
-									<label class="col-sm-2 control-label">Classfication: </label>
-									<div class="col-sm-4">
-										<div class="form-group">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Classification: </label>
+										<div class="col-sm-6">
 											<select class="form-control" style="width: 85%">
 												<option>A: Intersted</option>
 												<option>B: Hesitate</option>
@@ -753,72 +183,768 @@
 											</select>
 										</div>
 									</div>
-								</div>
-								<hr/>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Follow Up: </label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="dtfollowup" style="width: 50%"/>
-									</div><br/><br/>
-									<div class="col-sm-2" align="center">
-										<button class="btn btn-danger btn-xs" onclick="">
-											<span class="glyphicon glyphicon-remove"></span>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Source: </label>
+										<div class="col-sm-4">
+											<select class="form-control" style="width: 92%">
+												<option>Web</option>
+												<option>bala</option>
+												<option>bala</option>
+											</select>
+										</div>
+										<div class="col-sm-4">
+											<select class="form-control" style="width: 92%">
+												<option>Job Market</option>
+												<option>Bala</option>
+												<option>Bala</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-10">
+										<label class="col-sm-2 control-label">Count: </label>
+										<label class="col-sm-1 control-label" id="count">5</label>
+									</div>
+									<div class="col-sm-2">										
+										<button type="button" class="btn btn-primary" id="urladdbtn">
+											Search
 										</button>
 									</div>
-									<div class="col-sm-10">
-										<textarea class="form-control" id="dtfp1" style="width: 96%" rows="4"></textarea>
-									</div>
-								</div>
-								<hr/>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Follow Up: </label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="status" style="width: 50%"/>
-									</div>
-									<br/><br/>
-									<div class="col-sm-2" align="center">
-										<button class="btn btn-danger btn-xs" onclick="">
-											<span class="glyphicon glyphicon-remove"></span>
-										</button>
-									</div>
-									<div class="col-sm-10">
-										<textarea class="form-control" id="dtfp2" style="width: 96%" rows="4"></textarea>
-									</div>
+			<div class="tab-pane fade in active" id="StudentsList">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Gender</th>
+							<th>Age</th>
+							<th>Phone No</th>
+							<th>Email</th>
+							<th>College Name</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Tanmay</td>
+							<td>Bangalore</td>
+							<td>560001</td>
+							<td>Tanmay</td>
+							<td>Bangalore</td>
+							<td>560001</td>
+							<td>Tanmay</td>
+							<td>
+								<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Details">
+									More
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="tab-pane fade in active" id="SearchStudents">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-sm-1 control-label">Date: </label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
+						</div>
+						<label class="col-sm-1 control-label">Name: </label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-1 control-label">Classification: </label>
+						<div class="col-sm-4">
+							<select class="form-control" style="width: 85%">
+								<option>A: Intersted</option>
+								<option>B: Hesitate</option>
+								<option>C: Rejected</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">Source: </label>
+						<div class="col-sm-2">
+							<select class="form-control" style="width: 92%">
+								<option>Web</option>
+								<option>bala</option>
+								<option>bala</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" style="width: 92%">
+								<option>Job Market</option>
+								<option>Bala</option>
+								<option>Bala</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-primary" id="urladdbtn">
+								Search
+							</button>
+						</div>
+					</div>
+				</form>
+				<div class="col-sm-12">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Name</th>
+								<th>Gender</th>
+								<th>Age</th>
+								<th>Phone No</th>
+								<th>Email</th>
+								<th>College Name</th>
+								<th>Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Tanmay</td>
+								<td>Bangalore</td>
+								<td>560001</td>
+								<td>Tanmay</td>
+								<td>Bangalore</td>
+								<td>560001</td>
+								<td>Tanmay</td>
+								<td>
+									<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Details">
+										More
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="tab-pane fade in active" id="Task">
+				<form class="form-horizontal" role="form">
+					<label class="col-sm-1 control-label">Url: </label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-primary" id="urladdbtn">
+							Add
+						</button>
+					</div>
+				</form>
+				<div class="col-sm-12">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th class="col-sm-10">Submitted Url</th>
+								<th class="col-sm-2">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>www.baidu.com</td>
+								<td>
+									<button class="btn btn-danger btn-xs" onclick="">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div> <!-- /.tab content -->
+
+		<!-- modal -->
+		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							New User:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">User ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="loginId" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">User Name: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="username" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Password: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upassword" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Create Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="ucreateTime" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Update Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="uupdateTime" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitu">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="NewRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							New Role:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="rid" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Name: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="rname" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Create Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="rcreateTime" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Update Time </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="rupdateTime" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitr">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="NewPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							New Permission:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="pid" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Name: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="pname" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Url: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="purl" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Type: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="ptype" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Parent ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="parentId" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Create Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="pcreateTime" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Update Time </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="pupdateTime" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitp">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							Edit User:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">User ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="euid" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">User Name: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="eusername" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Password: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="eupassword" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Create Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="eucreateTime" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Update Time </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="euupdateTime" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submiteu">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="EditRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							Edit Role:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="erid" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Name: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="ername" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Create Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="ercreateTime" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Update Time </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="erupdateTime" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submiter">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="EditPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							Edit Permission:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="epid" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Name: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="eppassword" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Url: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="epurl" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Type: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="eptype" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Parent ID: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="epparentId" style="width: 90%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Create Time: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="epcreateTime" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Update Time </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="epupdateTime" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitep">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="NewStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">
+							New Student:
+						</h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Date: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsdate" style="width: 90%"/>
 								</div>
 
-								<div class="col-sm-11"></div>
-								<div class="col-sm-1">
-									<button class="btn btn-primary btn-xs">
-										<span class="glyphicon glyphicon-plus"></span>
+								<label class="col-sm-2 control-label">Name: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsname" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Gender: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsgender" style="width: 90%"/>
+								</div>
+								<label class="col-sm-2 control-label">Age: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsage" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Phone No: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsphonenum" style="width: 90%"/>
+								</div>								
+								<label class="col-sm-2 control-label">Email: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsemail" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">College Name: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nscollegename" style="width: 90%"/>
+								</div>
+								<label class="col-sm-2 control-label">Major: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="nsmajor" style="width: 90%"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitns">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+
+		<div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="myModalLabel">Detailed Information: </h3>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Date: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtdate" style="width: 90%"/>
+								</div>
+
+								<label class="col-sm-2 control-label">Name: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtname" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Gender: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtgender" style="width: 90%"/>
+								</div>
+								<label class="col-sm-2 control-label">Age: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtage" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Phone No: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtphonenum" style="width: 90%"/>
+								</div>								
+								<label class="col-sm-2 control-label">Email: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtemail" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">College Name: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtcollegename" style="width: 90%"/>
+								</div>
+								<label class="col-sm-2 control-label">Major: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtmajor" style="width: 90%"/>
+								</div>
+							</div>
+							<hr/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Walk-in Date: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>
+								</div>
+								<label class="col-sm-2 control-label">Marks: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtmarks" style="width: 90%"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Interview Situation: </label>
+								<div class="col-sm-10">
+									<textarea class="form-control" id="dtinsit" style="width: 96%" rows="4"></textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Source: </label>
+								<div class="col-sm-5">
+									<select class="form-control" style="width: 92%">
+										<option>Web</option>
+										<option>bala</option>
+										<option>bala</option>
+									</select>
+								</div>
+								<div class="col-sm-5">
+									<select class="form-control" style="width: 92%">
+										<option>Job Market</option>
+										<option>Bala</option>
+										<option>Bala</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Intention: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtintention" style="width: 90%"/>
+								</div>
+								<label class="col-sm-2 control-label">Classification: </label>
+								<div class="col-sm-4">
+									<select class="form-control" style="width: 85%">
+										<option>A: Intersted</option>
+										<option>B: Hesitate</option>
+										<option>C: Rejected</option>
+									</select>
+								</div>
+							</div>
+							<hr/>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Follow Up: </label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="dtfollowup" style="width: 50%"/>
+								</div><br/><br/>
+								<div class="col-sm-2" align="center">
+									<button class="btn btn-danger btn-xs" onclick="">
+										<span class="glyphicon glyphicon-remove"></span>
 									</button>
 								</div>
-								<br/>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitdt">
-								Submit
-							</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div> <!-- /.modal -->
-		</div>
-	</div>
+								<div class="col-sm-10">
+									<textarea class="form-control" id="dtfp1" style="width: 96%" rows="4"></textarea>
+								</div>
+							</div>
+							<hr/>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Follow Up: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="status" style="width: 50%"/>
+								</div>
+								<br/><br/>
+								<div class="col-sm-2" align="center">
+									<button class="btn btn-danger btn-xs" onclick="">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+								</div>
+								<div class="col-sm-10">
+									<textarea class="form-control" id="dtfp2" style="width: 96%" rows="4"></textarea>
+								</div>
+							</div>
+
+							<div class="col-sm-11"></div>
+							<div class="col-sm-1">
+								<button class="btn btn-primary btn-xs">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+							<br/>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitdt">
+							Submit
+						</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div> <!-- /.modal -->
+		<!-- /modal -->
 
 
+	</div> <!-- /.container -->
 </body>
 <script>
 	$(function () {
-		$('#myTab1 li:eq(0) a').tab('show');
+		$('#myTab2 li:eq(0) a').tab('show');
 	});
 	$(function () {
-		$('#myTab2 li:eq(0) a').tab('show');
+		$('#myTab1 li:eq(2) a').tab('show');
 	});
 </script>
 
