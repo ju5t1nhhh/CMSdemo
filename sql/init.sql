@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
   `login_id` VARCHAR(20) NOT NULL COMMENT '登录ID',
   `username` VARCHAR(20) NOT NULL COMMENT '用户名',
-  `password` VARCHAR(20) NOT NULL COMMENT '密码',
+  `password` VARCHAR(100) NOT NULL COMMENT '密码',
   `status` INT(4) NOT NULL DEFAULT 1 COMMENT '状态 1-开启 2-锁定',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
