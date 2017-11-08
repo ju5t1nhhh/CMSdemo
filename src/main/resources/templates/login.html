@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>NIIT Manage System</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<span th:text="${msg}"></span>
+<form action="/login" method="post">
+    <input name="loginId" type="text" />
+    <input name="password" type="password"/>
+    <input type="submit" value="login"/>
+</form>
+
+</body>
+<script>
+
+</script>
+
+</html>
