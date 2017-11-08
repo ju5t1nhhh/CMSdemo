@@ -15,4 +15,5 @@ public interface PermissionService {
 
     List<Permission> findConditions(Map<String,Object> map);
 
+    List<Permission> findByUserId(String userId);
 }
