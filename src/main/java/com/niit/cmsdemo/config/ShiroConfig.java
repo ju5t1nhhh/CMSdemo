@@ -60,7 +60,7 @@ public class ShiroConfig {
         //如果不设置默认会自动寻找web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         //登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/userPage");
+        shiroFilterFactoryBean.setSuccessUrl("/manage");
         //未授权界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         //拦截器
@@ -75,7 +75,7 @@ public class ShiroConfig {
         //过滤链定义，从上向下顺序执行
         //authc:所有url都必须认证通过才可以访问，anon：所有的url都可以匿名访问
         //自定义加载权限资源关系
-        List<Permission> permissionList = permissionService.findAll();
+        List<Permission> permissionList = permissionService.findConditions(null);
         for (Permission permission: permissionList) {
             if(StringUtil.isNotEmpty(permission.getUrl())){
                 String permi = "perms[" + permission.getUrl() + "]";
@@ -127,7 +127,8 @@ public class ShiroConfig {
      * @param securityManager
      * @return
      */
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(java.lang.SecurityManager securityManager){
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
         return authorizationAttributeSourceAdvisor;
@@ -136,8 +137,9 @@ public class ShiroConfig {
     /**
      * shiro session的管理
      */
+    @Bean
     public DefaultWebSessionManager sessionManager(){
-        DefaultWebSessionManager securityManager = new DefaultWebSessionManager();
-        return securityManager;
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        return sessionManager;
     }
 }
