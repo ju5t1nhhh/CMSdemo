@@ -80,6 +80,36 @@ function edituser(t) {
     $("#euupdateTime").val(ut);
 }
 
+$("#submiteu").click(function () {
+    alert("11111");
+    var formData = new FormData($('#euform'));
+    alert("22222");
+    // $.post("/updateUser",formData,function (res) {
+    //     alert("333333");
+    //    if(res.code==200){
+    //        location.reload();
+    //    }else{
+    //        alert(res.msg);
+    //    }
+    // });
+    $.ajax({
+        type: 'post',
+        url: '/updateUser',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(res) {
+                alert("333333");
+               if(res.code==200){
+                   alert(res.msg);
+                   location.reload();
+               }else{
+                   alert(res.msg);
+               }
+        }
+    });
+});
+
 function deluser() {
 
 }
