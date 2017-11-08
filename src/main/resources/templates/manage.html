@@ -5,7 +5,7 @@
 	<title>NIIT Manage System</title>
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>git
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
         $(function () {
             $('#myTab2 li:eq(0) a').tab('show');
@@ -75,7 +75,7 @@
 										<th>Operation</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="userbody">
 									<tr>
 										<td>Tanmay</td>
 										<td>Bangalore</td>
@@ -946,5 +946,24 @@
 
 
 	</div> <!-- /.container -->
+<script>
+	$.post("/searchUser",function(res){
+	   var list=res.data;
+	   $("#userbody").html("");
+	   var s="<button class='btn btn-xs btn-info' >" +
+           "Edit" +
+           "</button>" ;
+	   alert(s);
+	   $.each(list,function(idx,user){
+	      $("#userbody").append("<tr><td>"+user.loginId+"</td>\n" +
+              "<td>"+user.username+"</td>\n" +
+              "<td>"+user.createTime+"</td>\n" +
+              "<td>"+user.updateTime+"</td>\n" +
+              "<td>\n" +
+              "</td>\n" +
+              "</tr>");
+	   });
+	});
+</script>
 </body>
 </html>
