@@ -946,24 +946,6 @@
 
 
 	</div> <!-- /.container -->
-<script>
-	$.post("/searchUser",function(res){
-	   var list=res.data;
-	   $("#userbody").html("");
-	   var s="<button class='btn btn-xs btn-info' >" +
-           "Edit" +
-           "</button>" ;
-	   alert(s);
-	   $.each(list,function(idx,user){
-	      $("#userbody").append("<tr><td>"+user.loginId+"</td>\n" +
-              "<td>"+user.username+"</td>\n" +
-              "<td>"+user.createTime+"</td>\n" +
-              "<td>"+user.updateTime+"</td>\n" +
-              "<td>\n" +
-              "</td>\n" +
-              "</tr>");
-	   });
-	});
-</script>
+<script src="/js/manage.js"></script>
 </body>
 </html>
