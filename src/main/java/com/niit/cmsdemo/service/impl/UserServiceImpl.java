@@ -22,18 +22,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void addUser(User user) {
+    public void addUser(User user) throws Exception {
         Integer rows=userDao.insertOne(user);
         if(rows>0){
             userRoleDao.insertOne(user.getLoginId(),1);
+        }else{
+            throw new Exception("添加失败");
         }
     }
 
     @Override
-    public void delUser(String[] userIds) {
-        for(String userId:userIds){
-            userDao.deleteOne(userId);
-        }
+    public void delUser(String userId) throws Exception {
+        Integer rows=userDao.deleteOne(userId);
+        if(rows==0)throw new Exception("添加失败");
     }
 
     @Override

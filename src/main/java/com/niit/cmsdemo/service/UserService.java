@@ -7,9 +7,9 @@ import java.util.Map;
 
 public interface UserService {
 
-    void addUser(User user);
+    void addUser(User user) throws Exception;
 
-    void delUser(String[] userIds);
+    void delUser(String userId) throws Exception;
 
     void updateUser(User user);
 

@@ -8,7 +8,7 @@ public class ServerResponse<T> {
     public static <T> ServerResponse<T> createSuccessResponse(T data){
         ServerResponse serverResponse=new ServerResponse();
         serverResponse.setCode(200);
-        serverResponse.setMsg("返回成功");
+        serverResponse.setMsg("操作成功");
         serverResponse.setData(data);
         return serverResponse;
     }
