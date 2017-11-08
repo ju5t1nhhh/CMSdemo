@@ -8,10 +8,12 @@ import java.util.Map;
 
 public interface UserStudentService {
 
-    void addUserStudent(UserStudent userStudent);
+    void addUserStudent(String userId,Long stuId);
 
-    void delUserStudent(List<UserStudent> userStudents);
+    void delUserStudent(String userId,Long stuId);
 
-    List<Student> findConditions(Map<String,Object> map);
+    List<Student> findStudents(Map<String,Object> map,String userId);
+
+    String findUserIdByStuId(Long stuId);
 
 }

@@ -8,6 +8,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 @SpringBootTest
@@ -34,6 +38,11 @@ public class StudentServiceTest {
 
     @Test
     public void findConditions() throws Exception {
+        Map<String,Object> map=new HashMap<>();
+        List<Student> students=studentService.findConditions(map,"jackie233");
+        for(Student student:students){
+            System.out.println(student);
+        }
     }
 
 }

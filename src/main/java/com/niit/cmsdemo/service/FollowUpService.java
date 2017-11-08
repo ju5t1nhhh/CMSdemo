@@ -13,6 +13,8 @@ public interface FollowUpService {
 
     void updateFollowUp(FollowUp followUp,String userId);
 
+    List<FollowUp> findAll();
+
     List<FollowUp> findConditions(Map<String,Object> map,String userId);
 
 }

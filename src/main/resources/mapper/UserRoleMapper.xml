@@ -16,6 +16,10 @@
         DELETE FROM `user_role` WHERE `user_id` = #{userId} and `role_id` = #{roleId}
     </delete>
 
+    <select id="selectAll" resultType="com.niit.cmsdemo.domain.UserRole">
+        SELECT * FROM `user_role`
+    </select>
+
     <select id="selectRoleIdsByUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT `role_id` FROM `user_role` WHERE `user_id` = #{userId}
     </select>

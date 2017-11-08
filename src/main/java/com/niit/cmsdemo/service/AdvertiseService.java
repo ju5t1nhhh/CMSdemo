@@ -15,6 +15,7 @@ public interface AdvertiseService {
      */
     void delAdvertise(Long[] adIds,String userId);
 
+    List<Advertise> findAll();
     //service层要检查map里是否存在该用户没有的权限
     List<Advertise> findConditions(Map<String,Object> map,String userId);
 

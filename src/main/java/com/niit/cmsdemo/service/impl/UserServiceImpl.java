@@ -1,8 +1,12 @@
 package com.niit.cmsdemo.service.impl;
 
+import com.niit.cmsdemo.dao.UserDao;
+import com.niit.cmsdemo.dao.UserRoleDao;
 import com.niit.cmsdemo.domain.User;
 import com.niit.cmsdemo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -10,33 +14,45 @@ import java.util.Map;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Override
-    public void addUser(User user) {
+    @Autowired
+    private UserDao userDao;
 
+    @Autowired
+    private UserRoleDao userRoleDao;
+
+    @Override
+    @Transactional
+    public void addUser(User user) {
+        Integer rows=userDao.insertOne(user);
+        if(rows>0){
+            userRoleDao.insertOne(user.getLoginId(),1);
+        }
     }
 
     @Override
     public void delUser(String[] userIds) {
-
+        for(String userId:userIds){
+            userDao.deleteOne(userId);
+        }
     }
 
     @Override
     public void updateUser(User user) {
-
+        userDao.updateOne(user);
     }
 
     @Override
     public User findByUserId(String userId) {
-        return null;
+        return userDao.selectOne(userId);
     }
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userDao.selectConditions(null);
     }
 
     @Override
     public List<User> findConditions(Map<String, Object> map) {
-        return null;
+        return userDao.selectConditions(map);
     }
 }

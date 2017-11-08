@@ -9,9 +9,11 @@ public interface StuSourceService {
 
     void addStuSource(StuSource stuSource);
 
-    void delStuSource(Integer ids);
+    void delStuSource(Integer[] ids);
 
     //具体问题 具体分析
+    List<StuSource> findAll();
+
     List<StuSourceResponse> getStuSource();
 
 }

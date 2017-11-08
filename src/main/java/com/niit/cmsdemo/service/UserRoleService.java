@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface UserRoleService {
 
-    void addUserRole(UserRole userRole);
+    void addUserRole(String userId,Integer roleId);
 
-    void delUserRole(Long[] ids);
+    void delUserRole(String userId,Integer roleId);
 
     List<UserRole> findAll();
 

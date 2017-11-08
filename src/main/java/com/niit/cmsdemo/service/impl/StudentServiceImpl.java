@@ -45,6 +45,11 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    @Override
+    public List<Student> findAll() {
+        return studentDao.selectConditions(null);
+    }
+
     //查找该userId的学生
     @Override
     public List<Student> findConditions(Map<String, Object> map, String userId) {

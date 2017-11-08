@@ -34,6 +34,11 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     }
 
     @Override
+    public List<Advertise> findAll() {
+        return advertiseDao.selectConditions(null);
+    }
+
+    @Override
     public List<Advertise> findConditions(Map<String, Object> map, String userId) {
         map.put("userId",userId);
         return advertiseDao.selectConditions(map);

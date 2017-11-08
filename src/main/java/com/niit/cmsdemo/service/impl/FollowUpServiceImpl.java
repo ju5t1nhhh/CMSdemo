@@ -44,6 +44,11 @@ public class FollowUpServiceImpl implements FollowUpService{
     }
 
     @Override
+    public List<FollowUp> findAll() {
+        return followUpDao.selectConditions(null);
+    }
+
+    @Override
     public List<FollowUp> findConditions(Map<String, Object> map, String userId) {
         return followUpDao.selectConditions(map);
     }

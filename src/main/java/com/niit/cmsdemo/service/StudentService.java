@@ -15,6 +15,7 @@ public interface StudentService {
 
     void updateStudent(Student student,String userId);
 
+    List<Student> findAll();
     //service层要检查map里是否存在该用户没有的权限
     List<Student> findConditions(Map<String,Object> map,String userId);
 
