@@ -37,6 +37,7 @@
                 AND `create_time` BETWEEN #{startDate} AND #{endDate}
             </if>
         </trim>
+        ORDER BY `create_time` DESC
     </select>
 
 </mapper>

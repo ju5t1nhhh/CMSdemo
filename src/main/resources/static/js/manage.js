@@ -71,15 +71,16 @@ var flashUser=function () {
     });
 };
 
-
-
 var flashadvertise = function () {
     $.post("/searchAds",function(res){
         var list=res.data;
+        $("#adcount").text(list.length);
         $("#adbody").html("");
         $.each(list,function(idx,ad){
             $("#adbody").append("<tr>\n" +
-                "<td>" + ad.url + "</td>\n" +
+                "<td>" + ad.userId + "</td>\n" +
+                "<td><a href='"+ad.url+"'>" + ad.url + "</a></td>\n" +
+                "<td>" + timeFormatter(ad.createTime) + "</td>\n" +
                 "<td>\n" +
                 "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+")'>\n" +
                 "<span class=\"glyphicon glyphicon-remove\"></span>\n" +
@@ -99,6 +100,24 @@ var delAdvertise=function (adId) {
         }
     });
 };
+
+function addAdvertise() {
+    var url = $("#urlinput").val();
+    $.post("/addAds", {url: url}, function (res) {
+        if (res.code==200) {
+            flashadvertise();
+        } else {
+            alert(res.code);
+        }
+    });
+}
+
+$("#urlinput").keydown(function (e) {
+    if(e.keyCode==13){
+        addAdvertise();
+        $("#urlinput").val("");
+    }
+});
 
 function edituser(t) {
     var chids =  $(t).closest('td').closest('tr').find("td");

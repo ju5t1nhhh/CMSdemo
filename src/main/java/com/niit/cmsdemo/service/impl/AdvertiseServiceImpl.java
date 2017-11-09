@@ -1,12 +1,15 @@
 package com.niit.cmsdemo.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.niit.cmsdemo.dao.AdvertiseDao;
 import com.niit.cmsdemo.domain.Advertise;
 import com.niit.cmsdemo.service.AdvertiseService;
+import com.niit.cmsdemo.util.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +46,9 @@ public class AdvertiseServiceImpl implements AdvertiseService {
         if(!userId.equals("admin")){
             map.put("userId",userId);
         }
+        String date=DateHelper.getDate();
+        map.put("startDate", date);
+        map.put("endDate", date+" 23:59:59");
         return advertiseDao.selectConditions(map);
     }
 }

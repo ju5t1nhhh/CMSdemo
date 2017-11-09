@@ -23,9 +23,9 @@ public class AdvertiseController {
         ServerResponse serverResponse=null;
         try{
             advertiseService.addAdvertise(advertise,userSessionId);
-            serverResponse.createSuccessResponse(null);
+            serverResponse = serverResponse.createSuccessResponse(null);
         }catch (Exception e){
-            serverResponse.createErrorResponse(500,"添加失败");
+            serverResponse = serverResponse.createErrorResponse(500,"添加失败");
         }
         return serverResponse;
     }
