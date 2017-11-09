@@ -13,7 +13,7 @@ public interface AdvertiseService {
      *
      * @param adIds 多个要删除的id
      */
-    void delAdvertise(Long[] adIds,String userId);
+    void delAdvertise(Long adId,String userId) throws Exception;
 
     List<Advertise> findAll();
     //service层要检查map里是否存在该用户没有的权限

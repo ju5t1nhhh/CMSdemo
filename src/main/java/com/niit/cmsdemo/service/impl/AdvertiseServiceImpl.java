@@ -24,12 +24,12 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     }
 
     @Override
-    public void delAdvertise(Long[] adIds, String userId) {
-        for(Long id:adIds){
-            //检查userId与Advertise是否对应
-            if(advertiseDao.selectOne(id).getUserId().equals(userId)){
-                advertiseDao.deleteOne(id);
-            }
+    public void delAdvertise(Long adId, String userId) throws Exception {
+        //检查userId与Advertise是否对应
+        if(advertiseDao.selectOne(adId).getUserId().equals(userId)){
+            advertiseDao.deleteOne(adId);
+        }else{
+            throw new Exception("该用户没有其权限");
         }
     }
 
@@ -40,7 +40,9 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 
     @Override
     public List<Advertise> findConditions(Map<String, Object> map, String userId) {
-        map.put("userId",userId);
+        if(!userId.equals("admin")){
+            map.put("userId",userId);
+        }
         return advertiseDao.selectConditions(map);
     }
 }
