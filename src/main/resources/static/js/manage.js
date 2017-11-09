@@ -90,11 +90,9 @@ function deluser(t) {
     var userid = chids.eq(0).text();
     alert(userid);
     $.post("/delUser", {loginId: userid}, function (res) {
+        alert(res.msg);
         if(res.code==200){
-            alert(res.msg);
             row.remove();
-        }else{
-            alert(res.msg);
         }
     });
 }
@@ -106,11 +104,9 @@ function adduser() {
     var password = $("#upassword").val();
     alert(loginId + " " + username + " " + password);
     $.post("/addUser", {loginId: loginId, username: username, password: password, status: 1}, function (res) {
+        alert(res.msg);
         if (res.code==200) {
-            alert(res.msg);
             flashUser();
-        } else {
-            alert(res.msg);
         }
     });
 }
@@ -124,12 +120,10 @@ $("#submiteu").click(function () {
         contentType: false,
         processData: false,
         success: function(res) {
-               if(res.code==200){
-                   alert(res.msg);
-                   flashUser();
-               }else{
-                   alert(res.msg);
-               }
+            alert(res.msg);
+            if (res.code==200) {
+                flashUser();
+            }
         }
     });
 });
