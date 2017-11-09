@@ -26,10 +26,10 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     @Override
     public void delAdvertise(Long adId, String userId) throws Exception {
         //检查userId与Advertise是否对应
-        if(advertiseDao.selectOne(adId).getUserId().equals(userId)){
+        if(userId.equals("admin")||advertiseDao.selectOne(adId).getUserId().equals(userId)){
             advertiseDao.deleteOne(adId);
         }else{
-            throw new Exception("该用户没有其权限");
+            throw new Exception("no permission");
         }
     }
 

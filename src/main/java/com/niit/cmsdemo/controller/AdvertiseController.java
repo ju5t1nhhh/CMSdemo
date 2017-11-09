@@ -36,9 +36,9 @@ public class AdvertiseController {
         ServerResponse serverResponse=null;
         try {
             advertiseService.delAdvertise(adId,userSessionId);
-            serverResponse.createSuccessResponse(null);
+            serverResponse=serverResponse.createSuccessResponse(null);
         } catch (Exception e) {
-            serverResponse.createErrorResponse(500,e.getMessage());
+            serverResponse=serverResponse.createErrorResponse(500,e.getMessage());
         }
         return serverResponse;
     }

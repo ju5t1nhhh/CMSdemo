@@ -71,6 +71,35 @@ var flashUser=function () {
     });
 };
 
+
+
+var flashadvertise = function () {
+    $.post("/searchAds",function(res){
+        var list=res.data;
+        $("#adbody").html("");
+        $.each(list,function(idx,ad){
+            $("#adbody").append("<tr>\n" +
+                "<td>" + ad.url + "</td>\n" +
+                "<td>\n" +
+                "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+")'>\n" +
+                "<span class=\"glyphicon glyphicon-remove\"></span>\n" +
+                "</button>\n" +
+                "</td>\n" +
+                "</tr>");
+        });
+    });
+};
+
+var delAdvertise=function (adId) {
+    $.post("/delAds", {adId: adId}, function (res) {
+        if (res.code==200) {
+            flashadvertise();
+        }else{
+            alert(res.msg);
+        }
+    });
+};
+
 function edituser(t) {
     var chids =  $(t).closest('td').closest('tr').find("td");
     var userid = chids.eq(0).text();
@@ -130,3 +159,4 @@ $("#submiteu").click(function () {
 
 //document.ready
 flashUser();
+flashadvertise();
