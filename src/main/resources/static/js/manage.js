@@ -62,7 +62,7 @@ var flashUser=function () {
                 "<button id='eubtn" + user.loginId +"' class='btn btn-xs btn-info' value='Edit' data-toggle='modal' data-target='#EditUser' onclick='edituser(this)'> " +
                 "Edit" +
                 "</button>&nbsp;" +
-                "<button class='btn btn-xs btn-danger' onclick=''>" +
+                "<button class='btn btn-xs btn-danger' onclick='deluser(this)'>" +
                 "Delete" +
                 "</button> " +
                 "</td>" +
@@ -83,8 +83,23 @@ function edituser(t) {
     $("#euupdateTime").val(ut);
 }
 
+function deluser(t) {
+    alert("from deluser");
+    var row = $(t).closest('td').closest('tr');
+    var chids =  row.find("td");
+    var userid = chids.eq(0).text();
+    alert(userid);
+    $.post("/delUser", {loginId: userid}, function (res) {
+        if(res.code==200){
+            alert(res.msg);
+            row.remove();
+        }else{
+            alert(res.msg);
+        }
+    });
+}
+
 $("#submiteu").click(function () {
-    alert("11111");
     var formData = new FormData($('#euform')[0]);
     $.ajax({
         type: 'post',
@@ -103,9 +118,5 @@ $("#submiteu").click(function () {
     });
 });
 
-function deluser() {
-
-}
 //document.ready
 flashUser();
-
