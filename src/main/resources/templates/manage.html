@@ -40,8 +40,16 @@
 							<li><a href="#SearchStudents" data-toggle="tab">Search Students</a></li>
 						</ul>
 					</li>
-					<li>
-						<a href="#Task" data-toggle="tab">Task</a>
+					<li class="dropdown">
+						<a href="#" id="MyTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Task
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
+							<li>
+								<li><a href="#Task" data-toggle="tab">New Url</a></li>
+								<li><a href="#History" data-toggle="tab">History</a></li>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>
@@ -353,9 +361,45 @@
 						</button>
 					</div>
 				</div>
-				<br/>
-				<br/>
+				<br/><br/><br/>
 				<div class="col-sm-12">今天已提交数量：<span id="adcount"></span></div>
+				<div class="col-sm-12">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th class="col-sm-2">User ID</th>
+								<th class="col-sm-6">Submitted Url</th>
+								<th class="col-sm-2">Create Time</th>
+								<th class="col-sm-2">Delete</th>
+							</tr>
+						</thead>
+						<tbody id="adbody">
+							<tr>
+								<td>www.baidu.com</td>
+								<td>
+									<button class="btn btn-danger btn-xs" onclick="">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="tab-pane fade in active" id="History">
+				<div class="form-horizontal" role="form">
+					<label class="col-sm-1 control-label" >Date: </label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="urlinput" style="width: 90%" placeholder="YYYY-MM-DD" />
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-primary" id="urladdbtn" onclick="">
+							Search
+						</button>
+					</div>
+				</div>
+				<br/><br/><br/>
 				<div class="col-sm-12">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
