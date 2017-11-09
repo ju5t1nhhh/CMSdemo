@@ -99,6 +99,22 @@ function deluser(t) {
     });
 }
 
+function adduser() {
+    alert("from adduser");
+    var loginId = $("#loginId").val();
+    var username = $("#username").val();
+    var password = $("#upassword").val();
+    alert(loginId + " " + username + " " + password);
+    $.post("/addUser", {loginId: loginId, username: username, password: password, status: 1}, function (res) {
+        if (res.code==200) {
+            alert(res.msg);
+            flashUser();
+        } else {
+            alert(res.msg);
+        }
+    });
+}
+
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
     $.ajax({

@@ -8,9 +8,9 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
         <shiro:hasPermission name="/user">
-        $(function () {
-            $('#myTab2 li:eq(0) a').tab('show');
-        });
+			$(function () {
+				$('#myTab2 li:eq(0) a').tab('show');
+			});
         </shiro:hasPermission>
         $(function () {
             $('#myTab1 li:eq(0) a').tab('show');
@@ -392,41 +392,41 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">User ID: </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="loginId" style="width: 90%"/>
+									<input type="text" class="form-control" id="loginId" name="loginId" style="width: 90%"/>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">User Name: </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="username" style="width: 90%"/>
+									<input type="text" class="form-control" id="username" name="username" style="width: 90%"/>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Password: </label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="upassword" style="width: 90%"/>
+									<input type="text" class="form-control" id="upassword" name="password" style="width: 90%"/>
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Create Time: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="ucreateTime" style="width: 90%"/>
-								</div>
-							</div>
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-2 control-label">Create Time: </label>-->
+								<!--<div class="col-sm-10">-->
+									<!--<input type="text" class="form-control" id="ucreateTime" style="width: 90%"/>-->
+								<!--</div>-->
+							<!--</div>-->
 
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Update Time: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="uupdateTime" style="width: 90%"/>
-								</div>
-							</div>
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-2 control-label">Update Time: </label>-->
+								<!--<div class="col-sm-10">-->
+									<!--<input type="text" class="form-control" id="uupdateTime" style="width: 90%"/>-->
+								<!--</div>-->
+							<!--</div>-->
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitu">
+						<button type="button" class="btn btn-primary" id="submitu" onclick="adduser()">
 							Submit
 						</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">
