@@ -4,6 +4,7 @@ import com.niit.cmsdemo.domain.Advertise;
 import com.niit.cmsdemo.service.AdvertiseService;
 import com.niit.cmsdemo.vo.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,8 +45,12 @@ public class AdvertiseController {
     }
 
     @PostMapping("/searchAds")
-    public ServerResponse searchAds(HttpSession session){
+    public ServerResponse searchAds(HttpSession session,String startDate,String endDate){
         Map<String,Object> map=new HashMap<>();
+        if(startDate!=null&&endDate!=null){
+            map.put("startDate", StringUtils.trimAllWhitespace(startDate));
+            map.put("endDate",StringUtils.trimAllWhitespace(endDate));
+        }
         String userSessionId= (String) session.getAttribute("userSessionId");
         return ServerResponse.createSuccessResponse(advertiseService.findConditions(map,userSessionId));
     }
