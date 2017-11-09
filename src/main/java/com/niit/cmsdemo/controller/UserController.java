@@ -2,6 +2,7 @@ package com.niit.cmsdemo.controller;
 
 import com.niit.cmsdemo.domain.User;
 import com.niit.cmsdemo.service.UserService;
+import com.niit.cmsdemo.util.PasswordHelper;
 import com.niit.cmsdemo.vo.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,8 @@ public class UserController {
     public ServerResponse updateUser(User user){
         ServerResponse serverResponse=null;
         try{
+            PasswordHelper passwordHelper=new PasswordHelper();
+            passwordHelper.encryptPassword(user);
             userService.updateUser(user);
             serverResponse=serverResponse.createSuccessResponse(null);
         }catch (Exception e){

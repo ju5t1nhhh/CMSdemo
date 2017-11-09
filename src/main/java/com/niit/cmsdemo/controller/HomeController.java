@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController {
 
-    @GetMapping({"/login"})
+    @GetMapping({"/login","/"})
     public String login(){
         return "login";
     }

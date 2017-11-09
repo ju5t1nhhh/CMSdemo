@@ -47,26 +47,29 @@ var timeFormatter=function (value) {
 
 }
 //defined
-$.post("/searchUser",function(res){
-    var list=res.data;
-    $("#userbody").html("");
-    $.each(list,function(idx,user){
-        $("#userbody").append("<tr>" +
-            "<td>"+user.loginId+"</td>" +
-            "<td>"+user.username+"</td>" +
-            "<td>"+timeFormatter(user.createTime)+"</td>" +
-            "<td>"+timeFormatter(user.updateTime)+"</td>" +
-            "<td>" +
-            "<button id='eubtn" + user.loginId +"' class='btn btn-xs btn-info' value='Edit' data-toggle='modal' data-target='#EditUser' onclick='edituser(this)'> " +
-            "Edit" +
-            "</button>&nbsp;" +
-            "<button class='btn btn-xs btn-danger' onclick=''>" +
-            "Delete" +
-            "</button> " +
-            "</td>" +
-            "</tr>");
+
+var flashUser=function () {
+    $.post("/searchUser",function(res){
+        var list=res.data;
+        $("#userbody").html("");
+        $.each(list,function(idx,user){
+            $("#userbody").append("<tr>" +
+                "<td>"+user.loginId+"</td>" +
+                "<td>"+user.username+"</td>" +
+                "<td>"+timeFormatter(user.createTime)+"</td>" +
+                "<td>"+timeFormatter(user.updateTime)+"</td>" +
+                "<td>" +
+                "<button id='eubtn" + user.loginId +"' class='btn btn-xs btn-info' value='Edit' data-toggle='modal' data-target='#EditUser' onclick='edituser(this)'> " +
+                "Edit" +
+                "</button>&nbsp;" +
+                "<button class='btn btn-xs btn-danger' onclick=''>" +
+                "Delete" +
+                "</button> " +
+                "</td>" +
+                "</tr>");
+        });
     });
-});
+};
 
 function edituser(t) {
     var chids =  $(t).closest('td').closest('tr').find("td");
@@ -82,16 +85,7 @@ function edituser(t) {
 
 $("#submiteu").click(function () {
     alert("11111");
-    var formData = new FormData($('#euform'));
-    alert("22222");
-    // $.post("/updateUser",formData,function (res) {
-    //     alert("333333");
-    //    if(res.code==200){
-    //        location.reload();
-    //    }else{
-    //        alert(res.msg);
-    //    }
-    // });
+    var formData = new FormData($('#euform')[0]);
     $.ajax({
         type: 'post',
         url: '/updateUser',
@@ -99,10 +93,9 @@ $("#submiteu").click(function () {
         contentType: false,
         processData: false,
         success: function(res) {
-                alert("333333");
                if(res.code==200){
                    alert(res.msg);
-                   location.reload();
+                   flashUser();
                }else{
                    alert(res.msg);
                }
@@ -113,5 +106,6 @@ $("#submiteu").click(function () {
 function deluser() {
 
 }
-
+//document.ready
+flashUser();
 
