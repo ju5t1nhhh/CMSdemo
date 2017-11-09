@@ -9,11 +9,13 @@ import java.util.Map;
 @Service
 public interface StudentService {
 
-    void addStudent(Student student,String userId);
+    void addStudent(Student student,String userId) throws Exception;
 
-    void delStudents(Long[] stuIds,String userId);
+    void delStudents(Long stuId,String userId) throws Exception;
 
     void updateStudent(Student student,String userId);
+
+    Student getStudent(Long stuId,String userId) throws Exception;
 
     List<Student> findAll();
     //service层要检查map里是否存在该用户没有的权限

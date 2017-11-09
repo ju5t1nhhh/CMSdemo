@@ -22,19 +22,20 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public void addStudent(Student student, String userId) {
+    public void addStudent(Student student, String userId) throws Exception {
         Integer rows=studentDao.insertOne(student);
         if(rows>0){
             userStudentDao.insertOne(userId,student.getId());
+        }else{
+            throw new Exception("添加学生失败");
         }
     }
 
     @Override
-    public void delStudents(Long[] stuIds, String userId) {
-        for(Long stuId:stuIds){
-            if(userStudentDao.selectUserIdByStuId(stuId).equals(userId)){
-                studentDao.deleteOne(stuId);
-            }
+    public void delStudents(Long stuId, String userId) throws Exception {
+        if(userStudentDao.selectUserIdByStuId(stuId).equals(userId)){
+            Integer rows=studentDao.deleteOne(stuId);
+            if(rows==0)throw new Exception("删除失败");
         }
     }
 
@@ -46,6 +47,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student getStudent(Long stuId, String userId) throws Exception {
+        if(userStudentDao.selectUserIdByStuId(stuId).equals(userId)||userId.equals("admin")){
+            return studentDao.selectOne(stuId);
+        }else{
+            throw new Exception("No permission");
+        }
+    }
+
+    @Override
     public List<Student> findAll() {
         return studentDao.selectConditions(null);
     }
@@ -53,8 +63,10 @@ public class StudentServiceImpl implements StudentService {
     //查找该userId的学生
     @Override
     public List<Student> findConditions(Map<String, Object> map, String userId) {
-        Long[] ids=userStudentDao.selectStuIdsByUserId(userId);
-        map.put("ids",ids);
+        if(!userId.equals("admin")){
+            Long[] ids=userStudentDao.selectStuIdsByUserId(userId);
+            map.put("ids",ids);
+        }
         return studentDao.selectConditions(map);
     }
 }
