@@ -41,7 +41,7 @@
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" id="MyTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Task
+						<a href="#" id="MyTabDrop2" class="dropdown-toggle" data-toggle="dropdown">Task
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
@@ -190,7 +190,7 @@
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Date: </label>
-										<div class="col-sm-6">
+										<div class="col-sm-3">
 											<input type="text" class="form-control" id="redate" style="width: 90%"/>
 										</div>
 									</div>
@@ -389,9 +389,13 @@
 
 			<div class="tab-pane fade in active" id="History">
 				<div class="form-horizontal" role="form">
-					<label class="col-sm-1 control-label" >Date: </label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="urlinput" style="width: 90%" placeholder="YYYY-MM-DD" />
+					<label class="col-sm-2 control-label">Start Date: </label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="hstartd" style="width: 90%" placeholder="YYYY-MM-DD" />
+					</div>
+					<label class="col-sm-2 control-label">End Date: </label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="hendd" style="width: 90%" placeholder="YYYY-MM-DD" />
 					</div>
 					<div class="col-sm-2">
 						<button type="button" class="btn btn-primary" id="urladdbtn" onclick="">
@@ -932,6 +936,144 @@
 							<hr/>
 
 							<div class="form-group">
+								<label class="col-sm-12 control-label">您对本次讲座的哪部分内容比较感兴趣？</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>就业指导
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>IT前景
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>NIIT实训课程
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>NIIT人才定制企业
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label">您觉得NIIT的实训课程对您今后职业发展有所帮助吗？</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>我很需要，非常有帮助
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>暂时不需要，无帮助
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>根本不需要
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label">您毕业后的就业方向定位在</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>IT职位
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>非IT职位
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>就业方向尚不清晰
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label">您是否愿意参加NIIT实训项目，更愿意参加哪种实训项目？（可多选）</label>
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>愿意
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>考虑中
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>VR
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>Java + Android
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>前端
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>UI
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>不愿意
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>其他
+									</label>										
+									<input type="text" class="form-control" id="dtfollowup" style="width: 10%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label">如果您愿意参加NIIT实训项目，希望开始的时间是？</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>越快越好
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>1个月内
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>6个月内
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>1年后
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label">对于是否参加实训，您目前存在的问题是？（可多选）</label>
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>计划考研
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>自身是否适合职位
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>经济压力
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>就业担忧
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>对IT不感兴趣
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label">对于专业IT实训，您更看中的是哪些方面？（可多选）</label>
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"/>师资配备
+									</label>
+									<label class="checkbox-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2"/>实训、住宿环境
+									</label>
+									<label class="checkbox-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3"/>就业安置服务
+									</label>
+									<label class="checkbox-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>课程内容
+									</label>
+									<label class="checkbox-inline">
+										<input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option4"/>获得证书
+									</label>
+								</div>
+							</div>
+							<hr/>
+
+							<div class="form-group">
 								<label class="col-sm-2 control-label">Follow Up: </label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="dtfollowup" style="width: 50%"/>
@@ -984,8 +1126,6 @@
 			</div><!-- /.modal-dialog -->
 		</div> <!-- /.modal -->
 		<!-- /modal -->
-
-
 	</div> <!-- /.container -->
 <script src="/js/manage.js"></script>
 </body>
