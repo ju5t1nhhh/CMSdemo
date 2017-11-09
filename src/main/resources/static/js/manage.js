@@ -1,40 +1,4 @@
 //tools
-// $.extend({
-//     myTime:{
-//         CurTime: function(){
-//             return Date.parse(new Date())/1000;
-//         },
-//         DateToUnix: function(string) {
-//             var f = string.split(' ', 2);
-//             var d = (f[0] ? f[0] : '').split('-', 3);
-//             var t = (f[1] ? f[1] : '').split(':', 3);
-//             return (new Date(
-//                 parseInt(d[0], 10) || null,
-//                 (parseInt(d[1], 10) || 1) - 1,
-//                 parseInt(d[2], 10) || null,
-//                 parseInt(t[0], 10) || null,
-//                 parseInt(t[1], 10) || null,
-//                 parseInt(t[2], 10) || null
-//             )).getTime() / 1000;
-//         },
-//         UnixToDate: function(unixTime, isFull, timeZone) {
-//             if (typeof (timeZone) == 'number'){
-//                 unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;
-//             }
-//             var time = new Date(unixTime * 1000);
-//             var ymdhis = "";
-//             ymdhis += time.getUTCFullYear() + "-";
-//             ymdhis += (time.getUTCMonth()+1) + "-";
-//             ymdhis += time.getUTCDate();
-//             if (isFull === true){
-//                 ymdhis += "" + time.getUTCHours() + ":";
-//                 ymdhis += time.getUTCMinutes() + ":";
-//                 ymdhis += time.getUTCSeconds();
-//             }
-//             return ymdhis;
-//         }
-//     }
-// });
 var twokuan=function (value) {
     return value<10?"0"+value:value;
 
@@ -82,8 +46,31 @@ var flashadvertise = function () {
                 "<td><a href='"+ad.url+"'>" + ad.url + "</a></td>\n" +
                 "<td>" + timeFormatter(ad.createTime) + "</td>\n" +
                 "<td>\n" +
-                "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+")'>\n" +
+                "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+");flashadvertise();'>\n" +
                 "<span class=\"glyphicon glyphicon-remove\"></span>\n" +
+                "</button>\n" +
+                "</td>\n" +
+                "</tr>");
+        });
+    });
+};
+
+var flashstudents = function () {
+    $.post("/searchStudent",function(res){
+        var list=res.data;
+        $("#stubody").html("");
+        $.each(list,function(idx,stu){
+            $("#stubody").append("<tr>\n" +
+                "<td>" + stu.creatTime + "</td>\n" +
+                "<td>Bangalore</td>\n" +
+                "<td>560001</td>\n" +
+                "<td>Tanmay</td>\n" +
+                "<td>Bangalore</td>\n" +
+                "<td>560001</td>\n" +
+                "<td>Tanmay</td>\n" +
+                "<td>\n" +
+                "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\">\n" +
+                "More\n" +
                 "</button>\n" +
                 "</td>\n" +
                 "</tr>");
@@ -93,9 +80,7 @@ var flashadvertise = function () {
 
 var delAdvertise=function (adId) {
     $.post("/delAds", {adId: adId}, function (res) {
-        if (res.code==200) {
-            flashadvertise();
-        }else{
+        if (res.code!=200) {
             alert(res.msg);
         }
     });
@@ -159,6 +144,30 @@ function adduser() {
     });
 }
 
+function searchHistory() {
+    alert("from history");
+    var sd = $("#hstartd").val();
+    var ed = $("#hendd").val();
+    $.post("/searchAds", {startDate: sd, endDate: ed}, function (res) {
+        var list=res.data;
+        $("#hisbody").html("");
+        $.each(list,function(idx,ad){
+            $("#hisbody").append("<tr>\n" +
+                "<td>" + ad.userId + "</td>\n" +
+                "<td>" + ad.url + "</td>\n" +
+                "<td>" + timeFormatter(ad.createTime) + "</td>\n" +
+                "<td>\n" +
+                "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+");searchHistory();'>\n" +
+                "<span class=\"glyphicon glyphicon-remove\"></span>\n" +
+                "</button>\n" +
+                "</td>\n" +
+                "</tr>");
+        });
+
+    });
+};
+
+
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
     $.ajax({
@@ -179,3 +188,4 @@ $("#submiteu").click(function () {
 //document.ready
 flashUser();
 flashadvertise();
+
