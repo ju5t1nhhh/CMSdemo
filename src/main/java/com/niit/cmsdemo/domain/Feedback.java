@@ -1,6 +1,7 @@
 package com.niit.cmsdemo.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Feedback implements Serializable {
 
@@ -8,6 +9,8 @@ public class Feedback implements Serializable {
 
     private Long stuId;
     private String answer;
+    private Date createTime;
+    private Date updateTime;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -29,11 +32,29 @@ public class Feedback implements Serializable {
         this.answer = answer;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         return "Feedback{" +
-                ", stuId=" + stuId +
+                "stuId=" + stuId +
                 ", answer='" + answer + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

@@ -18,5 +18,5 @@ public interface FeedbackDao {
     Feedback selectOne(Long stuId);
 
     List<Feedback> selectConditions(Map<String,Object> map);
-    
+
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niit.cmsdemo.dao.FeedbackDao">
+    <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Feedback">
+        <result column="stu_id" property="stuId"/>
+        <result column="answer" property="answer"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Feedback">
+        INSERT INTO `feedback`
+        VALUES(#{stuId},#{answer},now(),now())
+    </insert>
+
+    <delete id="deleteOne" parameterType="java.lang.Long">
+        DELETE FROM `feedback`
+        WHERE `stu_id`=#{stuId}
+    </delete>
+
+    <update id="updateOne" parameterType="com.niit.cmsdemo.domain.Feedback">
+        UPDATE `feedback`
+        <set>
+            <if test="answer != null and answer.length()>0">`answer`=#{answer},</if>
+            `update_time`=now()
+        </set>
+        WHERE `stu_id`=#{stuId}
+    </update>
+
+    <select id="selectOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT * FROM `feedback`
+        WHERE `stu_id`=#{stuId}
+    </select>
+
+    <select id="selectConditions" resultMap="BaseResultMap">
+        SELECT * FROM `feedback`
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="startDate !=null and endDate != null">
+                AND `create_time` BETWEEN #{startDate} AND #{endDate}
+            </if>
+        </trim>
+        ORDER BY `create_time` DESC
+    </select>
+
+</mapper>
