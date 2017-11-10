@@ -159,3 +159,17 @@ CREATE TABLE `stu_source`(
   KEY `stu_source_create_time_INDEX` (`create_time`),
   KEY `stu_source_update_time_INDEX` (`update_time`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#feedback表
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE `feedback`(
+  `id` INT(8) NOT NULL AUTO_INCREMENT COMMENT '反馈id',
+  `stu_id` INT(8) NOT NULL COMMENT '学生ID',
+  `answer` TEXT COMMENT '回答',
+  `create_time` DATETIME NOT NULL,
+  `update_time` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `feedback_stu_id_INDEX` (`stu_id`),
+  KEY `stu_source_create_time_INDEX` (`create_time`),
+  KEY `stu_source_update_time_INDEX` (`update_time`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
