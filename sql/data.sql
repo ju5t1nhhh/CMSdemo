@@ -36,7 +36,8 @@ VALUES
 ('查找广告','/searchAds',3,4,now(),now()),
 ('深层查找广告','/selectAds',3,4,now(),now()),
 ('添加生源','/addStuSource',3,4,now(),now()),
-('所有生源','/getStuSource',3,4,now(),now());
+('获取生源','/getStuSource',3,4,now(),now()),
+('检查工作','/searchCount',3,4,now(),now());
 
 #user_role表初始数据
 INSERT INTO

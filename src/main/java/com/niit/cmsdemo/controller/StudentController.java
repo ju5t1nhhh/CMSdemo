@@ -69,9 +69,39 @@ public class StudentController {
     }
 
     @PostMapping("/searchStudent")
-    public ServerResponse searchStudent(HttpSession session){
+    public ServerResponse searchStudent(HttpSession session,String startDate,String endDate,String classification,String source){
         String userSessionId= (String) session.getAttribute("userSessionId");
         Map<String,Object> map=new HashMap<>();
+        if(startDate!=null&&startDate.length()>0){
+            map.put("startDate",startDate);
+        }
+        if(endDate!=null&&endDate.length()>0) {
+            map.put("endDate", endDate);
+        }
+        if(classification!=null&&classification.length()>0) {
+            map.put("classification", classification);
+        }
+        if(source!=null&&source.length()>0) {
+            map.put("studentSource", source);
+        }
         return ServerResponse.createSuccessResponse(studentService.findConditions(map,userSessionId));
+    }
+
+    @PostMapping("/searchCount")
+    public ServerResponse searchCount(String userId,String startDate,String endDate,String classification,String source){
+        Map<String,Object> map=new HashMap<>();
+        if(startDate!=null&&startDate.length()>0){
+            map.put("startDate",startDate);
+        }
+        if(endDate!=null&&endDate.length()>0) {
+            map.put("endDate", endDate);
+        }
+        if(classification!=null&&classification.length()>0) {
+            map.put("classification", classification);
+        }
+        if(source!=null&&source.length()>0) {
+            map.put("studentSource", source);
+        }
+        return ServerResponse.createSuccessResponse(studentService.searchCount(map,userId));
     }
 }

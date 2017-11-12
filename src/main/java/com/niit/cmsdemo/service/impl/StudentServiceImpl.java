@@ -56,6 +56,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Integer searchCount(Map<String, Object> map, String userId) {
+        if(userId!=null&&userId.length()>0&&!userId.equals("admin")) {
+            Long[] ids=userStudentDao.selectStuIdsByUserId(userId);
+            map.put("ids",ids);
+        }
+        List<Student> students=studentDao.selectConditions(map);
+        return students.size();
+    }
+
+    @Override
     public List<Student> findAll() {
         return studentDao.selectConditions(null);
     }

@@ -17,6 +17,8 @@ public interface StudentService {
 
     Student getStudent(Long stuId,String userId) throws Exception;
 
+    Integer searchCount(Map<String,Object> map,String userId);
+
     List<Student> findAll();
     //service层要检查map里是否存在该用户没有的权限
     List<Student> findConditions(Map<String,Object> map,String userId);
