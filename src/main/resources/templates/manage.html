@@ -173,7 +173,7 @@
 							<th>Details</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="stuListBody">
 						<tr>
 							<td>Tanmay</td>
 							<td>Bangalore</td>
@@ -327,6 +327,7 @@
 					</div>
 				</div>
 				<br/><br/><br/>
+				<div>搜索结果条数：<span id="searchNum">0</span></div>
 				<div class="col-sm-12">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
@@ -673,55 +674,56 @@
 						</h3>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal" role="form">
+						<form id="newStudentForm" class="form-horizontal" role="form">
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Date: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsdate" style="width: 90%"/>
-								</div>
-
 								<label class="col-sm-2 control-label">Name: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsname" style="width: 90%"/>
+									<input type="text" class="form-control" name="name" id="nsname" style="width: 90%"/>
 								</div>
-							</div>
 
-							<div class="form-group">
 								<label class="col-sm-2 control-label">Gender: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsgender" style="width: 90%"/>
+									<input type="text" class="form-control" name="gender" id="nsgender" style="width: 90%"/>
 								</div>
+							</div>
+
+							<div class="form-group">
+
 								<label class="col-sm-2 control-label">Age: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsage" style="width: 90%"/>
+									<input type="text" class="form-control" name="age" id="nsage" style="width: 90%"/>
 								</div>
-							</div>
 
-							<div class="form-group">
 								<label class="col-sm-2 control-label">Phone No: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsphonenum" style="width: 90%"/>
-								</div>								
-								<label class="col-sm-2 control-label">Email: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsemail" style="width: 90%"/>
+									<input type="text" class="form-control" name="phone" id="nsphonenum" style="width: 90%"/>
 								</div>
 							</div>
 
 							<div class="form-group">
+
+								<label class="col-sm-2 control-label">Email: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" name="email" id="nsemail" style="width: 90%"/>
+								</div>
+
 								<label class="col-sm-2 control-label">College Name: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nscollegename" style="width: 90%"/>
+									<input type="text" class="form-control" name="college" id="nscollegename" style="width: 90%"/>
 								</div>
+							</div>
+
+							<div class="form-group">
+
 								<label class="col-sm-2 control-label">Major: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="nsmajor" style="width: 90%"/>
+									<input type="text" class="form-control" name="major" id="nsmajor" style="width: 90%"/>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitns">
+						<button type="button" class="btn btn-primary" id="newStudentBtn" data-dismiss="modal">
 							Submit
 						</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">

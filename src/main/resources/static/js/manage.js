@@ -57,16 +57,16 @@ var flashadvertise = function () {
 var flashstudents = function () {
     $.post("/searchStudent",function(res){
         var list=res.data;
-        $("#stubody").html("");
+        $("#stuListBody").html("");
         $.each(list,function(idx,stu){
-            $("#stubody").append("<tr>\n" +
-                "<td>" + stu.creatTime + "</td>\n" +
-                "<td>Bangalore</td>\n" +
-                "<td>560001</td>\n" +
-                "<td>Tanmay</td>\n" +
-                "<td>Bangalore</td>\n" +
-                "<td>560001</td>\n" +
-                "<td>Tanmay</td>\n" +
+            $("#stuListBody").append("<tr>\n" +
+                "<td>" + timeFormatter(stu.createTime) + "</td>\n" +
+                "<td>"+stu.name+"</td>\n" +
+                "<td>"+stu.gender+"</td>\n" +
+                "<td>"+stu.age+"</td>\n" +
+                "<td>"+stu.phone+"</td>\n" +
+                "<td>"+stu.email+"</td>\n" +
+                "<td>"+stu.college+"</td>\n" +
                 "<td>\n" +
                 "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\">\n" +
                 "More\n" +
@@ -109,7 +109,6 @@ function edituser(t) {
 }
 
 function deluser(t) {
-    alert("from deluser");
     var row = $(t).closest('td').closest('tr');
     var chids =  row.find("td");
     var userid = chids.eq(0).text();
@@ -137,11 +136,11 @@ function adduser() {
 }
 
 function searchHistory() {
-    alert("from history");
     var sd = $("#hstartd").val();
     var ed = $("#hendd").val();
     $.post("/searchAds", {startDate: sd, endDate: ed}, function (res) {
         var list=res.data;
+        $("#searchNum").text(list.length);
         $("#hisbody").html("");
         $.each(list,function(idx,ad){
             $("#hisbody").append("<tr>\n" +
@@ -169,9 +168,10 @@ $("#submiteu").click(function () {
         contentType: false,
         processData: false,
         success: function(res) {
-            alert(res.msg);
             if (res.code==200) {
                 flashUser();
+            }else{
+                alert(res.msg);
             }
         }
     });
@@ -184,6 +184,24 @@ $("#urlinput").keydown(function (e) {
     }
 });
 
+$("#newStudentBtn").click(function () {
+    var formData = new FormData($('#newStudentForm')[0]);
+    $.ajax({
+        type: 'post',
+        url: '/addStudent',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(res) {
+            if (res.code==200) {
+                flashstudents();
+            }else{
+                alert(res.msg);
+            }
+        }
+    });
+});
 //document.ready
 flashUser();
 flashadvertise();
+flashstudents();
