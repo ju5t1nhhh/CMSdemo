@@ -11,7 +11,6 @@ var timeFormatter=function (value) {
 
 }
 //defined
-
 var flashUser=function () {
     $.post("/searchUser",function(res){
         var list=res.data;
@@ -97,13 +96,6 @@ function addAdvertise() {
     });
 }
 
-$("#urlinput").keydown(function (e) {
-    if(e.keyCode==13){
-        addAdvertise();
-        $("#urlinput").val("");
-    }
-});
-
 function edituser(t) {
     var chids =  $(t).closest('td').closest('tr').find("td");
     var userid = chids.eq(0).text();
@@ -167,7 +159,7 @@ function searchHistory() {
     });
 };
 
-
+//Jquery
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
     $.ajax({
@@ -185,7 +177,13 @@ $("#submiteu").click(function () {
     });
 });
 
+$("#urlinput").keydown(function (e) {
+    if(e.keyCode==13){
+        addAdvertise();
+        $("#urlinput").val("");
+    }
+});
+
 //document.ready
 flashUser();
 flashadvertise();
-
