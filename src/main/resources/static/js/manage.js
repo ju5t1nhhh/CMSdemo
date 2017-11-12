@@ -45,7 +45,7 @@ var flashadvertise = function () {
                 "<td><a href='"+ad.url+"'>" + ad.url + "</a></td>\n" +
                 "<td>" + timeFormatter(ad.createTime) + "</td>\n" +
                 "<td>\n" +
-                "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+");flashadvertise();'>\n" +
+                "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+");searchHistory();'>\n" +
                 "<span class=\"glyphicon glyphicon-remove\"></span>\n" +
                 "</button>\n" +
                 "</td>\n" +
@@ -146,7 +146,7 @@ function searchHistory() {
         $.each(list,function(idx,ad){
             $("#hisbody").append("<tr>\n" +
                 "<td>" + ad.userId + "</td>\n" +
-                "<td>" + ad.url + "</td>\n" +
+                "<td><a href='"+ad.url+"'>" + ad.url + "</a></td>\n" +
                 "<td>" + timeFormatter(ad.createTime) + "</td>\n" +
                 "<td>\n" +
                 "<button class=\"btn btn-danger btn-xs\" onclick='delAdvertise("+ad.id+");searchHistory();'>\n" +
