@@ -18,15 +18,15 @@ VALUES
 
 #stu_source
 INSERT INTO
-`stu_source`(`name`,`type`,`parent_id`,`create_time`,`update_time`)
+`stu_source`(`name`,`parent_id`,`create_time`,`update_time`)
 VALUES
-('Seminar',2,0,now(),now()),
-('Job Market',2,0,now(),now()),
-('Web',1,0,now(),now()),
-('Job Site',2,3,now(),now()),
-('NIIT WebSite',2,3,now(),now()),
-('College',2,3,now(),now()),
-('B2B',2,0,now(),now());
+('Seminar',0,now(),now()),
+('Job Market',0,now(),now()),
+('Web',0,now(),now()),
+('Job Site',3,now(),now()),
+('NIIT WebSite',3,now(),now()),
+('College',3,now(),now()),
+('B2B',0,now(),now());
 
 #student
 INSERT INTO

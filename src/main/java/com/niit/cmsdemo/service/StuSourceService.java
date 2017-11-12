@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StuSourceService {
 
-    void addStuSource(StuSource stuSource);
+    void addStuSource(String pre,String back);
 
     void delStuSource(Integer[] ids);
 

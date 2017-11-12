@@ -9,7 +9,6 @@ public class StuSource implements Serializable{
 
     private Integer id;
     private String name;
-    private Integer type;
     private Integer parentId;
     private Date createTime;
     private Date updateTime;
@@ -32,14 +31,6 @@ public class StuSource implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public Integer getParentId() {
@@ -71,7 +62,6 @@ public class StuSource implements Serializable{
         return "StuSource{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", type=" + type +
                 ", parentId=" + parentId +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

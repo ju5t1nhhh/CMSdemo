@@ -18,6 +18,7 @@ public class StuSourceServiceTest {
 
     @Test
     public void addStuSource() throws Exception {
+        stuSourceService.addStuSource("Web","sssss");
     }
 
     @Test

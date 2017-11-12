@@ -158,6 +158,33 @@ function searchHistory() {
     });
 };
 
+var flashStuSource=function () {
+    $.post("/getStuSource",function (res) {
+        var list=res.data;
+        $("#SSselect").html("");
+        $("#SSSearchSelect").html("");
+        $("#userSSselect").html("");
+        $.each(list,function (idx,ss) {
+            var sons=ss.sonStuSources;
+            $.each(sons,function (ids,son) {
+                var content=ss.stuSource.name+"-"+son.name;
+                var inv="<option value='"+content+"'>"+content+"</option>";
+               $("#SSselect").append(inv);
+               $("#SSSearchSelect").append(inv);
+               $("#userSSselect").append(inv);
+            });
+        });
+    });
+};
+
+var showtable=function () {
+    if($("#SSselect").val()=="Web-College"){
+        $("#fankuiTable").css("display","");
+    }else{
+        $("#fankuiTable").css("display","none");
+    }
+};
+
 //Jquery
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
@@ -205,3 +232,4 @@ $("#newStudentBtn").click(function () {
 flashUser();
 flashadvertise();
 flashstudents();
+flashStuSource();

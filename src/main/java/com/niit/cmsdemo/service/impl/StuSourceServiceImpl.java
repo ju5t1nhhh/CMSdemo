@@ -6,6 +6,7 @@ import com.niit.cmsdemo.service.StuSourceService;
 import com.niit.cmsdemo.vo.StuSourceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,9 +19,26 @@ public class StuSourceServiceImpl implements StuSourceService {
     @Autowired
     private StuSourceDao stuSourceDao;
 
+
     @Override
-    public void addStuSource(StuSource stuSource) {
-        stuSourceDao.insertOne(stuSource);
+    @Transactional
+    public void addStuSource(String pre, String back) {
+        StuSource parent=stuSourceDao.selectUnique(0,pre);
+        if(parent!=null){
+            StuSource stuSource=new StuSource();
+            stuSource.setName(back);
+            stuSource.setParentId(parent.getId());
+            stuSourceDao.insertOne(stuSource);
+        }else{
+            StuSource par=new StuSource();
+            par.setName(pre);
+            par.setParentId(0);
+            stuSourceDao.insertOne(par);
+            StuSource bac=new StuSource();
+            bac.setName(back);
+            bac.setParentId(par.getId());
+            stuSourceDao.insertOne(bac);
+        }
     }
 
     @Override

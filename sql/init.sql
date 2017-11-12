@@ -149,12 +149,10 @@ DROP TABLE IF EXISTS `stu_source`;
 CREATE TABLE `stu_source`(
   `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT '生源自增ID',
   `name` VARCHAR(20) NOT NULL COMMENT '生源描述',
-  `type` INT(4) COMMENT '类型 1菜单 2可选值',
   `parent_id` INT(4) COMMENT '父ID',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `stu_source_type_INDEX` (`type`),
   KEY `stu_source_parent_id_INDEX` (`parent_id`),
   KEY `stu_source_create_time_INDEX` (`create_time`),
   KEY `stu_source_update_time_INDEX` (`update_time`)

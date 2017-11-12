@@ -41,7 +41,12 @@ public class StuSourceDaoTest {
 
     @Test
     public void selectOne() throws Exception {
-        System.out.println(stuSourceDao.selectOne(2));
+//        System.out.println(stuSourceDao.selectOne(2));
+//        List<StuSource> stuSources=stuSourceDao.selectParent(0);
+//        for(StuSource stuSource:stuSources){
+//            System.out.println(stuSource);
+//        }
+        System.out.println(stuSourceDao.selectUnique(0,"Web"));
     }
 
     @Test
