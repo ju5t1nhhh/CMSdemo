@@ -197,19 +197,23 @@
 			<div class="tab-pane fade in active" id="SearchStudents">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Date: </label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" id="ssdate" style="width: 90%"/>
+						<label class="col-sm-1 control-label">StartDate: </label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="sssdate" style="width: 90%"/>
+						</div>
+						<label class="col-sm-1 control-label">EndDate: </label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="ssedate" style="width: 90%"/>
 						</div>
 						<label class="col-sm-1 control-label">Name: </label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" id="ssname" style="width: 90%"/>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Classification: </label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<select class="form-control" style="width: 85%">
 								<option>A: Intersted</option>
 								<option>B: Hesitate</option>
@@ -217,11 +221,11 @@
 							</select>
 						</div>
 						<label class="col-sm-1 control-label">Source: </label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<select id="SSSearchSelect" class="form-control" style="width: 92%">
 							</select>
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-4">
 							<button type="button" class="btn btn-primary" id="sssearch">
 								Search
 							</button>
