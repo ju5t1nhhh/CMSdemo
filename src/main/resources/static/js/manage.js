@@ -68,7 +68,7 @@ var flashstudents = function () {
                 "<td>"+stu.email+"</td>\n" +
                 "<td>"+stu.college+"</td>\n" +
                 "<td>\n" +
-                "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\">\n" +
+                "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\" onclick='loadDetails("+stu.id+")'>\n" +
                 "More\n" +
                 "</button>\n" +
                 "</td>\n" +
@@ -122,11 +122,9 @@ function deluser(t) {
 }
 
 function adduser() {
-    alert("from adduser");
     var loginId = $("#loginId").val();
     var username = $("#username").val();
     var password = $("#upassword").val();
-    alert(loginId + " " + username + " " + password);
     $.post("/addUser", {loginId: loginId, username: username, password: password, status: 1}, function (res) {
         alert(res.msg);
         if (res.code==200) {
@@ -166,7 +164,7 @@ var flashStuSource=function () {
         $("#SSSearchSelect").html(nulloption);
         $("#userSSselect").html(nulloption);
 
-        // $("#SSselect").append(nulloption);
+        $("#SSselect").html(nulloption);
 
         $.each(list,function (idx,ss) {
             var sons=ss.sonStuSources;
@@ -189,6 +187,74 @@ var showtable=function () {
     }
 };
 
+var FBHelper=function (chkname,answer) {
+    if(answer==null)return;
+    var an=answer.split(',');
+    for(var i=0;i<an.length;i++){
+        var str=an[i];
+        if(str.length>1){
+            $("#other1").val(str);
+        }else {
+            $("input[name='" + chkname + "']").eq(str).prop("checked", "true");
+        }
+    }
+};
+
+var loadDetails=function (stuId) {
+    $.post("/getStudent",{stuId:stuId},function (res) {
+        var stu=res.data;
+        $("#dtdate").val(timeFormatter(stu.createTime));
+        $("#dtname").val(stu.name);
+        $("#dtgender").val(stu.gender);
+        $("#dtage").val(stu.age);
+        $("#dtphonenum").val(stu.phone);
+        $("#dtemail").val(stu.email);
+        $("#dtcollegename").val(stu.college);
+        $("#dtmajor").val(stu.major);
+        $("#dtwalkindate").val(stu.walkinDate);
+        $("#dtmarks").val(stu.marks);
+        $("#dtinsit").val(stu.interviewNote);
+        $("#SSselect").val(stu.studentSource);
+        $("#dtintention").val(stu.intention);
+        $("#dtclassification").val(stu.classification);
+    });
+    $.post("/getFeedback",{stuId:stuId},function (res) {
+        $("input:checkbox").removeAttr("checked");
+        $("input:radio").removeAttr("checked");
+       var fback=res.data;
+       FBHelper('optionsRadiosinline1',fback.answer1);
+       FBHelper('optionsRadiosinline2',fback.answer2);
+       FBHelper('optionsRadiosinline3',fback.answer3);
+       FBHelper('optionsRadiosinline4',fback.answer4);
+       FBHelper('optionsRadiosinline5',fback.answer5);
+       FBHelper('optionsRadiosinline6',fback.answer6);
+       FBHelper('optionsRadiosinline7',fback.answer7);
+    });
+    $.post("/searchFollowUp",{stuId:stuId},function (res) {
+       var fus=res.data;
+       $("#followuplist").html("");
+       $.each(fus,function (idx,fu) {
+           $("#followuplist").append("" +
+               "<div class='form-group'>" +
+               "<label class='col-sm-2 control-label'>Follow Up:</label> " +
+               "<div class='col-sm-8' style='text-align: left;'>" +timeFormatter(fu.createTime)+
+               "</div>" +
+               "<br/><br/>" +
+               "<div class='col-sm-2' align='center'>" +
+               "<button class='btn btn-danger btn-xs' onclick=''>" +
+               "<span class='glyphicon glyphicon-remove'></span>" +
+               "</button>" +
+               "<button class='btn btn-info btn-xs' onclick=''>" +
+               "<span class='glyphicon glyphicon-edit'></span>" +
+               "</button>" +
+               "</div>" +
+               "<div class='col-sm-10'>" +
+               "<textarea class='form-control' style='width: 96%;resize: none;' rows='4'>"+fu.note+"</textarea>" +
+               "</div>" +
+               "</div>");
+       })
+    });
+};
 //Jquery
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
@@ -271,7 +337,6 @@ $("#sssearch").click(function () {
 });
 
 $("#research").click(function () {
-    alert("from report");
     var userId = $("#userSearchUserId").val();
     var startDate = $("#userSearchStartDate").val();
     var endDate = $("#userSearchEndDate").val();
@@ -280,7 +345,6 @@ $("#research").click(function () {
     var source = $("#userSSselect option:selected").val();
     $.post("/searchCount", {userId: userId, startDate: startDate, endDate: endDate, classification: classification, source: source}, function (res) {
         var count = res.data;
-        alert("OK");
         $("#count").text(count);
     });
 
