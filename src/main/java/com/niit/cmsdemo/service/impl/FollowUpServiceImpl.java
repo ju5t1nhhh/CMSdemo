@@ -20,26 +20,32 @@ public class FollowUpServiceImpl implements FollowUpService{
     private UserStudentDao userStudentDao;
 
     @Override
-    public void addFollowUp(FollowUp followUp, String userId) {
+    public void addFollowUp(FollowUp followUp, String userId) throws Exception {
         //检查学生与User关系
-        if(userStudentDao.selectUserIdByStuId(followUp.getStuId()).equals(userId)){
+        if(userStudentDao.selectUserIdByStuId(followUp.getStuId()).equals(userId)||userId.equals("admin")){
             followUpDao.insertOne(followUp);
+        }else{
+            throw new Exception("添加跟进失败");
         }
     }
 
     @Override
-    public void delFollowUp(Long[] ids, String userId) {
-        for(Long id:ids){
-            if(userStudentDao.selectUserIdByStuId(id).equals(userId)){
-                followUpDao.deleteOne(id);
-            }
+    public void delFollowUp(Long id, String userId) throws Exception {
+        FollowUp followUp=followUpDao.selectOne(id);
+        Long stuId=followUp.getStuId();
+        if(userStudentDao.selectUserIdByStuId(stuId).equals(userId)||userId.equals("admin")){
+            followUpDao.deleteOne(id);
+        }else{
+            throw new Exception("删除失败");
         }
     }
 
     @Override
-    public void updateFollowUp(FollowUp followUp, String userId) {
-        if(userStudentDao.selectUserIdByStuId(followUp.getStuId()).equals(userId)){
+    public void updateFollowUp(FollowUp followUp, String userId) throws Exception {
+        if(userStudentDao.selectUserIdByStuId(followUp.getStuId()).equals(userId)||userId.equals("admin")){
             followUpDao.updateOne(followUp);
+        }else{
+            throw new Exception("更新失败");
         }
     }
 
@@ -49,7 +55,7 @@ public class FollowUpServiceImpl implements FollowUpService{
     }
 
     @Override
-    public List<FollowUp> findConditions(Map<String, Object> map, String userId) {
+    public List<FollowUp> findConditions(Map<String, Object> map) {
         return followUpDao.selectConditions(map);
     }
 }

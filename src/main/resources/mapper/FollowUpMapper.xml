@@ -34,7 +34,7 @@
     <select id="selectConditions" resultMap="BaseResultMap">
         SELECT * FROM `follow_up`
         <trim prefix="WHERE" prefixOverrides="AND">
-            <if test="stuId != null and stuId.length()>0">
+            <if test="stuId != null">
                 AND `stu_id`=#{stuId}
             </if>
             <if test="note != null and note.length()>0">

@@ -37,7 +37,11 @@ VALUES
 ('深层查找广告','/selectAds',3,4,now(),now()),
 ('添加生源','/addStuSource',3,4,now(),now()),
 ('获取生源','/getStuSource',3,4,now(),now()),
-('检查工作','/searchCount',3,4,now(),now());
+('检查工作','/searchCount',3,4,now(),now()),
+('添加跟进','/addFollowUp',3,4,now(),now()),
+('删除跟进','/delFollowUp',3,4,now(),now()),
+('更新跟进','/updateFollowUp',3,4,now(),now()),
+('获取跟进','/searchFollowUp',3,4,now(),now());
 
 #user_role表初始数据
 INSERT INTO
@@ -51,7 +55,8 @@ INSERT INTO
 VALUES
 (1,1,now(),now()),(1,2,now(),now()),(1,4,now(),now()),(1,5,now(),now()),(1,6,now(),now()),(1,7,now(),now()),(1,8,now(),now()),
 (1,9,now(),now()),(1,16,now(),now()),(1,17,now(),now()),(1,18,now(),now()),(2,1,now(),now()),(2,2,now(),now()),(2,3,now(),now()),
-(1,20,now(),now()),(1,21,now(),now()),
+(1,20,now(),now()),(1,21,now(),now()),(1,22,now(),now()),(1,23,now(),now()),(1,24,now(),now()),(1,25,now(),now()),(1,26,now(),now()),
 (2,4,now(),now()),(2,5,now(),now()),(2,6,now(),now()),(2,7,now(),now()),(2,8,now(),now()),(2,9,now(),now()),
 (2,10,now(),now()),(2,11,now(),now()),(2,12,now(),now()),(2,13,now(),now()),(2,14,now(),now()),(2,15,now(),now()),(2,16,now(),now()),
-(2,17,now(),now()),(2,18,now(),now()),(2,19,now(),now()),(2,20,now(),now()),(2,21,now(),now());
+(2,17,now(),now()),(2,18,now(),now()),(2,19,now(),now()),(2,20,now(),now()),(2,21,now(),now()),(2,22,now(),now()),(2,23,now(),now()),
+(2,24,now(),now()),(2,25,now(),now()),(2,26,now(),now());

@@ -7,14 +7,14 @@ import java.util.Map;
 
 public interface FollowUpService {
 
-    void addFollowUp(FollowUp followUp,String userId);
+    void addFollowUp(FollowUp followUp,String userId) throws Exception;
 
-    void delFollowUp(Long[] ids,String userId);
+    void delFollowUp(Long id,String userId) throws Exception;
 
-    void updateFollowUp(FollowUp followUp,String userId);
+    void updateFollowUp(FollowUp followUp,String userId) throws Exception;
 
     List<FollowUp> findAll();
 
-    List<FollowUp> findConditions(Map<String,Object> map,String userId);
+    List<FollowUp> findConditions(Map<String,Object> map);
 
 }
