@@ -79,7 +79,7 @@ public class StudentController {
             map.put("startDate",startDate);
         }
         if(endDate!=null&&endDate.length()>0) {
-            map.put("endDate", endDate);
+            map.put("endDate", endDate+" 23:59:59");
         }
         if(classification!=null&&classification.length()>0) {
             map.put("classification", classification);
