@@ -30,11 +30,11 @@ VALUES
 
 #student
 INSERT INTO
-`student`(`name`,`gender`,`age`,`phone`,`create_time`,`update_time`)
+`student`(`name`,`gender`,`age`,`phone`,`student_source`,`classification`,`create_time`,`update_time`)
 VALUES
-('Apple','M',20,'17812345678',now(),now()),
-('Banana','M',21,'17812345678',now(),now()),
-('Orange','F',22,'17812345678',now(),now());
+('Apple','M',20,'17812345678','Web-NIIT WebSite','C',now(),now()),
+('Banana','M',21,'17812345678','Web-Job Site','B',now(),now()),
+('Orange','F',22,'17812345678','Web-Job Site','A',now(),now());
 
 #user_student
 INSERT INTO
