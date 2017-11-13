@@ -162,8 +162,12 @@ var flashStuSource=function () {
     $.post("/getStuSource",function (res) {
         var list=res.data;
         $("#SSselect").html("");
-        $("#SSSearchSelect").html("");
-        $("#userSSselect").html("");
+        var nulloption = "<option value=''></option>";
+        $("#SSSearchSelect").html(nulloption);
+        $("#userSSselect").html(nulloption);
+
+        // $("#SSselect").append(nulloption);
+
         $.each(list,function (idx,ss) {
             var sons=ss.sonStuSources;
             $.each(sons,function (ids,son) {
@@ -228,6 +232,44 @@ $("#newStudentBtn").click(function () {
         }
     });
 });
+
+$("#sssearch").click(function () {
+    var sd = $("#sssdate").val();
+    var ed = $("#ssedate").val();
+    var name = $("#ssname").val();
+    var clf = $("#selectclass option:selected").val();
+    var source = $("#SSSearchSelect option:selected").val();
+    $.post("/searchStudent", {name: name, startDate: sd, endDate: ed, classification: clf, source: source}, function (res) {
+        if (res.code==200) {
+            var list = res.data;
+            $("#ssbody").html("");
+            $.each(list, function (idx, stu) {
+                var name = stu.name;
+                var gender = stu.gender;
+                var age = stu.age;
+                var phone = stu.phone;
+                var email = stu.email;
+                var college = stu.college;
+                var createTime = stu.createTime;
+                $("#ssbody").append("<tr>\n" +
+                    "<td>" + timeFormatter(createTime) + "</td>\n" +
+                    "<td>" + name + "</td>\n" +
+                    "<td>" + gender + "</td>\n" +
+                    "<td>" + age + "</td>\n" +
+                    "<td>" + phone + "</td>\n" +
+                    "<td>" + email + "</td>\n" +
+                    "<td>" + college + "</td>\n" +
+                    "<td>\n" +
+                    "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\">\n" +
+                    "More\n" +
+                    "</button>\n" +
+                    "</td>\n" +
+                    "</tr>");
+            });
+        }
+    });
+});
+
 //document.ready
 flashUser();
 flashadvertise();

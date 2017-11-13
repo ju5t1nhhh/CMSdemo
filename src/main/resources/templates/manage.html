@@ -131,9 +131,10 @@
 										<label class="col-sm-2 control-label">Classification: </label>
 										<div class="col-sm-6">
 											<select class="form-control" style="width: 85%">
-												<option>A: Intersted</option>
-												<option>B: Hesitate</option>
-												<option>C: Rejected</option>
+												<option value=""></option>
+												<option value="A">A: Intersted</option>
+												<option value="B">B: Hesitate</option>
+												<option value="C">C: Rejected</option>
 											</select>
 										</div>
 									</div>
@@ -214,10 +215,11 @@
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Classification: </label>
 						<div class="col-sm-3">
-							<select class="form-control" style="width: 85%">
-								<option>A: Intersted</option>
-								<option>B: Hesitate</option>
-								<option>C: Rejected</option>
+							<select id="selectclass" class="form-control" style="width: 85%">
+								<option value=""></option>
+								<option value="A">A: Intersted</option>
+								<option value="B">B: Hesitate</option>
+								<option value="C">C: Rejected</option>
 							</select>
 						</div>
 						<label class="col-sm-1 control-label">Source: </label>
@@ -246,21 +248,7 @@
 								<th>Details</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Tanmay</td>
-								<td>Bangalore</td>
-								<td>560001</td>
-								<td>Tanmay</td>
-								<td>Bangalore</td>
-								<td>560001</td>
-								<td>Tanmay</td>
-								<td>
-									<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Details">
-										More
-									</button>
-								</td>
-							</tr>
+						<tbody id="ssbody">
 						</tbody>
 					</table>
 				</div>
