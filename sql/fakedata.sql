@@ -61,7 +61,7 @@ VALUES
 ('jackie233','www.hupu.com',now(),now());
 
 #feedback
-INSERT INTO
-`feedback`(`stu_id`,`answer`,`create_time`,`update_time`)
-VALUES
-(1,'A,B,C;A,B,C,asdasdasd;',now(),now());
+-- INSERT INTO
+-- `feedback`(`stu_id`,`answer`,`create_time`,`update_time`)
+-- VALUES
+-- (1,'A,B,C;A,B,C,asdasdasd;',now(),now());

@@ -1,7 +1,9 @@
 package com.niit.cmsdemo.service.impl;
 
+import com.niit.cmsdemo.dao.FeedbackDao;
 import com.niit.cmsdemo.dao.StudentDao;
 import com.niit.cmsdemo.dao.UserStudentDao;
+import com.niit.cmsdemo.domain.Feedback;
 import com.niit.cmsdemo.domain.Student;
 import com.niit.cmsdemo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,19 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private UserStudentDao userStudentDao;
 
+    @Autowired
+    private FeedbackDao feedbackDao;
+
     @Override
     @Transactional
     public void addStudent(Student student, String userId) throws Exception {
         Integer rows=studentDao.insertOne(student);
         if(rows>0){
             userStudentDao.insertOne(userId,student.getId());
+
+            Feedback feedback=new Feedback();
+            feedback.setStuId(student.getId());
+            feedbackDao.insertOne(feedback);
         }else{
             throw new Exception("添加学生失败");
         }

@@ -24,7 +24,7 @@ public class StudentServiceTest {
     @Test
     public void addStudent() throws Exception {
         Student student=new Student();
-        student.setName("bababa");
+        student.setName("bababa2323");
         studentService.addStudent(student,"jackie233");
     }
 

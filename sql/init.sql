@@ -162,7 +162,13 @@ CREATE TABLE `stu_source`(
 DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback`(
   `stu_id` INT(8) NOT NULL COMMENT '学生id',
-  `answer` TEXT COMMENT '回答',
+  `answer1` TEXT COMMENT '回答1',
+  `answer2` TEXT COMMENT '回答2',
+  `answer3` TEXT COMMENT '回答3',
+  `answer4` TEXT COMMENT '回答4',
+  `answer5` TEXT COMMENT '回答5',
+  `answer6` TEXT COMMENT '回答6',
+  `answer7` TEXT COMMENT '回答7',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
   PRIMARY KEY (`stu_id`),

@@ -3,14 +3,20 @@
 <mapper namespace="com.niit.cmsdemo.dao.FeedbackDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Feedback">
         <result column="stu_id" property="stuId"/>
-        <result column="answer" property="answer"/>
+        <result column="answer1" property="answer1"/>
+        <result column="answer2" property="answer2"/>
+        <result column="answer3" property="answer3"/>
+        <result column="answer4" property="answer4"/>
+        <result column="answer5" property="answer5"/>
+        <result column="answer6" property="answer6"/>
+        <result column="answer7" property="answer7"/>
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Feedback">
         INSERT INTO `feedback`
-        VALUES(#{stuId},#{answer},now(),now())
+        VALUES(#{stuId},#{answer1},#{answer2},#{answer3},#{answer4},#{answer5},#{answer6},#{answer7},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
@@ -21,7 +27,13 @@
     <update id="updateOne" parameterType="com.niit.cmsdemo.domain.Feedback">
         UPDATE `feedback`
         <set>
-            <if test="answer != null and answer.length()>0">`answer`=#{answer},</if>
+            <if test="answer1 != null and answer1.length()>0">`answer1`=#{answer1},</if>
+            <if test="answer2 != null and answer2.length()>0">`answer2`=#{answer2},</if>
+            <if test="answer3 != null and answer3.length()>0">`answer3`=#{answer3},</if>
+            <if test="answer4 != null and answer4.length()>0">`answer4`=#{answer4},</if>
+            <if test="answer5 != null and answer5.length()>0">`answer5`=#{answer5},</if>
+            <if test="answer6 != null and answer6.length()>0">`answer6`=#{answer6},</if>
+            <if test="answer7 != null and answer7.length()>0">`answer7`=#{answer7},</if>
             `update_time`=now()
         </set>
         WHERE `stu_id`=#{stuId}

@@ -23,7 +23,7 @@ public class FeedbackDaoTest {
     public void insertOne() throws Exception {
         Feedback feedback=new Feedback();
         feedback.setStuId(4L);
-        feedback.setAnswer("A,B;");
+        feedback.setAnswer1("A,B;");
         feedbackDao.insertOne(feedback);
     }
 
@@ -34,8 +34,8 @@ public class FeedbackDaoTest {
 
     @Test
     public void updateOne() throws Exception {
-        Feedback feedback=feedbackDao.selectOne(2L);
-        feedback.setAnswer("BBBBBB");
+        Feedback feedback=feedbackDao.selectOne(4L);
+        feedback.setAnswer1("BBBBBB");
         feedbackDao.updateOne(feedback);
     }
 
