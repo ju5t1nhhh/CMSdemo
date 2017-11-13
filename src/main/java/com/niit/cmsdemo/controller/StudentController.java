@@ -69,9 +69,12 @@ public class StudentController {
     }
 
     @PostMapping("/searchStudent")
-    public ServerResponse searchStudent(HttpSession session,String startDate,String endDate,String classification,String source){
+    public ServerResponse searchStudent(HttpSession session,String name,String startDate,String endDate,String classification,String source){
         String userSessionId= (String) session.getAttribute("userSessionId");
         Map<String,Object> map=new HashMap<>();
+        if(name!=null&&name.length()>0){
+            map.put("name",name);
+        }
         if(startDate!=null&&startDate.length()>0){
             map.put("startDate",startDate);
         }
