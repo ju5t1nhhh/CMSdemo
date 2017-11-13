@@ -270,6 +270,22 @@ $("#sssearch").click(function () {
     });
 });
 
+$("#research").click(function () {
+    alert("from report");
+    var userId = $("#userSearchUserId").val();
+    var startDate = $("#userSearchStartDate").val();
+    var endDate = $("#userSearchEndDate").val();
+    var classification = $("#rcselect option:selected").val();
+    //userSSselect
+    var source = $("#userSSselect option:selected").val();
+    $.post("/searchCount", {userId: userId, startDate: startDate, endDate: endDate, classification: classification, source: source}, function (res) {
+        var count = res.data;
+        alert("OK");
+        $("#count").text(count);
+    });
+
+});
+
 //document.ready
 flashUser();
 flashadvertise();
