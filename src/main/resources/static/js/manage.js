@@ -221,8 +221,27 @@ var updateFU=function (id, stuId) {
     }
 };
 
-var addFU = function () {
+var addFU = function (stuId) {
+    var note = $("#dtfp1").val();
+    $.post("/addFollowUp", {stuId: stuId, note: note}, function (res) {
+        if (res.code == 200) {
+            alert("Add followup finished!");
+            $("#dtfp1").val("");
+        } else {
+            alert(res.code);
+        }
+    });
+};
 
+var delFU = function (fuId) {
+    $.post("/delFollowUp", {fuId: fuId}, function (res) {
+        if (res.code == 200) {
+            alert("del finished!");
+            $("#fufg" + fuId).remove();
+        } else {
+            alert(res.code);
+        }
+    });
 };
 
 var loadDetails=function (stuId) {
@@ -260,13 +279,13 @@ var loadDetails=function (stuId) {
        $("#followuplist").html("");
        $.each(fus,function (idx,fu) {
            $("#followuplist").append("" +
-               "<div class='form-group'>" +
+               "<div class='form-group' id='fufg"+fu.id+"'>" +
                "<label class='col-sm-2 control-label'>Follow Up:</label> " +
                "<div class='col-sm-8' style='text-align: left;'>" +timeFormatter(fu.createTime)+
                "</div>" +
                "<br/><br/>" +
                "<div class='col-sm-2' align='center'>" +
-               "<button class='btn btn-danger btn-xs' onclick=''>" +
+               "<button class='btn btn-danger btn-xs' onclick='delFU("+fu.id+")'>" +
                "<span class='glyphicon glyphicon-remove' onclick=''></span>" +
                "</button>" +
                "<button class='btn btn-info btn-xs' onclick='updateFU("+fu.id+","+stuId+")' >" +
@@ -277,8 +296,10 @@ var loadDetails=function (stuId) {
                "<textarea id='ta"+fu.id+"' class='form-control' style='width: 96%;resize: none;' rows='4' disabled='true'>"+fu.note+"</textarea>" +
                "</div>" +
                "</div>");
-       })
+
+       });
     });
+    $("#submitdt").attr("onclick", "alert('dynamic onclick');addFU("+ stuId +");");
 };
 //Jquery
 $("#submiteu").click(function () {
@@ -374,6 +395,11 @@ $("#research").click(function () {
     });
 
 });
+
+// $("#submitdt").click(function () {
+//     var note = $("#dtfp1").val();
+//     $.post("/addFollowUp", {})
+// });
 
 //document.ready
 flashUser();
