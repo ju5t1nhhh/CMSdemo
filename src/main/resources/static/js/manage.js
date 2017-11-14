@@ -200,15 +200,29 @@ var FBHelper=function (chkname,answer) {
     }
 };
 
-var updateFU=function (id) {
+var updateFU=function (id, stuId) {
     var edspan=$("#edspan"+id);
     if(edspan.hasClass("glyphicon-edit")){
         edspan.removeClass("glyphicon-edit");
         edspan.addClass("glyphicon-ok");
-    }else{
-        var note = $("#ta" + id).text();
+        $("#ta" + id).attr("disabled",false);
+    }else if(edspan.hasClass("glyphicon-ok")) {
+        var note = $("#ta" + id).val();
         alert(note);
+        $.post("/updateFollowUp", {id: id, stuId: stuId, note: note}, function (res) {
+            if (res.code == 200) {
+                alert("updateFollowUp finished!");
+            } else {
+                alert(res.code);
+            }
+        });
+    } else {
+        alert("some error!");
     }
+};
+
+var addFU = function () {
+
 };
 
 var loadDetails=function (stuId) {
@@ -255,12 +269,12 @@ var loadDetails=function (stuId) {
                "<button class='btn btn-danger btn-xs' onclick=''>" +
                "<span class='glyphicon glyphicon-remove' onclick=''></span>" +
                "</button>" +
-               "<button class='btn btn-info btn-xs' onclick='updateFU("+fu.id+")' >" +
+               "<button class='btn btn-info btn-xs' onclick='updateFU("+fu.id+","+stuId+")' >" +
                "<span id='edspan"+fu.id+"' class='glyphicon glyphicon-edit'></span>" +
                "</button>" +
                "</div>" +
                "<div class='col-sm-10'>" +
-               "<textarea id='ta"+fu.id+"' class='form-control' style='width: 96%;resize: none;' rows='4'>"+fu.note+"</textarea>" +
+               "<textarea id='ta"+fu.id+"' class='form-control' style='width: 96%;resize: none;' rows='4' disabled='true'>"+fu.note+"</textarea>" +
                "</div>" +
                "</div>");
        })
