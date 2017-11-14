@@ -200,6 +200,16 @@ var FBHelper=function (chkname,answer) {
     }
 };
 
+var updateFU=function (id) {
+    var edspan=$("#edspan"+id);
+    if(edspan.hasClass("glyphicon-edit")){
+        edspan.removeClass("glyphicon-edit");
+        edspan.addClass("glyphicon-ok");
+    }else{
+        var note = $("#ta" + id).text();
+    }
+};
+
 var loadDetails=function (stuId) {
     $.post("/getStudent",{stuId:stuId},function (res) {
         var stu=res.data;
@@ -242,14 +252,14 @@ var loadDetails=function (stuId) {
                "<br/><br/>" +
                "<div class='col-sm-2' align='center'>" +
                "<button class='btn btn-danger btn-xs' onclick=''>" +
-               "<span class='glyphicon glyphicon-remove'></span>" +
+               "<span class='glyphicon glyphicon-remove' onclick=''></span>" +
                "</button>" +
-               "<button class='btn btn-info btn-xs' onclick=''>" +
-               "<span class='glyphicon glyphicon-edit'></span>" +
+               "<button class='btn btn-info btn-xs' onclick='updateFU("+fu.id+")' >" +
+               "<span id='edspan"+fu.id+"' class='glyphicon glyphicon-edit'></span>" +
                "</button>" +
                "</div>" +
                "<div class='col-sm-10'>" +
-               "<textarea class='form-control' style='width: 96%;resize: none;' rows='4'>"+fu.note+"</textarea>" +
+               "<textarea id='ta"+fu.id+"' class='form-control' style='width: 96%;resize: none;' rows='4'>"+fu.note+"</textarea>" +
                "</div>" +
                "</div>");
        })
