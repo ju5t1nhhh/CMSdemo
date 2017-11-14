@@ -207,6 +207,7 @@ var updateFU=function (id) {
         edspan.addClass("glyphicon-ok");
     }else{
         var note = $("#ta" + id).text();
+        alert(note);
     }
 };
 
