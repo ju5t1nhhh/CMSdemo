@@ -88,6 +88,8 @@ var delAdvertise=function (adId) {
     $.post("/delAds", {adId: adId}, function (res) {
         if (res.code!=200) {
             alert(res.msg);
+        } else {
+            flashadvertise();
         }
     });
 };
