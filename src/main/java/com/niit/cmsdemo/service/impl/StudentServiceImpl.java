@@ -84,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> findConditions(Map<String, Object> map, String userId) {
         if(!userId.equals("admin")){
             Long[] ids=userStudentDao.selectStuIdsByUserId(userId);
-            map.put("ids",ids);
+            if(ids.length>0)map.put("ids",ids);
         }
         return studentDao.selectConditions(map);
     }

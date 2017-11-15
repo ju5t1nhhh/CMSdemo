@@ -216,9 +216,7 @@ var updateFU=function (id, stuId) {
     }else if(edspan.hasClass("glyphicon-ok")) {
         var note = $("#ta" + id).val();
         $.post("/updateFollowUp", {id: id, stuId: stuId, note: note}, function (res) {
-            if (res.code == 200) {
-                alert("updateFollowUp finished!");
-            } else {
+            if (res.code != 200){
                 alert(res.code);
             }
         });
@@ -234,7 +232,6 @@ var addFU = function (stuId) {
     var note = $("#dtfp1").val();
     $.post("/addFollowUp", {stuId: stuId, note: note}, function (res) {
         if (res.code == 200) {
-            alert("Add followup finished!");
             $("#dtfp1").val("");
         } else {
             alert(res.code);
@@ -272,6 +269,11 @@ var loadDetails=function (stuId) {
         $("#dtintention").val(stu.intention);
         $("#dtclassification").val(stu.classification);
         $("#edstuId").val(stu.id);
+        if(stu.studentSource=="Web-College"){
+            $("#fankuiTable").css("display","");
+        }else{
+            $("#fankuiTable").css("display","none");
+        }
     });
     $.post("/getFeedback",{stuId:stuId},function (res) {
         $("input:checkbox").removeAttr("checked");
@@ -311,6 +313,13 @@ var loadDetails=function (stuId) {
        });
     });
 };
+var updateAns=function (name) {
+    var answer="";
+    $("input[name='"+name+"']:checked").each(function () {
+        answer=answer+$(this).val()+",";
+    });
+    return answer.substring(0,answer.length-1);
+};
 //Jquery
 $("#submitdt").click(function () {
     //followup
@@ -349,10 +358,27 @@ $("#submitdt").click(function () {
         {id:stuId,name:name,gender:gender,age:age,phone:phone,email:email,college:college,major:major,walkingDate:walkinDate,interviewNote:insit,marks:marks,intention:intention,studentSource:stusource,classification:classification,qqWechat:qqWechat},
         function (res) {
             if(res.code!=200){
-                alert(res.msg);
+                alert("updateStudent"+res.msg);
             }
     });
     //feedback
+    var answer1=updateAns("optionsRadiosinline1");
+    var answer2=updateAns("optionsRadiosinline2");
+    var answer3=updateAns("optionsRadiosinline3");
+    var answer4=updateAns("optionsRadiosinline4");
+    var answer5=updateAns("optionsRadiosinline5");
+    var answer6=updateAns("optionsRadiosinline6");
+    var answer7=updateAns("optionsRadiosinline7");
+    if($("input[name='optionsRadiosinline4']").eq(7).is(":checked")){
+        answer4=answer4+","+$("#other1").val();
+    }
+    $.post("/updateFeedback",
+        {stuId:stuId,answer1:answer1,answer2:answer2,answer3:answer3,answer4:answer4,answer5:answer5,answer6:answer6,answer7:answer7},
+        function (res) {
+        if(res.code!=200){
+            alert("updateFeedback"+res.msg);
+        }
+    });
 });
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
