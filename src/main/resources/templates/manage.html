@@ -741,7 +741,11 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Gender: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtgender" style="width: 90%"/>
+									<select class="form-control" id="dtgender" style="width: 90%">
+										<option>M</option>
+										<option>F</option>
+									</select>
+									<!--<input type="text" class="form-control" id="dtgender" style="width: 90%"/>-->
 								</div>
 								<label class="col-sm-2 control-label">Age: </label>
 								<div class="col-sm-4">
@@ -770,6 +774,13 @@
 									<input type="text" class="form-control" id="dtmajor" style="width: 90%"/>
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">QQ or Wechat: </label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="dtqqwechat" style="width: 90%"/>
+								</div>
+							</div>
 							<hr/>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Walk-in Date: </label>
@@ -778,7 +789,7 @@
 								</div>
 								<label class="col-sm-2 control-label">Marks: </label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtmarks" style="width: 90%"/>
+									<input type="number" class="form-control" id="dtmarks" style="width: 90%"/>
 								</div>
 							</div>
 
@@ -797,7 +808,7 @@
 								</div>
 								<label class="col-sm-1 control-label" style="font-size: 10px;">自定义: </label>
 								<div class="col-sm-4">
-									<input class="form-control" type="text" placeholder="如 Web-Market"/>
+									<input id="stusource" class="form-control" type="text" placeholder="如 Web-Market"/>
 								</div>
 							</div>
 
@@ -970,6 +981,7 @@
 							</div>
 						</form>
 					</div>
+					<input type="hidden" id="edstuId" />
 					<div class="modal-footer">
 						<button id="submitdt" type="button" class="btn btn-primary" data-dismiss="modal">
 							Submit

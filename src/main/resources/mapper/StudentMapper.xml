@@ -41,7 +41,7 @@
             <if test="gender != null">`gender`=#{gender},</if>
             <if test="age != null">`age`=#{age},</if>
             <if test="phone != null and phone.length()>0">`phone`=#{phone},</if>
-            <if test="qqWechat != null and qqWechat.length()>0">`qq_echat`=#{qqWechat},</if>
+            <if test="qqWechat != null and qqWechat.length()>0">`qq_wechat`=#{qqWechat},</if>
             <if test="email != null and email.length()>0">`email`=#{email},</if>
             <if test="college != null and college.length()>0">`college`=#{college},</if>
             <if test="major != null and major.length()>0">`major`=#{major},</if>

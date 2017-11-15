@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void delStudents(Long stuId, String userId) throws Exception {
-        if(userStudentDao.selectUserIdByStuId(stuId).equals(userId)){
+        if(userStudentDao.selectUserIdByStuId(stuId).equals(userId)||userId.equals("admin")){
             Integer rows=studentDao.deleteOne(stuId);
             if(rows==0)throw new Exception("删除失败");
         }
@@ -50,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void updateStudent(Student student, String userId) {
-        if(userStudentDao.selectUserIdByStuId(student.getId()).equals(userId)){
+        if(userStudentDao.selectUserIdByStuId(student.getId()).equals(userId)||userId.equals("admin")){
             studentDao.updateOne(student);
         }
     }

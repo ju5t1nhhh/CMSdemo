@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,10 +32,12 @@ public class StudentController {
     }
 
     @PostMapping("/updateStudent")
-    public ServerResponse updateStudent(Student student,HttpSession session){
+    public ServerResponse updateStudent(Student student,HttpSession session,String walkingDate){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         ServerResponse serverResponse=null;
         String userSessionId= (String) session.getAttribute("userSessionId");
         try{
+            student.setWalkinDate(sdf.parse(walkingDate));
             studentService.updateStudent(student,userSessionId);
             serverResponse=ServerResponse.createSuccessResponse(null);
         }catch (Exception e){

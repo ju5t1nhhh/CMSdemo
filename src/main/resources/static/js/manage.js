@@ -10,6 +10,13 @@ var timeFormatter=function (value) {
     return da.getFullYear() + "-" + twokuan(da.getMonth() + 1) + "-" + twokuan(da.getDate()) + " " + twokuan(da.getHours()) + ":" + twokuan(da.getMinutes()) + ":" + twokuan(da.getSeconds());
 
 }
+var timeFormatter2=function (value) {
+
+    var da = new Date(value);
+
+    return da.getFullYear() + "-" + twokuan(da.getMonth() + 1) + "-" + twokuan(da.getDate());
+
+}
 //defined
 var flashUser=function () {
     $.post("/searchUser",function(res){
@@ -208,7 +215,6 @@ var updateFU=function (id, stuId) {
         $("#ta" + id).attr("disabled",false);
     }else if(edspan.hasClass("glyphicon-ok")) {
         var note = $("#ta" + id).val();
-        alert(note);
         $.post("/updateFollowUp", {id: id, stuId: stuId, note: note}, function (res) {
             if (res.code == 200) {
                 alert("updateFollowUp finished!");
@@ -216,6 +222,9 @@ var updateFU=function (id, stuId) {
                 alert(res.code);
             }
         });
+        edspan.removeClass("glyphicon-ok");
+        edspan.addClass("glyphicon-edit");
+        $("#ta" + id).attr("disabled",true);
     } else {
         alert("some error!");
     }
@@ -255,12 +264,14 @@ var loadDetails=function (stuId) {
         $("#dtemail").val(stu.email);
         $("#dtcollegename").val(stu.college);
         $("#dtmajor").val(stu.major);
-        $("#dtwalkindate").val(stu.walkinDate);
+        $("#dtwalkindate").val(timeFormatter2(stu.walkinDate));
+        $("#dtqqwechat").val(stu.qqWechat);
         $("#dtmarks").val(stu.marks);
         $("#dtinsit").val(stu.interviewNote);
         $("#SSselect").val(stu.studentSource);
         $("#dtintention").val(stu.intention);
         $("#dtclassification").val(stu.classification);
+        $("#edstuId").val(stu.id);
     });
     $.post("/getFeedback",{stuId:stuId},function (res) {
         $("input:checkbox").removeAttr("checked");
@@ -299,9 +310,50 @@ var loadDetails=function (stuId) {
 
        });
     });
-    $("#submitdt").attr("onclick", "alert('dynamic onclick');addFU("+ stuId +");");
 };
 //Jquery
+$("#submitdt").click(function () {
+    //followup
+    var stuId=$("#edstuId").val();
+    if($.trim($("#dtfp1").val()).length>0){
+        addFU(stuId);
+    }
+    //student
+    var name=$("#dtname").val();
+    var gender=$("#dtgender").val();
+    var age=$("#dtage").val();
+    var phone=$("#dtphonenum").val();
+    var email=$("#dtemail").val();
+    var college=$("#dtcollegename").val();
+    var qqWechat=$("#dtqqwechat").val();
+    var major=$("#dtmajor").val();
+    var walkinDate=$("#dtwalkindate").val();
+    var marks=$("#dtmarks").val();
+    var insit=$("#dtinsit").val();
+    var intention=$("#dtintention").val();
+    var classification=$("#dtclassification").val();
+    var stusource=$("#stusource").val();
+    if($.trim(stusource).length>0){
+        $.post("/addStuSource",{pre:stusource.split('-')[0],back:stusource.split('-')[1]},function (res) {
+            if(res.code==200){
+                flashStuSource();
+                $("#stusource").val("");
+            }else{
+                alert(res.msg);
+            }
+        });
+    }else{
+        stusource=$("#SSselect").val();
+    }
+    $.post("/updateStudent",
+        {id:stuId,name:name,gender:gender,age:age,phone:phone,email:email,college:college,major:major,walkingDate:walkinDate,interviewNote:insit,marks:marks,intention:intention,studentSource:stusource,classification:classification,qqWechat:qqWechat},
+        function (res) {
+            if(res.code!=200){
+                alert(res.msg);
+            }
+    });
+    //feedback
+});
 $("#submiteu").click(function () {
     var formData = new FormData($('#euform')[0]);
     $.ajax({
