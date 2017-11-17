@@ -468,6 +468,11 @@ $("#sssearch").click(function () {
             });
         }
     });
+    $("#stuExcelName").val(name);
+    $("#stuExcelStartDate").val(sd);
+    $("#stuExcelEndDate").val(ed);
+    $("#stuExcelClassification").val(clf);
+    $("#stuExcelSource").val(source);
 });
 
 $("#research").click(function () {
