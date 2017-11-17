@@ -161,8 +161,9 @@ function searchHistory() {
                 "</td>\n" +
                 "</tr>");
         });
-
     });
+    $("#taskStartDate").val(sd);
+    $("#taskEndDate").val(ed);
 };
 
 var flashStuSource=function () {
