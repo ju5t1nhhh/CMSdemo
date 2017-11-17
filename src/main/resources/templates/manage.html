@@ -8,9 +8,9 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
         <shiro:hasPermission name="/user">
-			$(function () {
-				$('#myTab2 li:eq(0) a').tab('show');
-			});
+            $(function () {
+                $('#myTab2 li:eq(0) a').tab('show');
+            });
         </shiro:hasPermission>
         $(function () {
             $('#myTab1 li:eq(0) a').tab('show');
@@ -24,52 +24,52 @@
 	</style>
 </head>
 <body style="background: url('/img/demo-1-bg.jpg')">
-	<div class="container" align="center" >
-			<h1 align="center" style="font-family: 'Segoe UI Semilight';color: #FFFFFF;font-size:50px;">NIIT System</h1>
-		<br/>
-		<form action="/logout">
-			<button class="btn btn-warning" type="submit">logout</button>
-		</form>
-		<br/>
-		<div style="background-color: #FFFFFF;padding: 15px;border-radius: 20px">
-			<div class="row" >
-				<div class="col-sm-12">
-					<ul id="myTab1" class="nav nav-tabs">
-						<shiro:hasPermission name="/user">
+<div class="container" align="center" >
+	<h1 align="center" style="font-family: 'Segoe UI Semilight';color: #FFFFFF;font-size:50px;">NIIT System</h1>
+	<br/>
+	<form action="/logout">
+		<button class="btn btn-warning" type="submit">logout</button>
+	</form>
+	<br/>
+	<div style="background-color: #FFFFFF;padding: 15px;border-radius: 20px">
+		<div class="row" >
+			<div class="col-sm-12">
+				<ul id="myTab1" class="nav nav-tabs">
+					<shiro:hasPermission name="/user">
+						<li>
+							<a href="#Employer" data-toggle="tab">Employer</a>
+						</li>
+					</shiro:hasPermission>
+					<li class="dropdown">
+						<a href="#" id="MyTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Students
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+							<li><a href="#StudentsList" data-toggle="tab">Students List</a></li>
+							<li><a data-toggle="modal" data-target="#NewStudent">New Student</a></li>
+							<li><a href="#SearchStudents" data-toggle="tab">Search Students</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" id="MyTabDrop2" class="dropdown-toggle" data-toggle="dropdown">Task
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
 							<li>
-								<a href="#Employer" data-toggle="tab">Employer</a>
+							<li><a href="#Task" data-toggle="tab">New Url</a></li>
+							<li><a href="#History" data-toggle="tab">History</a></li>
 							</li>
-						</shiro:hasPermission>
-						<li class="dropdown">
-							<a href="#" id="MyTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Students
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-								<li><a href="#StudentsList" data-toggle="tab">Students List</a></li>
-								<li><a data-toggle="modal" data-target="#NewStudent">New Student</a></li>
-								<li><a href="#SearchStudents" data-toggle="tab">Search Students</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" id="MyTabDrop2" class="dropdown-toggle" data-toggle="dropdown">Task
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
-								<li>
-									<li><a href="#Task" data-toggle="tab">New Url</a></li>
-									<li><a href="#History" data-toggle="tab">History</a></li>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</ul>
+					</li>
+				</ul>
 			</div>
-			<!-- tab content -->
-			<div class="tab-content">
-				<br/>
-				<shiro:hasPermission name="/user">
-					<div class="tab-pane fade in active" id="Employer">
-						<div class="row">
+		</div>
+		<!-- tab content -->
+		<div class="tab-content">
+			<br/>
+			<shiro:hasPermission name="/user">
+				<div class="tab-pane fade in active" id="Employer">
+					<div class="row">
 						<div class="col-sm-2" id="myScrollspy">
 							<ul id="myTab2" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="125">
 								<li><a href="#UserMgmt" data-toggle="pill">User</a></li>
@@ -88,29 +88,29 @@
 								</div><br/><br/>
 								<table class="table table-striped table-bordered table-hover">
 									<thead>
-										<tr>
-											<th>User ID</th>
-											<th>User Name</th>
-											<th>Create Time</th>
-											<th>Update Time</th>
-											<th>Operation</th>
-										</tr>
+									<tr>
+										<th>User ID</th>
+										<th>User Name</th>
+										<th>Create Time</th>
+										<th>Update Time</th>
+										<th>Operation</th>
+									</tr>
 									</thead>
 									<tbody id="userbody">
-										<tr>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>Tanmay</td>
-											<td>Bangalore</td>
-											<td>
-												<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditUser">
-													Edit
-												</button>
-												<button class="btn btn-xs btn-danger" onclick="">
-													Delete
-												</button>
-											</td>
-										</tr>
+									<tr>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>Tanmay</td>
+										<td>Bangalore</td>
+										<td>
+											<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditUser">
+												Edit
+											</button>
+											<button class="btn btn-xs btn-danger" onclick="">
+												Delete
+											</button>
+										</td>
+									</tr>
 									</tbody>
 								</table>
 							</div>
@@ -129,7 +129,7 @@
 												<input type="text" class="form-control" id="userSearchStartDate" style="width: 90%"/>
 											</div>
 											<div class="col-sm-1">
-											TO
+												TO
 											</div>
 											<div class="col-sm-3">
 												<input type="text" class="form-control" id="userSearchEndDate" style="width: 90%"/>
@@ -167,45 +167,102 @@
 							</div>
 						</div>
 					</div>
-					</div>
-				</shiro:hasPermission>
+				</div>
+			</shiro:hasPermission>
 
-				<div class="tab-pane fade in active qwer" id="StudentsList">
+			<div class="tab-pane fade in active qwer" id="StudentsList">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>Date</th>
+						<th>Name</th>
+						<th>Gender</th>
+						<th>Age</th>
+						<th>Phone No</th>
+						<th>Email</th>
+						<th>College Name</th>
+						<th>Details</th>
+					</tr>
+					</thead>
+					<tbody id="stuListBody">
+					<tr>
+						<td>Tanmay</td>
+						<td>Bangalore</td>
+						<td>560001</td>
+						<td>Tanmay</td>
+						<td>Bangalore</td>
+						<td>560001</td>
+						<td>Tanmay</td>
+						<td>
+							<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Details">
+								More
+							</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="tab-pane fade in active qwer" id="SearchStudents">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-sm-1 control-label">StartDate: </label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="sssdate" style="width: 90%"/>
+						</div>
+						<label class="col-sm-1 control-label">EndDate: </label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="ssedate" style="width: 90%"/>
+						</div>
+						<label class="col-sm-1 control-label">Name: </label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="ssname" style="width: 90%"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-1 control-label">Classification: </label>
+						<div class="col-sm-3">
+							<select id="selectclass" class="form-control" style="width: 85%">
+								<option value=""></option>
+								<option value="A">A: Intersted</option>
+								<option value="B">B: Hesitate</option>
+								<option value="C">C: Rejected</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">Source: </label>
+						<div class="col-sm-3">
+							<select id="SSSearchSelect" class="form-control" style="width: 92%">
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<button type="button" class="btn btn-primary" id="sssearch">
+								Search
+							</button>
+						</div>
+					</div>
+				</form>
+				<div class="col-sm-12">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
-							<tr>
-								<th>Date</th>
-								<th>Name</th>
-								<th>Gender</th>
-								<th>Age</th>
-								<th>Phone No</th>
-								<th>Email</th>
-								<th>College Name</th>
-								<th>Details</th>
-							</tr>
+						<tr>
+							<th>Date</th>
+							<th>Name</th>
+							<th>Gender</th>
+							<th>Age</th>
+							<th>Phone No</th>
+							<th>Email</th>
+							<th>College Name</th>
+							<th>Details</th>
+						</tr>
 						</thead>
-						<tbody id="stuListBody">
-							<tr>
-								<td>Tanmay</td>
-								<td>Bangalore</td>
-								<td>560001</td>
-								<td>Tanmay</td>
-								<td>Bangalore</td>
-								<td>560001</td>
-								<td>Tanmay</td>
-								<td>
-									<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Details">
-										More
-									</button>
-								</td>
-							</tr>
-						<!--<tbody id="ssbody">-->
-						<!--</tbody>-->
+						<tbody id="ssbody">
+						</tbody>
 					</table>
 				</div>
 			</div>
 
-			<div class="tab-pane fade in active" id="Task">
+			<div class="tab-pane fade in active qwer" id="Task">
 				<div class="form-horizontal" role="form">
 					<label class="col-sm-1 control-label" >Url: </label>
 					<div class="col-sm-9">
@@ -222,818 +279,730 @@
 				<div class="col-sm-12">
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
-							<tr>
-								<th class="col-sm-2">User ID</th>
-								<th class="col-sm-6">Submitted Url</th>
-								<th class="col-sm-2">Create Time</th>
-								<th class="col-sm-2">Delete</th>
-							</tr>
+						<tr>
+							<th class="col-sm-2">User ID</th>
+							<th class="col-sm-6">Submitted Url</th>
+							<th class="col-sm-2">Create Time</th>
+							<th class="col-sm-2">Delete</th>
+						</tr>
 						</thead>
 						<tbody id="adbody">
+						<tr>
+							<td>test</td>
+							<td>www.baidu.com</td>
+							<td>9999-99-99</td>
+							<td>
+								<button class="btn btn-danger btn-xs" onclick="">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>
+							</td>
+						</tr>
 						</tbody>
 					</table>
 				</div>
+			</div>
 
-				<div class="tab-pane fade in active qwer" id="SearchStudents">
+			<div class="tab-pane fade in active qwer" id="History">
+				<div class="form-horizontal" role="form">
+					<label class="col-sm-2 control-label">Start Date: </label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="hstartd" style="width: 90%" placeholder="YYYY-MM-DD" />
+					</div>
+					<label class="col-sm-2 control-label">End Date: </label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="hendd" style="width: 90%" placeholder="YYYY-MM-DD" />
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-primary" id="urlsearch" onclick="searchHistory()">
+							Search
+						</button>
+					</div>
+				</div>
+				<br/><br/><br/>
+				<div>搜索结果条数：<span id="searchNum">0</span></div>
+				<div class="col-sm-12">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+						<tr>
+							<th class="col-sm-2">User ID</th>
+							<th class="col-sm-6">Submitted Url</th>
+							<th class="col-sm-2">Create Time</th>
+							<th class="col-sm-2">Delete</th>
+						</tr>
+						</thead>
+						<tbody id="hisbody">
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div> <!-- /.tab content -->
+	</div>
+	<!-- modal -->
+	<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						New User:
+					</h3>
+				</div>
+				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-1 control-label">StartDate: </label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="sssdate" style="width: 90%"/>
-							</div>
-							<label class="col-sm-1 control-label">EndDate: </label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="ssedate" style="width: 90%"/>
-							</div>
-							<label class="col-sm-1 control-label">Name: </label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="ssname" style="width: 90%"/>
+							<label class="col-sm-2 control-label">User ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="loginId" name="loginId" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-1 control-label">Classification: </label>
+							<label class="col-sm-2 control-label">User Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="username" name="username" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Password: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="upassword" name="password" style="width: 90%"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submitu" onclick="adduser()">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="NewRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						New Role:
+					</h3>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="rid" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="rname" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Create Time: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="rcreateTime" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Update Time </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="rupdateTime" style="width: 90%"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submitr">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="NewPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						New Permission:
+					</h3>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="pid" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="pname" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Url: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="purl" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Type: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="ptype" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Parent ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="parentId" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Create Time: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="pcreateTime" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Update Time </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="pupdateTime" style="width: 90%"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submitp">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						Edit User:
+					</h3>
+				</div>
+				<div class="modal-body">
+					<form id="euform" class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">User ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="loginId" id="euid" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">User Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="username" id="eusername" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Password: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="password" id="eupassword" style="width: 90%" placeholder="Fill me to reset password"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submiteu" data-dismiss="modal">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="EditRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						Edit Role:
+					</h3>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="erid" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="ername" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Create Time: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="ercreateTime" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Update Time </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="erupdateTime" style="width: 90%"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submiter">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="EditPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						Edit Permission:
+					</h3>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="epid" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="eppassword" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Url: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="epurl" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Type: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="eptype" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Parent ID: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="epparentId" style="width: 90%"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Create Time: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="epcreateTime" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Update Time </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="epupdateTime" style="width: 90%"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submitep">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="NewStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">
+						New Student:
+					</h3>
+				</div>
+				<div class="modal-body">
+					<form id="newStudentForm" class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Name: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="name" id="nsname" style="width: 90%"/>
+							</div>
+
+							<label class="col-sm-2 control-label">Gender: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="gender" id="nsgender" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label class="col-sm-2 control-label">Age: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="age" id="nsage" style="width: 90%"/>
+							</div>
+
+							<label class="col-sm-2 control-label">Phone No: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="phone" id="nsphonenum" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label class="col-sm-2 control-label">Email: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="email" id="nsemail" style="width: 90%"/>
+							</div>
+
+							<label class="col-sm-2 control-label">College Name: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="college" id="nscollegename" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label class="col-sm-2 control-label">Major: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" name="major" id="nsmajor" style="width: 90%"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="newStudentBtn" data-dismiss="modal">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
+	<div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myModalLabel">Detailed Information: </h3>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" id="inin" onsubmit="return false" >
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Date: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtdate" style="width: 90%" disabled="disabled" />
+							</div>
+
+							<label class="col-sm-2 control-label">Name: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtname" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Gender: </label>
+							<div class="col-sm-4">
+								<select class="form-control" id="dtgender" style="width: 90%">
+									<option>M</option>
+									<option>F</option>
+								</select>
+								<!--<input type="text" class="form-control" id="dtgender" style="width: 90%"/>-->
+							</div>
+							<label class="col-sm-2 control-label">Age: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtage" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Phone No: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtphonenum" style="width: 90%"/>
+							</div>
+							<label class="col-sm-2 control-label">Email: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtemail" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">College Name: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtcollegename" style="width: 90%"/>
+							</div>
+							<label class="col-sm-2 control-label">Major: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtmajor" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">QQ or Wechat: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtqqwechat" style="width: 90%"/>
+							</div>
+						</div>
+						<hr/>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Walk-in Date: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>
+							</div>
+							<label class="col-sm-2 control-label">Marks: </label>
+							<div class="col-sm-4">
+								<input type="number" class="form-control" id="dtmarks" style="width: 90%"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Interview Situation: </label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="dtinsit" style="width: 96%;resize: none;" rows="4"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group" >
+							<label class="col-sm-2 control-label">Source: </label>
 							<div class="col-sm-3">
-								<select id="selectclass" class="form-control" style="width: 85%">
-									<option value=""></option>
+								<select id="SSselect" class="form-control" style="width: 100%;display: inline-block;" onchange="showtable()">
+								</select>
+							</div>
+							<label class="col-sm-1 control-label" style="font-size: 10px;">自定义: </label>
+							<div class="col-sm-4">
+								<input id="stusource" class="form-control" type="text" placeholder="如 Web-Market"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Intention: </label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="dtintention" style="width: 90%"/>
+							</div>
+							<label class="col-sm-2 control-label">Classification: </label>
+							<div class="col-sm-4">
+								<select id="dtclassification" class="form-control" style="width: 85%">
+									<option></option>
 									<option value="A">A: Intersted</option>
 									<option value="B">B: Hesitate</option>
 									<option value="C">C: Rejected</option>
 								</select>
 							</div>
-							<label class="col-sm-1 control-label">Source: </label>
-							<div class="col-sm-3">
-								<select id="SSSearchSelect" class="form-control" style="width: 92%">
-								</select>
+						</div>
+						<hr/>
+						<div id="fankuiTable" style="display: none;">
+							<label class="col-sm-12 control-label" style="text-align: center; font-size: large">宣讲反馈表</label>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">您对本次讲座的哪部分内容比较感兴趣？</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios11" value="0"/>就业指导
+									</label>
+									<label class="radio-inline">
+										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios12" value="1"/>IT前景
+									</label>
+									<label class="radio-inline">
+										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios13" value="2"/>NIIT实训课程
+									</label>
+									<label class="radio-inline">
+										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios14" value="3"/>NIIT人才定制企业
+									</label>
+								</div>
 							</div>
-							<div class="col-sm-4">
-								<button type="button" class="btn btn-primary" id="sssearch">
-									Search
-								</button>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">您觉得NIIT的实训课程对您今后职业发展有所帮助吗？</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline2" id="optionsRadios21" value="0"/>我很需要，非常有帮助
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline2" id="optionsRadios22" value="1"/>暂时不需要，无帮助
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline2" id="optionsRadios23" value="2"/>根本不需要
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">您毕业后的就业方向定位在</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline3" id="optionsRadios31" value="0"/>IT职位
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline3" id="optionsRadios32" value="1"/>非IT职位
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline3" id="optionsRadios33" value="2"/>就业方向尚不清晰
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">您是否愿意参加NIIT实训项目，更愿意参加哪种实训项目？（可多选）</label>
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios41" value="0"/>愿意
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios42" value="1"/>考虑中
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios43" value="2" /> VR
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios44" value="3"/>Java + Android
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios45" value="4"/>前端
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios46" value="5"/>UI
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios47" value="6"/>不愿意
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios48" value="7"/>其他
+									</label>
+									<input type="text" class="form-control checkbox-inline" id="other1" style="width: 20%"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">如果您愿意参加NIIT实训项目，希望开始的时间是？</label>
+								<div class="col-sm-12">
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline5" id="optionsRadios51" value="0"/>越快越好
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline5" id="optionsRadios52" value="1"/>1个月内
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline5" id="optionsRadios53" value="2"/>6个月内
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="optionsRadiosinline5" id="optionsRadios54" value="3"/>1年后
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">对于是否参加实训，您目前存在的问题是？（可多选）</label>
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios61" value="0"/>计划考研
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios62" value="1"/>自身是否适合职位
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios63" value="2"/>经济压力
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios64" value="3"/>就业担忧
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios65" value="4"/>对IT不感兴趣
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-12 control-label" style="text-align: center">对于专业IT实训，您更看中的是哪些方面？（可多选）</label>
+								<div class="col-sm-12">
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios71" value="0"/>师资配备
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios72" value="1"/>实训、住宿环境
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios73" value="2"/>就业安置服务
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios74" value="3"/>课程内容
+									</label>
+									<label class="checkbox-inline">
+										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios75" value="4"/>获得证书
+									</label>
+								</div>
+							</div>
+							<hr/>
+						</div>
+						<div id="followuplist">
+
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Follow Up: </label>
+							<br/><br/>
+							<div class="col-sm-2" align="center">
+								<!--<button class="btn btn-info btn-xs" type="button" onclick="">-->
+								<!--<span class="glyphicon glyphicon-ok"></span>-->
+								<!--</button>-->
+							</div>
+							<div id="newfudiv" class="col-sm-10">
+								<textarea class="form-control" id="dtfp1" style="width: 96%;resize: none;" rows="4"></textarea>
 							</div>
 						</div>
 					</form>
-					<div class="col-sm-12">
-						<table class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Date</th>
-									<th>Name</th>
-									<th>Gender</th>
-									<th>Age</th>
-									<th>Phone No</th>
-									<th>Email</th>
-									<th>College Name</th>
-									<th>Details</th>
-								</tr>
-							</thead>
-							<tbody id="ssbody">
-							</tbody>
-						</table>
-					</div>
 				</div>
-
-				<div class="tab-pane fade in active qwer" id="Task">
-					<div class="form-horizontal" role="form">
-						<label class="col-sm-1 control-label" >Url: </label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
-						</div>
-						<div class="col-sm-2">
-							<button type="button" class="btn btn-primary" id="urladdbtn" onclick="addAdvertise()">
-								Add
-							</button>
-						</div>
-					</div>
-					<br/><br/><br/>
-					<div class="col-sm-12">今天已提交数量：<span id="adcount"></span></div>
-					<div class="col-sm-12">
-						<table class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th class="col-sm-2">User ID</th>
-									<th class="col-sm-6">Submitted Url</th>
-									<th class="col-sm-2">Create Time</th>
-									<th class="col-sm-2">Delete</th>
-								</tr>
-							</thead>
-							<tbody id="adbody">
-								<tr>
-									<td>test</td>
-									<td>www.baidu.com</td>
-									<td>9999-99-99</td>
-									<td>
-										<button class="btn btn-danger btn-xs" onclick="">
-											<span class="glyphicon glyphicon-remove"></span>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+				<input type="hidden" id="edstuId" />
+				<div class="modal-footer">
+					<button id="submitdt" type="button" class="btn btn-primary" data-dismiss="modal">
+						Submit
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
 				</div>
-
-				<div class="tab-pane fade in active qwer" id="History">
-					<div class="form-horizontal" role="form">
-						<label class="col-sm-2 control-label">Start Date: </label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" id="hstartd" style="width: 90%" placeholder="YYYY-MM-DD" />
-						</div>
-						<label class="col-sm-2 control-label">End Date: </label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" id="hendd" style="width: 90%" placeholder="YYYY-MM-DD" />
-						</div>
-						<div class="col-sm-2">
-							<button type="button" class="btn btn-primary" id="urlsearch" onclick="searchHistory()">
-								Search
-							</button>
-						</div>
-					</div>
-					<br/><br/><br/>
-					<div>搜索结果条数：<span id="searchNum">0</span></div>
-					<div class="col-sm-12">
-						<table class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th class="col-sm-2">User ID</th>
-									<th class="col-sm-6">Submitted Url</th>
-									<th class="col-sm-2">Create Time</th>
-									<th class="col-sm-2">Delete</th>
-								</tr>
-							</thead>
-							<tbody id="hisbody">
-
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div> <!-- /.tab content -->
-		</div>
-		<!-- modal -->
-		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							New User:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">User ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="loginId" name="loginId" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">User Name: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="username" name="username" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Password: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="upassword" name="password" style="width: 90%"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitu" onclick="adduser()">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="NewRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							New Role:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="rid" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Name: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="rname" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Create Time: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="rcreateTime" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Update Time </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="rupdateTime" style="width: 90%"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitr">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="NewPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							New Permission:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="pid" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Name: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="pname" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Url: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="purl" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Type: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="ptype" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Parent ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="parentId" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Create Time: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="pcreateTime" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Update Time </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="pupdateTime" style="width: 90%"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitp">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="EditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							Edit User:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form id="euform" class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">User ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="loginId" id="euid" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">User Name: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="username" id="eusername" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Password: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="password" id="eupassword" style="width: 90%" placeholder="Fill me to reset password"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submiteu" data-dismiss="modal">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="EditRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							Edit Role:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="erid" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Name: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="ername" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Create Time: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="ercreateTime" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Update Time </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="erupdateTime" style="width: 90%"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submiter">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="EditPermission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							Edit Permission:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="epid" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Name: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eppassword" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Url: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="epurl" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Type: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="eptype" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Parent ID: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="epparentId" style="width: 90%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Create Time: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="epcreateTime" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Update Time </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="epupdateTime" style="width: 90%"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitep">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="NewStudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">
-							New Student:
-						</h3>
-					</div>
-					<div class="modal-body">
-						<form id="newStudentForm" class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Name: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="name" id="nsname" style="width: 90%"/>
-								</div>
-
-								<label class="col-sm-2 control-label">Gender: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="gender" id="nsgender" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-
-								<label class="col-sm-2 control-label">Age: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="age" id="nsage" style="width: 90%"/>
-								</div>
-
-								<label class="col-sm-2 control-label">Phone No: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="phone" id="nsphonenum" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-
-								<label class="col-sm-2 control-label">Email: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="email" id="nsemail" style="width: 90%"/>
-								</div>
-
-								<label class="col-sm-2 control-label">College Name: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="college" id="nscollegename" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-
-								<label class="col-sm-2 control-label">Major: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" name="major" id="nsmajor" style="width: 90%"/>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="newStudentBtn" data-dismiss="modal">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-
-		<div class="modal fade" id="Details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="myModalLabel">Detailed Information: </h3>
-					</div>
-					<div class="modal-body">
-						<form class="form-horizontal" role="form" id="inin" onsubmit="return false" >
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Date: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtdate" style="width: 90%" disabled="disabled" />
-								</div>
-
-								<label class="col-sm-2 control-label">Name: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtname" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Gender: </label>
-								<div class="col-sm-4">
-									<select class="form-control" id="dtgender" style="width: 90%">
-										<option>M</option>
-										<option>F</option>
-									</select>
-									<!--<input type="text" class="form-control" id="dtgender" style="width: 90%"/>-->
-								</div>
-								<label class="col-sm-2 control-label">Age: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtage" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Phone No: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtphonenum" style="width: 90%"/>
-								</div>								
-								<label class="col-sm-2 control-label">Email: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtemail" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">College Name: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtcollegename" style="width: 90%"/>
-								</div>
-								<label class="col-sm-2 control-label">Major: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtmajor" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">QQ or Wechat: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtqqwechat" style="width: 90%"/>
-								</div>
-							</div>
-							<hr/>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Walk-in Date: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>
-								</div>
-								<label class="col-sm-2 control-label">Marks: </label>
-								<div class="col-sm-4">
-									<input type="number" class="form-control" id="dtmarks" style="width: 90%"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Interview Situation: </label>
-								<div class="col-sm-10">
-									<textarea class="form-control" id="dtinsit" style="width: 96%;resize: none;" rows="4"></textarea>
-								</div>
-							</div>
-
-							<div class="form-group" >
-								<label class="col-sm-2 control-label">Source: </label>
-								<div class="col-sm-3">
-									<select id="SSselect" class="form-control" style="width: 100%;display: inline-block;" onchange="showtable()">
-									</select>
-								</div>
-								<label class="col-sm-1 control-label" style="font-size: 10px;">自定义: </label>
-								<div class="col-sm-4">
-									<input id="stusource" class="form-control" type="text" placeholder="如 Web-Market"/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Intention: </label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="dtintention" style="width: 90%"/>
-								</div>
-								<label class="col-sm-2 control-label">Classification: </label>
-								<div class="col-sm-4">
-									<select id="dtclassification" class="form-control" style="width: 85%">
-										<option></option>
-										<option value="A">A: Intersted</option>
-										<option value="B">B: Hesitate</option>
-										<option value="C">C: Rejected</option>
-									</select>
-								</div>
-							</div>
-							<hr/>
-							<div id="fankuiTable" style="display: none;">
-								<label class="col-sm-12 control-label" style="text-align: center; font-size: large">宣讲反馈表</label>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">您对本次讲座的哪部分内容比较感兴趣？</label>
-									<div class="col-sm-12">
-										<label class="radio-inline">
-											<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios11" value="0"/>就业指导
-										</label>
-										<label class="radio-inline">
-											<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios12" value="1"/>IT前景
-										</label>
-										<label class="radio-inline">
-											<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios13" value="2"/>NIIT实训课程
-										</label>
-										<label class="radio-inline">
-											<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios14" value="3"/>NIIT人才定制企业
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">您觉得NIIT的实训课程对您今后职业发展有所帮助吗？</label>
-									<div class="col-sm-12">
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline2" id="optionsRadios21" value="0"/>我很需要，非常有帮助
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline2" id="optionsRadios22" value="1"/>暂时不需要，无帮助
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline2" id="optionsRadios23" value="2"/>根本不需要
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">您毕业后的就业方向定位在</label>
-									<div class="col-sm-12">
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline3" id="optionsRadios31" value="0"/>IT职位
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline3" id="optionsRadios32" value="1"/>非IT职位
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline3" id="optionsRadios33" value="2"/>就业方向尚不清晰
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">您是否愿意参加NIIT实训项目，更愿意参加哪种实训项目？（可多选）</label>
-									<div class="col-sm-12">
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios41" value="0"/>愿意
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios42" value="1"/>考虑中
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios43" value="2" /> VR
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios44" value="3"/>Java + Android
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios45" value="4"/>前端
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios46" value="5"/>UI
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios47" value="6"/>不愿意
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios48" value="7"/>其他
-										</label>
-										<input type="text" class="form-control checkbox-inline" id="other1" style="width: 20%"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">如果您愿意参加NIIT实训项目，希望开始的时间是？</label>
-									<div class="col-sm-12">
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline5" id="optionsRadios51" value="0"/>越快越好
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline5" id="optionsRadios52" value="1"/>1个月内
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline5" id="optionsRadios53" value="2"/>6个月内
-										</label>
-										<label class="radio-inline">
-											<input type="radio" name="optionsRadiosinline5" id="optionsRadios54" value="3"/>1年后
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">对于是否参加实训，您目前存在的问题是？（可多选）</label>
-									<div class="col-sm-12">
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios61" value="0"/>计划考研
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios62" value="1"/>自身是否适合职位
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios63" value="2"/>经济压力
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios64" value="3"/>就业担忧
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios65" value="4"/>对IT不感兴趣
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-12 control-label" style="text-align: center">对于专业IT实训，您更看中的是哪些方面？（可多选）</label>
-									<div class="col-sm-12">
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios71" value="0"/>师资配备
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios72" value="1"/>实训、住宿环境
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios73" value="2"/>就业安置服务
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios74" value="3"/>课程内容
-										</label>
-										<label class="checkbox-inline">
-											<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios75" value="4"/>获得证书
-										</label>
-									</div>
-								</div>
-								<hr/>
-							</div>
-							<div id="followuplist">
-
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Follow Up: </label>
-								<br/><br/>
-								<div class="col-sm-2" align="center">
-									<!--<button class="btn btn-info btn-xs" type="button" onclick="">-->
-										<!--<span class="glyphicon glyphicon-ok"></span>-->
-									<!--</button>-->
-								</div>
-								<div id="newfudiv" class="col-sm-10">
-									<textarea class="form-control" id="dtfp1" style="width: 96%;resize: none;" rows="4"></textarea>
-								</div>
-							</div>
-						</form>
-					</div>
-					<input type="hidden" id="edstuId" />
-					<div class="modal-footer">
-						<button id="submitdt" type="button" class="btn btn-primary" data-dismiss="modal">
-							Submit
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Close
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div> <!-- /.modal -->
-		<!-- /modal -->
-	</div> <!-- /.container -->
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+	<!-- /modal -->
+</div> <!-- /.container -->
 <script src="/js/manage.js"></script>
 </body>
 </html>
