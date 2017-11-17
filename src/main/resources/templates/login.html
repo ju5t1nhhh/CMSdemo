@@ -1,23 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>NIIT Manage System</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
 </head>
 <body>
-<span th:text="${msg}"></span>
-<form action="/login" method="post">
-    <input name="loginId" type="text" />
-    <input name="password" type="password"/>
-    <input type="submit" value="login"/>
-</form>
-
+<div class="container demo-1">
+    <div class="content">
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <div class="logo_box">
+                <h1>NIIT Manage System</h1>
+                <form action="/login" method="post">
+                    <div class="input_outer">
+                        <span class="u_user"></span>
+                        <input name="loginId" class="text" style="color: #FFFFFF !important" type="text" placeholder="Input Your Username"/>
+                    </div>
+                    <div class="input_outer">
+                        <span class="us_uer"></span>
+                        <input name="password" class="text" style="color: #FFFFFF" type="password" placeholder="Input Your Password"/>
+                    </div>
+                    <div class="mb2"><input class="act-but submit" type="submit" style="color: #FFFFFF" value="login"/></div>
+                    <span style="color: #FFFFFF" th:text="${msg}"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+<script src="js/TweenLite.min.js"></script>
+<script src="js/EasePack.min.js"></script>
+<script src="js/rAF.js"></script>
+<script src="js/demo-1.js"></script>
 </body>
-<script>
-
-</script>
-
 </html>
