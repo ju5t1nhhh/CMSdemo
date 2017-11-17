@@ -300,6 +300,9 @@
 						<input type="text" class="form-control" id="hendd" style="width: 90%" placeholder="YYYY-MM-DD" />
 					</div>
 					<div class="col-sm-2">
+						<form action="/taskExcel" method="post">
+							<input type="submit" class="btn btn-success" value="导出Excel"/>
+						</form>
 						<button type="button" class="btn btn-primary" id="urlsearch" onclick="searchHistory()">
 							Search
 						</button>
