@@ -60,7 +60,15 @@ var flashadvertise = function () {
         });
     });
 };
-
+var delStudent=function (stuId) {
+    $.post("/delStudent",{stuId:stuId},function (res) {
+        if(res.code==200){
+            flashstudents();
+        }else{
+            alert(res.msg);
+        }
+    });
+};
 var flashstudents = function () {
     $.post("/searchStudent",function(res){
         var list=res.data;
@@ -78,6 +86,9 @@ var flashstudents = function () {
                 "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\" onclick='loadDetails("+stu.id+")'>\n" +
                 "More\n" +
                 "</button>\n" +
+                "<button class='btn btn-danger btn-xs' onclick='delStudent("+stu.id+");'>" +
+                "Del" +
+                "</button>" +
                 "</td>\n" +
                 "</tr>");
         });
@@ -463,6 +474,9 @@ $("#sssearch").click(function () {
                     "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\">\n" +
                     "More\n" +
                     "</button>\n" +
+                    "<button class='btn btn-danger btn-xs' onclick='delStudent("+stu.id+");$(\"#sssearch\").click();'>" +
+                    "Del" +
+                    "</button>" +
                     "</td>\n" +
                     "</tr>");
             });

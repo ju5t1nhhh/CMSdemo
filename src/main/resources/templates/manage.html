@@ -223,7 +223,7 @@
 							</select>
 						</div>
 						<div class="col-sm-4">
-							<form action="/studentExcel" method="post">
+							<form action="/studentExcel" method="post" style="display:inline;margin-right:15px;">
 								<input type="hidden" id="stuExcelName" name="name" />
 								<input type="hidden" id="stuExcelStartDate" name="startDate" />
 								<input type="hidden" id="stuExcelEndDate" name="endDate" />
@@ -300,15 +300,15 @@
 			<div class="tab-pane fade in active qwer" id="History">
 				<div class="form-horizontal" role="form">
 					<label class="col-sm-2 control-label">Start Date: </label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input type="text" class="form-control" id="hstartd" style="width: 90%" placeholder="YYYY-MM-DD" />
 					</div>
 					<label class="col-sm-2 control-label">End Date: </label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input type="text" class="form-control" id="hendd" style="width: 90%" placeholder="YYYY-MM-DD" />
 					</div>
-					<div class="col-sm-2">
-						<form action="/taskExcel" method="post">
+					<div class="col-sm-4">
+						<form action="/taskExcel" method="post" style="display:inline;margin-right:15px;">
 							<input type="hidden" id="taskStartDate" name="startDate"/>
 							<input type="hidden" id="taskEndDate" name="endDate"/>
 							<input type="submit" class="btn btn-success" value="导出Excel"/>
