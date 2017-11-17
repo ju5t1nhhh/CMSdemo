@@ -126,13 +126,13 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Date: </label>
 											<div class="col-sm-3">
-												<input type="text" class="form-control" id="userSearchStartDate" style="width: 90%"/>
+												<input type="text" class="form-control" id="userSearchStartDate" style="width: 90%" placeholder="YYYY-MM-DD"/>
 											</div>
-											<div class="col-sm-1">
-												TO
+											<div class="col-sm-1 control-label">
+												<span style="font-weight: bold;">To</span>
 											</div>
 											<div class="col-sm-3">
-												<input type="text" class="form-control" id="userSearchEndDate" style="width: 90%"/>
+												<input type="text" class="form-control" id="userSearchEndDate" style="width: 90%" placeholder="YYYY-MM-DD"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -208,11 +208,11 @@
 					<div class="form-group">
 						<label class="col-sm-1 control-label">StartDate: </label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="sssdate" style="width: 90%"/>
+							<input type="text" class="form-control" id="sssdate" style="width: 90%" placeholder="YYYY-MM-DD"/>
 						</div>
 						<label class="col-sm-1 control-label">EndDate: </label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="ssedate" style="width: 90%"/>
+							<input type="text" class="form-control" id="ssedate" style="width: 90%" placeholder="YYYY-MM-DD"/>
 						</div>
 						<label class="col-sm-1 control-label">Name: </label>
 						<div class="col-sm-3">
@@ -675,7 +675,10 @@
 
 							<label class="col-sm-2 control-label">Gender: </label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control" name="gender" id="nsgender" style="width: 90%"/>
+								<select class="form-control" name="gender" id="nsgender" style="width: 90%;">
+									<option value="M">M</option>
+									<option value="F">F</option>
+								</select>
 							</div>
 						</div>
 
