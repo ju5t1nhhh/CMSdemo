@@ -223,6 +223,9 @@
 							</select>
 						</div>
 						<div class="col-sm-4">
+							<form action="/studentExcel" method="post">
+								<input type="submit" class="btn btn-success" value="导出Excel"/>
+							</form>
 							<button type="button" class="btn btn-primary" id="sssearch">
 								Search
 							</button>
@@ -301,6 +304,8 @@
 					</div>
 					<div class="col-sm-2">
 						<form action="/taskExcel" method="post">
+							<input type="hidden" id="taskStartDate" name="startDate"/>
+							<input type="hidden" id="taskEndDate" name="endDate"/>
 							<input type="submit" class="btn btn-success" value="导出Excel"/>
 						</form>
 						<button type="button" class="btn btn-primary" id="urlsearch" onclick="searchHistory()">
