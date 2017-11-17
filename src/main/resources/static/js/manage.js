@@ -45,7 +45,7 @@ var flashadvertise = function () {
     $.post("/searchAds",function(res){
         var list=res.data;
         $("#adcount").text(list.length);
-        $("#adbody").html("");
+        $("#adbody").empty();
         $.each(list,function(idx,ad){
             $("#adbody").append("<tr>\n" +
                 "<td>" + ad.userId + "</td>\n" +
@@ -483,6 +483,6 @@ $("#research").click(function () {
 
 //document.ready
 flashUser();
-flashadvertise();
-flashstudents();
 flashStuSource();
+flashstudents();
+flashadvertise();
