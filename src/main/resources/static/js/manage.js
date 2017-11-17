@@ -423,6 +423,13 @@ $("#newStudentBtn").click(function () {
             }
         }
     });
+    $("#nsname").val("");
+    $("#nsgender").val("");
+    $("#nsage").val("");
+    $("#nsphonenum").val("");
+    $("#nsemail").val("");
+    $("#nscollegename").val("");
+    $("#nsmajor").val("");
 });
 
 $("#sssearch").click(function () {
