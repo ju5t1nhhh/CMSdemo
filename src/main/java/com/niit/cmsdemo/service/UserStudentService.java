@@ -1,7 +1,6 @@
 package com.niit.cmsdemo.service;
 
 import com.niit.cmsdemo.domain.Student;
-import com.niit.cmsdemo.domain.UserStudent;
 
 import java.util.List;
 import java.util.Map;

@@ -8,6 +8,7 @@ public class Student implements Serializable{
     private static final long serialVersionUID = 303796631910021406L;
 
     private Long id;
+    private String writerId;
     private String name;
     private Character gender;
     private Integer age;
@@ -35,6 +36,14 @@ public class Student implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getWriterId() {
+        return writerId;
+    }
+
+    public void setWriterId(String writerId) {
+        this.writerId = writerId;
     }
 
     public String getName() {
@@ -169,6 +178,7 @@ public class Student implements Serializable{
     public String toString() {
         return "Student{" +
                 "id=" + id +
+                ", writerId='" + writerId + '\'' +
                 ", name='" + name + '\'' +
                 ", gender=" + gender +
                 ", age=" + age +

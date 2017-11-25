@@ -10,6 +10,7 @@ public class FollowUp implements Serializable{
     private Long id;
     private Long stuId;
     private String note;
+    private Character classification;
     private Date createTime;
     private Date updateTime;
 
@@ -41,6 +42,14 @@ public class FollowUp implements Serializable{
         this.note = note;
     }
 
+    public Character getClassification() {
+        return classification;
+    }
+
+    public void setClassification(Character classification) {
+        this.classification = classification;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -63,6 +72,7 @@ public class FollowUp implements Serializable{
                 "id=" + id +
                 ", stuId=" + stuId +
                 ", note='" + note + '\'' +
+                ", classification=" + classification +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

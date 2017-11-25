@@ -3,7 +3,6 @@ package com.niit.cmsdemo.service.impl;
 import com.niit.cmsdemo.dao.StudentDao;
 import com.niit.cmsdemo.dao.UserStudentDao;
 import com.niit.cmsdemo.domain.Student;
-import com.niit.cmsdemo.domain.UserStudent;
 import com.niit.cmsdemo.service.UserStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

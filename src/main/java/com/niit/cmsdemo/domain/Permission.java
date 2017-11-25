@@ -1,7 +1,6 @@
 package com.niit.cmsdemo.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Permission implements Serializable{
 
@@ -12,8 +11,6 @@ public class Permission implements Serializable{
     private String url;
     private Integer type;
     private Long parentId;
-    private Date createTime;
-    private Date updateTime;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -59,22 +56,6 @@ public class Permission implements Serializable{
         this.parentId = parentId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     @Override
     public String toString() {
         return "Permission{" +
@@ -83,8 +64,6 @@ public class Permission implements Serializable{
                 ", url='" + url + '\'' +
                 ", type=" + type +
                 ", parentId=" + parentId +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
                 '}';
     }
 }
