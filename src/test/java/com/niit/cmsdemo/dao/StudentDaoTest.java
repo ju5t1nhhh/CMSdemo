@@ -23,21 +23,21 @@ public class StudentDaoTest {
     @Test
     public void insertOne() throws Exception {
         Student student=new Student();
-        student.setName("Kris TTT");
-        studentDao.insertOne(student);
-        System.out.println(student.getId());
+        student.setWriterId("phil");
+        student.setName("肖非尔");
+        System.out.println(studentDao.insertOne(student));
     }
 
     @Test
     public void deleteOne() throws Exception {
-        studentDao.deleteOne(3L);
+        System.out.println(studentDao.deleteOne(4L));
     }
 
     @Test
     public void updateOne() throws Exception {
         Student student=studentDao.selectOne(2L);
-        student.setName("LeBron James");
-        studentDao.updateOne(student);
+        student.setName("周杰伦");
+        System.out.println(studentDao.updateOne(student));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class StudentDaoTest {
     @Test
     public void selectConditions() throws Exception {
         Map<String,Object> map=new HashMap<>();
-        map.put("name","is");
+        map.put("writerId","jackie");
         List<Student> students=studentDao.selectConditions(map);
         for(Student student:students){
             System.out.println(student);

@@ -23,37 +23,18 @@ public class StuSourceDaoTest {
     @Test
     public void insertOne() throws Exception {
         StuSource stuSource=new StuSource();
-        stuSource.setName("asdasd");
+        stuSource.setName("街边捡的");
         stuSourceDao.insertOne(stuSource);
     }
 
     @Test
-    public void deleteOne() throws Exception {
-        stuSourceDao.deleteOne(7);
-    }
-
-    @Test
-    public void updateOne() throws Exception {
-        StuSource stuSource=stuSourceDao.selectOne(4);
-        stuSource.setName("wedwdw");
-        stuSourceDao.updateOne(stuSource);
-    }
-
-    @Test
     public void selectOne() throws Exception {
-//        System.out.println(stuSourceDao.selectOne(2));
-//        List<StuSource> stuSources=stuSourceDao.selectParent(0);
-//        for(StuSource stuSource:stuSources){
-//            System.out.println(stuSource);
-//        }
-        System.out.println(stuSourceDao.selectUnique(0,"Web"));
+        System.out.println(stuSourceDao.selectOne(1));
     }
 
     @Test
     public void selectConditions() throws Exception {
-        Map<String,Object> map=new HashMap<>();
-        map.put("parentId","1");
-        List<StuSource> stuSources=stuSourceDao.selectConditions(map);
+        List<StuSource> stuSources=stuSourceDao.selectConditions(null);
         for(StuSource stuSource:stuSources){
             System.out.println(stuSource);
         }

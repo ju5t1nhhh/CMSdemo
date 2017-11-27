@@ -24,14 +24,14 @@ public class AdvertiseDaoTest {
     @Test
     public void insertOne() throws Exception {
         Advertise advertise=new Advertise();
-        advertise.setUserId("jackie233");
-        advertise.setUrl("www.kiki.com");
-        advertiseDao.insertOne(advertise);
+        advertise.setUserId("phil");
+        advertise.setUrl("www.alibaba.com");
+        System.out.println(advertiseDao.insertOne(advertise));
     }
 
     @Test
     public void deleteOne() throws Exception {
-        advertiseDao.deleteOne(3L);
+        System.out.println(advertiseDao.deleteOne(3L));
     }
 
     @Test
@@ -42,8 +42,9 @@ public class AdvertiseDaoTest {
     @Test
     public void selectConditions() throws Exception {
         Map<String,Object> map=new HashMap<>();
-        map.put("startDate","2017-11-09");
-        map.put("endDate","2017-11-10");
+        map.put("userId","jackie");
+        map.put("startDate","2017-01-01");
+        map.put("endDate","2018-01-01");
         List<Advertise> advertises=advertiseDao.selectConditions(map);
         for(Advertise advertise:advertises){
             System.out.println(advertise);
