@@ -18,10 +18,6 @@ public interface StuSourceDao {
 
     StuSource selectOne(Integer id);
 
-    StuSource selectUnique(@Param("parentId") Integer parentId,@Param("name") String name);
-
-    List<StuSource> selectParent(Integer parentId);
-
     List<StuSource> selectConditions(Map<String,Object> map);
 
 }

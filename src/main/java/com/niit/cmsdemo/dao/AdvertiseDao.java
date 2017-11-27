@@ -14,7 +14,6 @@ public interface AdvertiseDao {
     Integer deleteOne(Long id);
 
     Advertise selectOne(Long id);
-
     /**
      * 多条件查询广告
      * @param map

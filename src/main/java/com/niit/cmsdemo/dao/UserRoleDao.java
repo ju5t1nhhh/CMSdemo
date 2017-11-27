@@ -13,9 +13,11 @@ public interface UserRoleDao {
 
     Integer deleteOne(@Param("userId") String userId,@Param("roleId") Integer roleId);
 
+    Integer updateOne(@Param("userId") String userId,@Param("roleId") Integer roleId);
+
     List<UserRole> selectAll();
 
-    Integer[] selectRoleIdsByUserId(String userId);
+    Integer selectRoleIdsByUserId(String userId);
 
     String[] selectUserIdsByRoleId(Integer roleId);
 

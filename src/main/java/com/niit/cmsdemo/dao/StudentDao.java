@@ -1,6 +1,7 @@
 package com.niit.cmsdemo.dao;
 
 import com.niit.cmsdemo.domain.Student;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface StudentDao {
     Integer deleteOne(Long id);
 
     Integer updateOne(Student student);
+
+    Integer resetClassification(@Param("stuId") Long stuId,@Param("classification") Character classification);
 
     Student selectOne(Long id);
     /**
