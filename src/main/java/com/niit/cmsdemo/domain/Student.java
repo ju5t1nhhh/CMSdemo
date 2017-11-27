@@ -22,7 +22,7 @@ public class Student implements Serializable{
     private Integer marks;
     private String intention;
     private String studentSource;
-    private String classification;
+    private Character classification;
     private Date createTime;
     private Date updateTime;
 
@@ -150,11 +150,11 @@ public class Student implements Serializable{
         this.studentSource = studentSource;
     }
 
-    public String getClassification() {
+    public Character getClassification() {
         return classification;
     }
 
-    public void setClassification(String classification) {
+    public void setClassification(Character classification) {
         this.classification = classification;
     }
 
