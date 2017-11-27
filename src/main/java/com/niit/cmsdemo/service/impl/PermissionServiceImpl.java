@@ -49,12 +49,10 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public List<Permission> findByUserId(String userId) {
         List<Permission> permissions=new ArrayList<>();
-        Integer[] roleIds=userRoleDao.selectRoleIdsByUserId(userId);
-        for(Integer roleId:roleIds){
-            Long[] permIds=rolePermissionDao.selectPermIdsByRoleId(roleId);
-            for(Long permId:permIds){
-                permissions.add(permissionDao.selectOne(permId));
-            }
+        Integer roleId=userRoleDao.selectRoleIdsByUserId(userId);
+        Long[] permIds=rolePermissionDao.selectPermIdsByRoleId(roleId);
+        for(Long permId:permIds){
+            permissions.add(permissionDao.selectOne(permId));
         }
         return permissions;
     }

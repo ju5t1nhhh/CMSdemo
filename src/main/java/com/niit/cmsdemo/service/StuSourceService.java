@@ -1,19 +1,18 @@
 package com.niit.cmsdemo.service;
 
 import com.niit.cmsdemo.domain.StuSource;
-import com.niit.cmsdemo.vo.StuSourceResponse;
 
 import java.util.List;
 
 public interface StuSourceService {
 
-    void addStuSource(String pre,String back);
+    void addStuSource(String details) throws Exception;
 
-    void delStuSource(Integer[] ids);
+    void delStuSource(Integer id);
 
     //具体问题 具体分析
     List<StuSource> findAll();
 
-    List<StuSourceResponse> getStuSource();
+    List<StuSource> getStuSource();
 
 }

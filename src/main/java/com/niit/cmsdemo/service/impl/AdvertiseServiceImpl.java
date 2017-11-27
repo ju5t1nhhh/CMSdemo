@@ -1,6 +1,8 @@
 package com.niit.cmsdemo.service.impl;
 
 import com.niit.cmsdemo.dao.AdvertiseDao;
+import com.niit.cmsdemo.dao.RoleDao;
+import com.niit.cmsdemo.dao.UserRoleDao;
 import com.niit.cmsdemo.domain.Advertise;
 import com.niit.cmsdemo.service.AdvertiseService;
 import com.niit.cmsdemo.util.DateHelper;
@@ -16,6 +18,11 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     @Autowired
     private AdvertiseDao advertiseDao;
 
+    @Autowired
+    private UserRoleDao userRoleDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Override
     public void addAdvertise(Advertise advertise, String userId) {
@@ -26,7 +33,8 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     @Override
     public void delAdvertise(Long adId, String userId) throws Exception {
         //检查userId与Advertise是否对应
-        if(userId.equals("admin")||advertiseDao.selectOne(adId).getUserId().equals(userId)){
+        if(roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")
+                ||advertiseDao.selectOne(adId).getUserId().equals(userId)){
             advertiseDao.deleteOne(adId);
         }else{
             throw new Exception("no permission");
@@ -40,7 +48,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 
     @Override
     public List<Advertise> findConditions(Map<String, Object> map, String userId) {
-        if(!userId.equals("admin")){
+        if(!roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
             map.put("userId",userId);
         }
         String startDate= (String) map.get("startDate");
@@ -48,9 +56,9 @@ public class AdvertiseServiceImpl implements AdvertiseService {
         if(startDate==null||endDate==null||startDate.length()==0||endDate.length()==0){
             String date=DateHelper.getDate();
             map.put("startDate", date);
-            map.put("endDate", date+" 23:59:59");
+            map.put("endDate", date);
         }else{
-            map.put("endDate",endDate+" 23:59:59");
+            map.put("endDate",endDate);
         }
         return advertiseDao.selectConditions(map);
     }

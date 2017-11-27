@@ -9,14 +9,10 @@ public interface AdvertiseService {
 
     void addAdvertise(Advertise advertise,String userId);
 
-    /**
-     *
-     * @param adIds 多个要删除的id
-     */
     void delAdvertise(Long adId,String userId) throws Exception;
 
     List<Advertise> findAll();
     //service层要检查map里是否存在该用户没有的权限
-    List<Advertise> findConditions(Map<String,Object> map,String userId);
+    List<Advertise> findConditions(Map<String,Object> map,String role);
 
 }

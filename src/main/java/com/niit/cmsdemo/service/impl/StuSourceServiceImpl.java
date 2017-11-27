@@ -3,12 +3,9 @@ package com.niit.cmsdemo.service.impl;
 import com.niit.cmsdemo.dao.StuSourceDao;
 import com.niit.cmsdemo.domain.StuSource;
 import com.niit.cmsdemo.service.StuSourceService;
-import com.niit.cmsdemo.vo.StuSourceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,31 +18,20 @@ public class StuSourceServiceImpl implements StuSourceService {
 
 
     @Override
-    @Transactional
-    public void addStuSource(String pre, String back) {
-        StuSource parent=stuSourceDao.selectUnique(0,pre);
-        if(parent!=null){
+    public void addStuSource(String details) throws Exception {
+        Map<String,Object> map=new HashMap<>();
+        map.put("name",details);
+        List<StuSource> stuSources=stuSourceDao.selectConditions(map);
+        if(stuSources.isEmpty()){
             StuSource stuSource=new StuSource();
-            stuSource.setName(back);
-            stuSource.setParentId(parent.getId());
+            stuSource.setName(details);
             stuSourceDao.insertOne(stuSource);
-        }else{
-            StuSource par=new StuSource();
-            par.setName(pre);
-            par.setParentId(0);
-            stuSourceDao.insertOne(par);
-            StuSource bac=new StuSource();
-            bac.setName(back);
-            bac.setParentId(par.getId());
-            stuSourceDao.insertOne(bac);
-        }
+        }else throw new Exception("已存在生源"+details);
     }
 
     @Override
-    public void delStuSource(Integer[] ids) {
-        for(Integer id:ids){
-            stuSourceDao.deleteOne(id);
-        }
+    public void delStuSource(Integer id) {
+        stuSourceDao.deleteOne(id);
     }
 
     @Override
@@ -54,19 +40,7 @@ public class StuSourceServiceImpl implements StuSourceService {
     }
 
     @Override
-    public List<StuSourceResponse> getStuSource() {
-        List<StuSourceResponse> stuSourceResponses=new ArrayList<>();
-        Map<String,Object> map=new HashMap<>();
-        map.put("parentId",0);
-        List<StuSource> stuSources=stuSourceDao.selectConditions(map);
-        for(StuSource stuSource:stuSources){
-            map.put("parentId",stuSource.getId());
-            List<StuSource> sources=stuSourceDao.selectConditions(map);
-            StuSourceResponse stuSourceResponse=new StuSourceResponse();
-            stuSourceResponse.setStuSource(stuSource);
-            stuSourceResponse.setSonStuSources(sources);
-            stuSourceResponses.add(stuSourceResponse);
-        }
-        return stuSourceResponses;
+    public List<StuSource> getStuSource() {
+        return stuSourceDao.selectConditions(null);
     }
 }

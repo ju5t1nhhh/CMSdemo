@@ -1,6 +1,7 @@
 package com.niit.cmsdemo.service;
 
 import com.niit.cmsdemo.domain.Student;
+import com.niit.cmsdemo.vo.FeedbackArray;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public interface StudentService {
 
     List<Student> findAll();
     //service层要检查map里是否存在该用户没有的权限
-    List<Student> findConditions(Map<String,Object> map,String userId);
+    List<Student> findConditions(FeedbackArray feedbackArray, Map<String,Object> map, String userId);
 
 }
