@@ -52,7 +52,7 @@ VALUES
 
 #feedback
 INSERT INTO
-`feedback`(`stu_id`,`answer1`,`answer2`,`answer3`,`answer4`,`answer5`,`answer6`,`answer7`,`answer8`,`create_time`,`update_time`)
+`feedback`(`stu_id`,`answer1`,`answer2`,`answer3`,`answer4`,`answer5`,`answer6`,`answer7`,`answer11`,`create_time`,`update_time`)
 VALUES
 (1,'1,2','1','1','3,4','1','1,2','2,4','我觉得ok。。。',now(),now()),
 (2,'1,2','2','3','3,4,大数据','2','1,2','3,4','我觉得其实可以。。。',now(),now()),
@@ -73,7 +73,7 @@ VALUES
 
 #fbanswer
 INSERT INTO
-`fbanswer`(`location`,`question_id`,`details`)
+`fbanswer`(`question_id`,`location`,`details`)
 VALUES
 (1,1,'就业指导'),(1,2,'IT前景'),(1,3,'NIIT实训课程'),(1,4,'NIIT人才定制企业'),(1,99,'其他'),
 (2,1,'我很需要，非常有帮助'),(2,2,'暂时不需要，无帮助'),(2,3,'根本不需要'),(2,99,'其他'),
