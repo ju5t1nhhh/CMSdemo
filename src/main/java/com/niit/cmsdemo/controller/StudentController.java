@@ -1,7 +1,9 @@
 package com.niit.cmsdemo.controller;
 
+import com.niit.cmsdemo.domain.Feedback;
 import com.niit.cmsdemo.domain.Student;
 import com.niit.cmsdemo.service.StudentService;
+import com.niit.cmsdemo.vo.FeedbackUtil;
 import com.niit.cmsdemo.vo.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,7 +74,7 @@ public class StudentController {
     }
 
     @PostMapping("/searchStudent")
-    public ServerResponse searchStudent(HttpSession session,String name,String startDate,String endDate,String classification,String source){
+    public ServerResponse searchStudent(Feedback feedback,HttpSession session,String name,String startDate,String endDate,String classification,String source){
         String userSessionId= (String) session.getAttribute("userSessionId");
         Map<String,Object> map=new HashMap<>();
         if(name!=null&&name.length()>0){
@@ -90,11 +92,11 @@ public class StudentController {
         if(source!=null&&source.length()>0) {
             map.put("studentSource", source);
         }
-        return ServerResponse.createSuccessResponse(studentService.findConditions(map,userSessionId));
+        return ServerResponse.createSuccessResponse(studentService.findConditions(FeedbackUtil.toArray(feedback),map,userSessionId));
     }
 
     @PostMapping("/searchCount")
-    public ServerResponse searchCount(String userId,String startDate,String endDate,String classification,String source){
+    public ServerResponse searchCount(String userId, String startDate, String endDate, String classification, String source){
         Map<String,Object> map=new HashMap<>();
         if(startDate!=null&&startDate.length()>0){
             map.put("startDate",startDate);

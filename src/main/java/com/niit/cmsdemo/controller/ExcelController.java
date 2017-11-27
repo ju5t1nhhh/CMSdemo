@@ -55,7 +55,7 @@ public class ExcelController {
         if(source!=null&&source.length()>0) {
             map.put("studentSource", source);
         }
-        List<Student> students=studentService.findConditions(map,userSessionId);
+        List<Student> students=studentService.findConditions(null,map,userSessionId);
 
         //excel
         HSSFWorkbook workbook=new HSSFWorkbook();

@@ -13,10 +13,10 @@ public class StuSourceController {
     private StuSourceService stuSourceService;
 
     @PostMapping("/addStuSource")
-    public ServerResponse addStuSource(String pre,String back){
+    public ServerResponse addStuSource(String name){
         ServerResponse serverResponse=null;
         try{
-            stuSourceService.addStuSource(pre,back);
+            stuSourceService.addStuSource(name);
             serverResponse=ServerResponse.createSuccessResponse(null);
         }catch(Exception e){
             serverResponse=ServerResponse.createErrorResponse(500,e.getMessage());
