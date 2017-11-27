@@ -10,13 +10,17 @@
         <result column="answer5" property="answer5"/>
         <result column="answer6" property="answer6"/>
         <result column="answer7" property="answer7"/>
+        <result column="answer8" property="answer8"/>
+        <result column="answer9" property="answer9"/>
+        <result column="answer10" property="answer10"/>
+        <result column="answer11" property="answer11"/>
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Feedback">
         INSERT INTO `feedback`
-        VALUES(#{stuId},#{answer1},#{answer2},#{answer3},#{answer4},#{answer5},#{answer6},#{answer7},now(),now())
+        VALUES(#{stuId},#{answer1},#{answer2},#{answer3},#{answer4},#{answer5},#{answer6},#{answer7},#{answer8},#{answer9},#{answer10},#{answer11},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
@@ -34,6 +38,10 @@
             <if test="answer5 != null and answer5.length()>0">`answer5`=#{answer5},</if>
             <if test="answer6 != null and answer6.length()>0">`answer6`=#{answer6},</if>
             <if test="answer7 != null and answer7.length()>0">`answer7`=#{answer7},</if>
+            <if test="answer8 != null and answer8.length()>0">`answer8`=#{answer8},</if>
+            <if test="answer9 != null and answer9.length()>0">`answer9`=#{answer9},</if>
+            <if test="answer10 != null and answer10.length()>0">`answer10`=#{answer10},</if>
+            <if test="answer11 != null and answer11.length()>0">`answer11`=#{answer11},</if>
             `update_time`=now()
         </set>
         WHERE `stu_id`=#{stuId}
@@ -47,6 +55,12 @@
     <select id="selectConditions" resultMap="BaseResultMap">
         SELECT * FROM `feedback`
         <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="ids != null">
+                AND `stu_id` IN
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="startDate !=null and endDate != null">
                 AND `create_time` BETWEEN #{startDate} AND #{endDate}
             </if>

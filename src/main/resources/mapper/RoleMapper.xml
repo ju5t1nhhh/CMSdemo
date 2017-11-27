@@ -4,12 +4,10 @@
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Role">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Role">
-        INSERT INTO `role` VALUES (#{id},#{name},now(),now())
+        INSERT INTO `role` VALUES (#{id},#{name})
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Integer">
@@ -20,7 +18,6 @@
         UPDATE `role`
         <set>
             <if test="name != null and name.length()>0">`name`=#{name},</if>
-            `update_time`=now()
         </set>
         WHERE id = #{id}
     </update>
@@ -34,9 +31,6 @@
         <trim prefix="WHERE" prefixOverrides="AND">
             <if test="name != null and name.length()>0">
                 AND `name`=#{name}
-            </if>
-            <if test="startDate !=null and endDate != null">
-                AND `create_time` BETWEEN #{startDate} AND #{endDate}
             </if>
         </trim>
     </select>

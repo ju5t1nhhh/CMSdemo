@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niit.cmsdemo.dao.FbquestionDao">
+    <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Fbquestion">
+        <id column="id" property="id"/>
+        <result column="location" property="location"/>
+        <result column="details" property="details"/>
+        <result column="type" property="type" />
+    </resultMap>
+
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Fbquestion" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `fbquestion`
+        VALUES(#{id},#{location},#{details},#{type})
+    </insert>
+
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE FROM `fbquestion`
+        WHERE `id`=#{id}
+    </delete>
+
+    <update id="updateOne">
+        UPDATE `fbquestion`
+        <set>
+          <if test="details != null and details.length()>0">`details`=#{details},</if>
+          <if test="type != null and type.length()>0">`type`=#{type},</if>
+        </set>
+        WHERE `id`=#{id}
+    </update>
+
+    <update id="resetLocation">
+        UPDATE `fbquestion`
+        SET `location`=#{location} WHERE `id`=#{id}
+    </update>
+
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM `fbquestion`
+        WHERE `id`=#{id}
+    </select>
+
+    <select id="selectByLocation" resultMap="BaseResultMap">
+        SELECT * FROM `fbquestion` WHERE `location`=#{location}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM `fbquestion` ORDER BY `location` ASC
+    </select>
+
+</mapper>

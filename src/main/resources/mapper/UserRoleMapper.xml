@@ -4,17 +4,19 @@
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.UserRole">
         <result column="user_id" property="userId"/>
         <result column="role_id" property="roleId"/>
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.UserRole">
-        insert into `user_role` values (#{userId},#{roleId},now(),now());
+        insert into `user_role` values (#{userId},#{roleId});
     </insert>
 
     <delete id="deleteOne" >
         DELETE FROM `user_role` WHERE `user_id` = #{userId} and `role_id` = #{roleId}
     </delete>
+
+    <update id="updateOne">
+        UPDATE `user_role` SET `role_id`=#{roleId} WHERE `user_id`=#{userId}
+    </update>
 
     <select id="selectAll" resultType="com.niit.cmsdemo.domain.UserRole">
         SELECT * FROM `user_role`

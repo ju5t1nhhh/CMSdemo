@@ -3,15 +3,13 @@
 <mapper namespace="com.niit.cmsdemo.dao.UserDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.User">
         <id column="login_id" property="loginId" jdbcType="VARCHAR"/>
-        <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.User">
-        INSERT INTO `user` VALUES(#{loginId},#{username},#{password},#{status},now(),now())
+        INSERT INTO `user` VALUES(#{loginId},#{password},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.String">
@@ -21,10 +19,7 @@
     <update id="updateOne" parameterType="com.niit.cmsdemo.domain.User">
         UPDATE `user`
         <set>
-            <if test="username != null and username.length()>0">`username`=#{username},</if>
             <if test="password != null and password.length()>0">`password`=#{password},</if>
-            <if test="status != null">`status`=#{status},</if>
-            `update_time`=now()
         </set>
         WHERE `login_id` = #{loginId}
     </update>
@@ -39,14 +34,8 @@
             <if test="loginId != null and loginId.length()>0">
                 AND `login_id` LIKE CONCAT('%',#{loginId},'%')
             </if>
-            <if test="username != null and username.length()>0">
-                AND `username` LIKE CONCAT('%',#{username},'%')
-            </if>
             <if test="password != null and password.length()>0">
                 AND `password` LIKE CONCAT('%',#{password},'%')
-            </if>
-            <if test="status != null">
-                AND `status`=#{status}
             </if>
             <if test="startDate !=null and endDate != null">
                 AND `create_time` BETWEEN #{startDate} AND #{endDate}

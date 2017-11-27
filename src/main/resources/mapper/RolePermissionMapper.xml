@@ -4,12 +4,10 @@
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.RolePermission">
         <result column="role_id" property="roleId"/>
         <result column="perm_id" property="permId"/>
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne">
-        INSERT INTO `role_permission` VALUES (#{roleId},#{permId},now(),now())
+        INSERT INTO `role_permission` VALUES (#{roleId},#{permId})
     </insert>
 
     <delete id="deleteOne">

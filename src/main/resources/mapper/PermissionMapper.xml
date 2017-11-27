@@ -7,12 +7,10 @@
         <result column="url" property="url"/>
         <result column="type" property="type"/>
         <result column="parent_id" property="parentId"/>
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Permission">
-        INSERT INTO `permission` VALUES (#{id},#{name},#{url},#{type},#{parentId},now(),now())
+        INSERT INTO `permission` VALUES (#{id},#{name},#{url},#{type},#{parentId})
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
@@ -26,7 +24,6 @@
             <if test="url != null and url.length()>0">`url`=#{url},</if>
             <if test="type != null">`type`=#{type},</if>
             <if test="parentId != null">`parent_id`=#{parentId},</if>
-            `update_time`=now()
         </set>
         WHERE `id`=#{id}
     </update>
@@ -49,9 +46,6 @@
             </if>
             <if test="parentId != null">
                 AND `parent_id`=#{parentId}
-            </if>
-            <if test="startDate !=null and endDate != null">
-                AND `create_time` BETWEEN #{startDate} AND #{endDate}
             </if>
         </trim>
     </select>

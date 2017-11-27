@@ -5,12 +5,13 @@
         <id column="id" property="id"/>
         <result column="stu_id" property="stuId"/>
         <result column="note" property="note"/>
+        <result column="classification" property="classification"/>
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.FollowUp">
-        INSERT INTO `follow_up` VALUES(#{id},#{stuId},#{note},now(),now())
+        INSERT INTO `follow_up` VALUES(#{id},#{stuId},#{note},#{classification},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
@@ -22,6 +23,7 @@
         <set>
             <if test="stuId != null">`stu_id`=#{stuId},</if>
             <if test="note != null and note.length()>0">`note`=#{note},</if>
+            <if test="classification != null">`classification`=#{classification},</if>
             `update_time`=now()
         </set>
         WHERE `id`=#{id}
@@ -29,6 +31,26 @@
 
     <select id="selectOne" resultMap="BaseResultMap">
         SELECT * FROM `follow_up` WHERE `id`=#{id}
+    </select>
+
+    <select id="selectByStuId" resultMap="BaseResultMap">
+        SELECT * FROM `follow_up` WHERE `stu_id`=#{stuId} ORDER BY `update_time` DESC;
+    </select>
+
+    <select id="selectRecent" resultMap="BaseResultMap">
+        SELECT * FROM `follow_up` AS a
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="stuId != null">
+                AND a.`stu_id`=#{stuId}
+            </if>
+            <if test="classification != null">
+                AND a.`classification`=#{classification}
+            </if>
+            <if test="startDate !=null and endDate != null">
+                AND a.`create_time` BETWEEN #{startDate} AND #{endDate}
+            </if>
+            AND a.`update_time`=(SELECT MAX(`update_time`) FROM `follow_up` AS b where a.`stu_id`=b.`stu_id`)
+        </trim>
     </select>
 
     <select id="selectConditions" resultMap="BaseResultMap">

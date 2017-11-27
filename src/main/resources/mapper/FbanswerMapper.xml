@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niit.cmsdemo.dao.FbanswerDao">
+    <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Fbanswer">
+        <id column="id" property="id"/>
+        <result column="question_id" property="questionId"/>
+        <result column="location" property="location"/>
+        <result column="details" property="details"/>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Fbanswer">
+        INSERT INTO `fbanswer`
+        VALUES(#{id},#{questionId},#{location},#{details})
+    </insert>
+
+    <delete id="deleteOne" parameterType="java.lang.Integer">
+        DELETE FROM `fbanswer`
+        WHERE `id`=#{id}
+    </delete>
+
+    <update id="updateOne">
+        UPDATE `fbanswer`
+        <set>
+            <if test="details != null and details.length()>0">`details`=#{details},</if>
+        </set>
+        WHERE `id`=#{id}
+    </update>
+
+    <update id="resetLocation">
+        UPDATE `fbanswer`
+        SET `location`=#{location} WHERE `id`=#{id}
+    </update>
+
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM `fbanswer`
+        WHERE `id`=#{id}
+    </select>
+
+    <select id="selectSpecial" resultMap="BaseResultMap">
+        SELECT * FROM `fbanswer` WHERE `question_id`=#{questionId} AND `location`=#{location}
+    </select>
+
+    <select id="selectByQuestionId" resultMap="BaseResultMap">
+        SELECT * FROM `fbanswer` WHERE `question_id`=#{questionId} ORDER BY `location` ASC
+    </select>
+
+</mapper>

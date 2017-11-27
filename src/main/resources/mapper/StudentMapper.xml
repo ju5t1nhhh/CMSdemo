@@ -3,6 +3,7 @@
 <mapper namespace="com.niit.cmsdemo.dao.StudentDao">
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.Student">
         <id column="id" property="id"/>
+        <result column="writer_id" property="writerId"/>
         <result column="name" property="name"/>
         <result column="gender" property="gender"/>
         <result column="age" property="age"/>
@@ -23,7 +24,7 @@
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Student" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `student`
-        VALUES (#{id},#{name},#{gender},#{age},
+        VALUES (#{id},#{writerId},#{name},#{gender},#{age},
         #{phone},#{qqWechat},#{email},#{college}
         ,#{major},#{walkinDate},#{interviewNote},#{marks}
         ,#{intention},#{studentSource},#{classification}
@@ -56,6 +57,11 @@
         WHERE `id`=#{id}
     </update>
 
+    <update id="resetClassification">
+        UPDATE `student`
+        SET `classification`=#{classification} WHERE `id`=#{stuId}
+    </update>
+
     <select id="selectOne" resultMap="BaseResultMap">
         SELECT * FROM `student` WHERE `id`=#{id}
     </select>
@@ -68,6 +74,9 @@
                 <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
                     #{item}
                 </foreach>
+            </if>
+            <if test="writerId != null">
+                AND `writer_id`=#{writerId}
             </if>
             <if test="name != null and name.length()>0">
                 AND `name` LIKE CONCAT('%',#{name},'%')

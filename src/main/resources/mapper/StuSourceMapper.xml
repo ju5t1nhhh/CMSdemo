@@ -4,13 +4,10 @@
     <resultMap id="BaseResultMap" type="com.niit.cmsdemo.domain.StuSource">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="parent_id" property="parentId"/>
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.StuSource" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO `stu_source` VALUES (#{id},#{name},#{parentId},now(),now());
+        INSERT INTO `stu_source` VALUES (#{id},#{name});
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Integer">
@@ -21,8 +18,6 @@
         UPDATE `stu_source`
         <set>
             <if test="name != null and name.length()>0">`name`=#{name},</if>
-            <if test="parentId != null">`parent_id`=#{parentId},</if>
-            `update_time`=now()
         </set>
         WHERE id = #{id}
     </update>
@@ -31,25 +26,11 @@
         SELECT * FROM `stu_source` WHERE `id`=#{id}
     </select>
 
-    <select id="selectUnique" resultMap="BaseResultMap">
-        SELECT * FROM `stu_source` WHERE `parent_id`=#{parentId} and `name`=#{name}
-    </select>
-
-    <select id="selectParent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT * FROM `stu_source` WHERE `parent_id`=#{parentId}
-    </select>
-
     <select id="selectConditions" resultMap="BaseResultMap">
         SELECT * FROM `stu_source`
         <trim prefix="WHERE" prefixOverrides="AND">
             <if test="name != null and name.length()>0">
-                AND `name` LIKE CONCAT('%',#{name},'%')
-            </if>
-            <if test="parentId != null">
-                AND `parent_id`=#{parentId}
-            </if>
-            <if test="startDate !=null and endDate != null">
-                AND `create_time` BETWEEN #{startDate} AND #{endDate}
+                AND `name`=#{name}
             </if>
         </trim>
     </select>
