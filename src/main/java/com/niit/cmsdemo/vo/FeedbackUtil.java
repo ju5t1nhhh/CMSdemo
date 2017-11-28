@@ -1,6 +1,5 @@
 package com.niit.cmsdemo.vo;
 
-import com.github.pagehelper.util.StringUtil;
 import com.niit.cmsdemo.domain.Feedback;
 import org.thymeleaf.util.StringUtils;
 
@@ -20,6 +19,16 @@ public class FeedbackUtil {
         feedbackArray.setAnswer8(changeAnswer(feedback.getAnswer8()));
         feedbackArray.setAnswer9(changeAnswer(feedback.getAnswer9()));
         feedbackArray.setAnswer10(changeAnswer(feedback.getAnswer10()));
+        feedbackArray.setAnswer11(changeAnswer(feedback.getAnswer11()));
+        feedbackArray.setAnswer12(changeAnswer(feedback.getAnswer12()));
+        feedbackArray.setAnswer13(changeAnswer(feedback.getAnswer13()));
+        feedbackArray.setAnswer14(changeAnswer(feedback.getAnswer14()));
+        feedbackArray.setAnswer15(changeAnswer(feedback.getAnswer15()));
+        feedbackArray.setAnswer16(changeAnswer(feedback.getAnswer16()));
+        feedbackArray.setAnswer17(changeAnswer(feedback.getAnswer17()));
+        feedbackArray.setAnswer18(changeAnswer(feedback.getAnswer18()));
+        feedbackArray.setAnswer19(changeAnswer(feedback.getAnswer19()));
+        feedbackArray.setAnswer20(changeAnswer(feedback.getAnswer20()));
         return feedbackArray;
     }
 
