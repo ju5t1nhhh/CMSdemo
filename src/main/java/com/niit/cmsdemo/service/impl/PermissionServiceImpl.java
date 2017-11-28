@@ -1,14 +1,16 @@
 package com.niit.cmsdemo.service.impl;
 
 import com.niit.cmsdemo.dao.PermissionDao;
+import com.niit.cmsdemo.dao.RoleDao;
 import com.niit.cmsdemo.dao.RolePermissionDao;
-import com.niit.cmsdemo.dao.UserRoleDao;
+import com.niit.cmsdemo.dao.UserDao;
 import com.niit.cmsdemo.domain.Permission;
 import com.niit.cmsdemo.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +21,10 @@ public class PermissionServiceImpl implements PermissionService {
     private PermissionDao permissionDao;
 
     @Autowired
-    private UserRoleDao userRoleDao;
+    private UserDao userDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Autowired
     private RolePermissionDao rolePermissionDao;
@@ -49,7 +54,10 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public List<Permission> findByUserId(String userId) {
         List<Permission> permissions=new ArrayList<>();
-        Integer roleId=userRoleDao.selectRoleIdsByUserId(userId);
+        String role=userDao.selectOne(userId).getRole();
+        Map<String,Object> map=new HashMap<>();
+        map.put("name",role);
+        Integer roleId=roleDao.selectConditions(map).get(0).getId();
         Long[] permIds=rolePermissionDao.selectPermIdsByRoleId(roleId);
         for(Long permId:permIds){
             permissions.add(permissionDao.selectOne(permId));

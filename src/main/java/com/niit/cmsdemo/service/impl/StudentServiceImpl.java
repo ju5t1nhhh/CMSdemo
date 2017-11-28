@@ -25,13 +25,7 @@ public class StudentServiceImpl implements StudentService {
     private FeedbackDao feedbackDao;
 
     @Autowired
-    private UserRoleDao userRoleDao;
-
-    @Autowired
-    private RoleDao roleDao;
-
-    @Autowired
-    private FollowUpDao followUpDao;
+    private UserDao userDao;
 
     @Override
     @Transactional
@@ -50,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void delStudents(Long stuId, String userId) throws Exception {
         if(studentDao.selectOne(stuId).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             Integer rows=studentDao.deleteOne(stuId);
             if(rows==0)throw new Exception("删除失败");
         }
@@ -59,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void updateStudent(Student student, String userId) {
         if(studentDao.selectOne(student.getId()).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             studentDao.updateOne(student);
         }
     }
@@ -67,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getStudent(Long stuId, String userId) throws Exception {
         if(studentDao.selectOne(stuId).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             return studentDao.selectOne(stuId);
         }else{
             throw new Exception("No permission");
@@ -77,7 +71,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Integer searchCount(Map<String, Object> map, String userId) {
         if(userId!=null&&userId.length()>0
-                &&!roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")) {
+                &&!userDao.selectOne(userId).getRole().equals("admin")){
             map.put("writerId",userId);
         }
         List<Student> students=studentDao.selectConditions(map);
@@ -92,7 +86,7 @@ public class StudentServiceImpl implements StudentService {
     //查找该userId的学生
     @Override
     public List<Student> findConditions(FeedbackArray feedbackArray, Map<String, Object> map, String userId) {
-        if(!roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+        if(!userDao.selectOne(userId).getRole().equals("admin")){
             map.put("writerId",userId);
         }
         List<Student> students=studentDao.selectConditions(map);
@@ -125,6 +119,16 @@ public class StudentServiceImpl implements StudentService {
         if(!checkListContains(feedbackArray.getAnswer8(),filter.getAnswer8()))return false;
         if(!checkListContains(feedbackArray.getAnswer9(),filter.getAnswer9()))return false;
         if(!checkListContains(feedbackArray.getAnswer10(),filter.getAnswer10()))return false;
+        if(!checkListContains(feedbackArray.getAnswer11(),filter.getAnswer11()))return false;
+        if(!checkListContains(feedbackArray.getAnswer12(),filter.getAnswer12()))return false;
+        if(!checkListContains(feedbackArray.getAnswer13(),filter.getAnswer13()))return false;
+        if(!checkListContains(feedbackArray.getAnswer14(),filter.getAnswer14()))return false;
+        if(!checkListContains(feedbackArray.getAnswer15(),filter.getAnswer15()))return false;
+        if(!checkListContains(feedbackArray.getAnswer16(),filter.getAnswer16()))return false;
+        if(!checkListContains(feedbackArray.getAnswer17(),filter.getAnswer17()))return false;
+        if(!checkListContains(feedbackArray.getAnswer18(),filter.getAnswer18()))return false;
+        if(!checkListContains(feedbackArray.getAnswer19(),filter.getAnswer19()))return false;
+        if(!checkListContains(feedbackArray.getAnswer20(),filter.getAnswer20()))return false;
         return true;
     }
 

@@ -2,7 +2,7 @@ package com.niit.cmsdemo.service.impl;
 
 import com.niit.cmsdemo.dao.AdvertiseDao;
 import com.niit.cmsdemo.dao.RoleDao;
-import com.niit.cmsdemo.dao.UserRoleDao;
+import com.niit.cmsdemo.dao.UserDao;
 import com.niit.cmsdemo.domain.Advertise;
 import com.niit.cmsdemo.service.AdvertiseService;
 import com.niit.cmsdemo.util.DateHelper;
@@ -19,7 +19,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     private AdvertiseDao advertiseDao;
 
     @Autowired
-    private UserRoleDao userRoleDao;
+    private UserDao userDao;
 
     @Autowired
     private RoleDao roleDao;
@@ -33,7 +33,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
     @Override
     public void delAdvertise(Long adId, String userId) throws Exception {
         //检查userId与Advertise是否对应
-        if(roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")
+        if(userDao.selectOne(userId).getRole().equals("admin")
                 ||advertiseDao.selectOne(adId).getUserId().equals(userId)){
             advertiseDao.deleteOne(adId);
         }else{
@@ -48,7 +48,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 
     @Override
     public List<Advertise> findConditions(Map<String, Object> map, String userId) {
-        if(!roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+        if(!userDao.selectOne(userId).getRole().equals("admin")){
             map.put("userId",userId);
         }
         String startDate= (String) map.get("startDate");
@@ -56,7 +56,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
         if(startDate==null||endDate==null||startDate.length()==0||endDate.length()==0){
             String date=DateHelper.getDate();
             map.put("startDate", date);
-            map.put("endDate", date);
+            map.put("endDate", date+" 23:59:59");
         }else{
             map.put("endDate",endDate);
         }

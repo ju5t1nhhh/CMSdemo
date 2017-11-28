@@ -3,7 +3,7 @@ package com.niit.cmsdemo.service.impl;
 import com.niit.cmsdemo.dao.FeedbackDao;
 import com.niit.cmsdemo.dao.RoleDao;
 import com.niit.cmsdemo.dao.StudentDao;
-import com.niit.cmsdemo.dao.UserRoleDao;
+import com.niit.cmsdemo.dao.UserDao;
 import com.niit.cmsdemo.domain.Feedback;
 import com.niit.cmsdemo.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,7 @@ public class FeedbackServiceImpl implements FeedbackService{
     private StudentDao studentDao;
 
     @Autowired
-    private UserRoleDao userRoleDao;
-
-    @Autowired
-    private RoleDao roleDao;
+    private UserDao userDao;
 
     @Override
     public void addFeedback(Feedback feedback) {
@@ -35,7 +32,7 @@ public class FeedbackServiceImpl implements FeedbackService{
     @Override
     public void delFeedback(Long stuId, String userId) throws Exception {
         if(studentDao.selectOne(stuId).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             feedbackDao.deleteOne(stuId);
         }else{
             throw new Exception("删除失败");
@@ -45,7 +42,7 @@ public class FeedbackServiceImpl implements FeedbackService{
     @Override
     public void updateFeedback(Feedback feedback, String userId) throws Exception {
         if(studentDao.selectOne(feedback.getStuId()).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             feedbackDao.updateOne(feedback);
         }else{
             throw new Exception("更新失败");
@@ -55,7 +52,7 @@ public class FeedbackServiceImpl implements FeedbackService{
     @Override
     public Feedback findFeedback(Long stuId, String userId) {
         if(studentDao.selectOne(stuId).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             return feedbackDao.selectOne(stuId);
         }else{
             return null;

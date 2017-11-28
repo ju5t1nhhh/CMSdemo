@@ -1,11 +1,9 @@
 package com.niit.cmsdemo.service.impl;
 
 import com.niit.cmsdemo.dao.FollowUpDao;
-import com.niit.cmsdemo.dao.RoleDao;
 import com.niit.cmsdemo.dao.StudentDao;
-import com.niit.cmsdemo.dao.UserRoleDao;
+import com.niit.cmsdemo.dao.UserDao;
 import com.niit.cmsdemo.domain.FollowUp;
-import com.niit.cmsdemo.domain.Student;
 import com.niit.cmsdemo.service.FollowUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,17 +22,14 @@ public class FollowUpServiceImpl implements FollowUpService{
     private StudentDao studentDao;
 
     @Autowired
-    private UserRoleDao userRoleDao;
-
-    @Autowired
-    private RoleDao roleDao;
+    private UserDao userDao;
 
     @Override
     @Transactional
     public void addFollowUp(FollowUp followUp, String userId) throws Exception {
         //检查学生与User关系
         if(studentDao.selectOne(followUp.getStuId()).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             followUpDao.insertOne(followUp);
             studentDao.resetClassification(followUp.getStuId(),followUp.getClassification());
         }else{
@@ -48,15 +43,13 @@ public class FollowUpServiceImpl implements FollowUpService{
         FollowUp followUp=followUpDao.selectOne(id);
         Long stuId=followUp.getStuId();
         if(studentDao.selectOne(stuId).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
-            List<FollowUp> followUps=followUpDao.selectRecent(followUp.getStuId(),null,null,null);
-            if(followUps.size()>1){
-                FollowUp fson=followUps.get(followUps.size()-2);
-                studentDao.resetClassification(fson.getStuId(),fson.getClassification());
-            }else{
-                studentDao.resetClassification(stuId,null);
+                ||userDao.selectOne(userId).getRole().equals("admin")){
+            try{
+                followUpDao.deleteOne(id);
+            }finally {
+                FollowUp follow=followUpDao.selectHot(stuId);
+                studentDao.resetClassification(stuId,follow.getClassification());
             }
-            followUpDao.deleteOne(id);
         }else{
             throw new Exception("删除失败");
         }
@@ -66,7 +59,7 @@ public class FollowUpServiceImpl implements FollowUpService{
     @Transactional
     public void updateFollowUp(FollowUp followUp, String userId) throws Exception {
         if(studentDao.selectOne(followUp.getStuId()).getWriterId().equals(userId)
-                ||roleDao.selectOne(userRoleDao.selectRoleIdsByUserId(userId)).getName().equals("admin")){
+                ||userDao.selectOne(userId).getRole().equals("admin")){
             List<FollowUp> followUps=followUpDao.selectRecent(followUp.getStuId(),null,null,null);
             FollowUp fson=followUps.get(followUps.size()-1);
             if(fson.getId()==followUp.getId())studentDao.resetClassification(followUp.getStuId(),followUp.getClassification());

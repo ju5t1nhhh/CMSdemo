@@ -1,7 +1,6 @@
 package com.niit.cmsdemo.service.impl;
 
 import com.niit.cmsdemo.dao.UserDao;
-import com.niit.cmsdemo.dao.UserRoleDao;
 import com.niit.cmsdemo.domain.User;
 import com.niit.cmsdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +16,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private UserRoleDao userRoleDao;
-
     @Override
     @Transactional
     public void addUser(User user) throws Exception {
         Integer rows=userDao.insertOne(user);
-        if(rows>0){
-            userRoleDao.insertOne(user.getLoginId(),1);
-        }else{
+        if(rows==0){
             throw new Exception("添加失败");
         }
     }
