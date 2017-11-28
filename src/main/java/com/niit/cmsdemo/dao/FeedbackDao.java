@@ -1,6 +1,7 @@
 package com.niit.cmsdemo.dao;
 
 import com.niit.cmsdemo.domain.Feedback;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface FeedbackDao {
     Integer deleteOne(Long stuId);
 
     Integer updateOne(Feedback feedback);
+
+    Integer exchange(@Param("field1") String field1,@Param("field2") String field2);
 
     Feedback selectOne(Long stuId);
 

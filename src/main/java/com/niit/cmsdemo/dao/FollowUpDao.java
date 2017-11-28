@@ -18,6 +18,8 @@ public interface FollowUpDao {
 
     FollowUp selectOne(Long id);
 
+    FollowUp selectHot(Long stuId);
+
     List<FollowUp> selectByStuId(Long stuId);
 
     List<FollowUp> selectRecent(@Param("stuId") Long stuId, @Param("classification") Character classification,
