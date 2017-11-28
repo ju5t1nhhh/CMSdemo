@@ -450,7 +450,182 @@ var updateAns = function (name) {
     });
     return answer.substring(0, answer.length - 1);
 };
+
+var updateQuestion=function (id,location) {
+    if($("#updateQuestionSpan"+location).hasClass("glyphicon-edit")){
+        $("#updateQuestionSpan"+location).removeClass("glyphicon-edit");
+        $("#updateQuestionSpan"+location).addClass("glyphicon-ok");
+        $("#questionDetails"+location).attr("disabled",false);
+        $("#questionType"+location).attr("disabled",false);
+        $("#questionLocation"+location).attr("disabled",false);
+    }else{
+        var loc=$("#questionLocation"+location).val();
+        var type=$("#questionType"+location).val();
+        var details=$("#questionDetails"+location).val();
+        $.post("/updateQuestion",{id:id,location:loc,type:type,details:details},function (res) {
+            if(res.code==200){
+                if(loc!=location){
+                    flashEditTable();
+                    flashSearchTable();
+                }
+                else{
+                    $("#updateQuestionSpan"+location).removeClass("glyphicon-ok");
+                    $("#updateQuestionSpan"+location).addClass("glyphicon-edit");
+                    $("#questionDetails"+location).attr("disabled","disabled");
+                    $("#questionType"+location).attr("disabled","disabled");
+                    $("#questionLocation"+location).attr("disabled","disabled");
+                }
+            }else{
+                alert(res.msg);
+            }
+        });
+    }
+};
+
+var deleteQuestion=function (id) {
+    $.post("/delQuestion",{id:id},function (res) {
+        if(res.code==200){
+            flashEditTable();
+            flashSearchTable();
+        }
+    });
+};
+
+var addAnswer=function (questionId,location) {
+    var details=$("#newanswer"+location).val();
+    $.post("/addAnswer",{questionId:questionId,details:details},function (res) {
+        if(res.code==200){
+            flashEditTable();
+            flashSearchTable();
+        }
+    });
+};
+
+var updateAnswer=function (id,questionId,questionLocation,answerLocation) {
+    if($("#spanquestion"+questionLocation+"answer"+answerLocation).hasClass("glyphicon-edit")){
+        $("#spanquestion"+questionLocation+"answer"+answerLocation).removeClass("glyphicon-edit");
+        $("#spanquestion"+questionLocation+"answer"+answerLocation).addClass("glyphicon-ok");
+        $("#txtquestion"+questionLocation+"answer"+answerLocation).attr("disabled",false);
+    }else{
+        var details=$("#txtquestion"+questionLocation+"answer"+answerLocation).val();
+        $.post("/updateAnswer",{id:id,questionId:questionId,location:answerLocation,details:details},function (res) {
+            if(res.code==200){
+                $("#spanquestion"+questionLocation+"answer"+answerLocation).removeClass("glyphicon-ok");
+                $("#spanquestion"+questionLocation+"answer"+answerLocation).addClass("glyphicon-edit");
+                $("#txtquestion"+questionLocation+"answer"+answerLocation).attr("disabled","disabled");
+            }else{
+                alert(res.msg);
+            }
+        });
+    }
+};
+
+var deleteAnswer=function (id) {
+    $.post("/delAnswer",{id:id},function (res) {
+        if(res.code==200){
+            flashEditTable();
+            flashSearchTable();
+        }
+    });
+};
+
+var toaddAnswer=function (questionId,location) {
+    $("#toadd"+location).html("<div class='input-group'>" +
+        "<input id='newanswer"+location+"' type='text' class='form-control'/>" +
+        "<div class='input-group-btn'>" +
+        "<button type='button' class='btn btn-success' onclick='addAnswer("+questionId+","+location+")'><span class='glyphicon glyphicon-ok'></span></button> " +
+        "</div> " +
+        "</div>");
+};
+
+var upQuestionModal=function () {
+    $("#addQuestionModal").modal();
+};
+
+
+
+var flashEditTable=function () {
+    $("#Table").html("<hr/>");
+    $.post("/getTable",function (res) {
+        var list=res.data;
+        var locopt=list[list.length-1].fbquestion.id;
+        $.each(list,function (idx,son) {
+            var locoptstring="";
+            for(var i=1;i<=locopt;i++){
+                var chkn=i==idx+1?"selected='selected'":"";
+                locoptstring+="<option "+chkn+" value='"+i+"'>"+i+"</option>";
+            }
+            var chxtypeopt=son.fbquestion.type=="checkbox"?"selected='selected":"";
+            var rdotypeopt=son.fbquestion.type=="radio"?"selected='selected":"";
+            var txttypeopt=son.fbquestion.type=="text"?"selected='selected":"";
+            var answers="";
+            $.each(son.fbanswers,function (idx,gson) {
+                answers=answers+"<div class='col-xs-2' style='margin-top: 5px;'>" +
+                    "<div class='input-group'>" +
+                    "<input id='txtquestion"+son.fbquestion.location+"answer"+gson.location+"' type='text' class='form-control' value='"+gson.details+"' disabled='disabled'/> " +
+                    "<div class='input-group-btn'>" +
+                    "<button type='button' class='btn btn-info' onclick='updateAnswer("+gson.id+","+son.fbquestion.id+","+son.fbquestion.location+","+gson.location+")'><span id='spanquestion"+son.fbquestion.location+"answer"+gson.location+"' class='glyphicon glyphicon-edit'></span></button>" +
+                    "<button type='button' class='btn btn-danger' onclick='deleteAnswer("+gson.id+")'><span class='glyphicon glyphicon-remove'></span></button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+            });
+            answers+="" +
+                "<div class='col-xs-2' style='margin-top: 5px;' id='toadd"+son.fbquestion.location+"'>" +
+                "<div class='input-group'>" +
+                "<div class='input-group-btn'>" +
+                "<button class='btn btn-info' style='float: left;' onclick='toaddAnswer("+son.fbquestion.id+","+son.fbquestion.location+")'>" +
+                "<span class='glyphicon glyphicon-plus'></span>" +
+                "</button></div></div></div>";
+            $("#Table").append("<div class='row'>" +
+                "<div class='col-sm-6'>" +
+                "<div class='input-group'>" +
+                "<div class='input-group-btn'>" +
+                "<select id='questionLocation"+son.fbquestion.location+"' class='btn btn-default' disabled='disabled'>" +locoptstring+
+                "</select>" +
+                "<select id='questionType"+son.fbquestion.location+"' class='btn btn-default' disabled='disabled'>" +
+                "<option "+rdotypeopt+" value='radio'>radio</option>" +
+                "<option "+chxtypeopt+"value='checkbox'>checkbox</option>" +
+                "<option "+txttypeopt+"value='text'>text</option>" +
+                "</select> " +
+                "</div>" +
+                "<input disabled='disabled' id='questionDetails"+son.fbquestion.location+"' type='text' class='form-control' value='"+son.fbquestion.details+"'/>" +
+                "<div class='input-group-btn'>" +
+                "<button type='button' class='btn btn-success' onclick='updateQuestion("+son.fbquestion.id+","+son.fbquestion.location+")'><span id='updateQuestionSpan"+son.fbquestion.location+"' class='glyphicon glyphicon-edit'></span></button>" +
+                "<button type='button' class='btn btn-danger' onclick='deleteQuestion("+son.fbquestion.id+")'><span class='glyphicon glyphicon-remove'></span></button>" +
+                "</div> " +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row'>" +answers+
+                "</div> " +
+                "<hr/>");
+        });
+        $("#Table").append("<div class='row'>" +
+            "<div class='col-sm-12'>" +
+            "<div class='input-group'>" +
+            "<div class='input-group-btn'>" +
+            "<button class='btn btn-success' onclick='upQuestionModal()'><span class='glyphicon glyphicon-plus'></span></button>" +
+            "</div> " +
+            "</div> " +
+            "</div> " +
+            "</div>");
+    });
+};
 //Jquery
+$("#addQueBtn").click(function () {
+    var type=$("#addQueType").val();
+    var details=$("#addQueDetails").val();
+    alert("type:"+type+",details:"+details);
+    $.post("/addQuestion",{type:type,details:details},function (res) {
+        if(res.code==200){
+            flashEditTable();
+            flashSearchTable();
+        }else{
+            alert(res.msg);
+        }
+    });
+});
 $("#submitdt").click(function () {
     //followup
     var stuId = $("#edstuId").val();
@@ -746,6 +921,7 @@ $("#research").click(function () {
 
 //document.ready
 flashUser();
+flashEditTable();
 flashStuSource();
 flashstudents();
 flashadvertise();
