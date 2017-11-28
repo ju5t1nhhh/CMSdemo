@@ -35,13 +35,19 @@ public class FollowUpDaoTest {
     @Test
     public void updateOne() throws Exception {
         FollowUp followUp=followUpDao.selectOne(1L);
-        followUp.setNote("改进一下不错");
-        System.out.println(followUpDao.updateOne(followUp));
+        System.out.println(followUp);
+        followUp.setClassification('B');
+        followUpDao.updateOne(followUp);
     }
 
     @Test
     public void selectOne() throws Exception {
         System.out.println(followUpDao.selectOne(2L));
+    }
+
+    @Test
+    public void selectHot() throws Exception {
+        System.out.println(followUpDao.selectHot(1L));
     }
 
     @Test
