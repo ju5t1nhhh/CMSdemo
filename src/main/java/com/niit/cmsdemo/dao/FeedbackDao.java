@@ -18,6 +18,8 @@ public interface FeedbackDao {
 
     Integer exchange(@Param("field1") String field1,@Param("field2") String field2);
 
+    Integer setFieldNull(@Param("field")String field);
+
     Feedback selectOne(Long stuId);
 
     List<Feedback> selectConditions(Map<String,Object> map);

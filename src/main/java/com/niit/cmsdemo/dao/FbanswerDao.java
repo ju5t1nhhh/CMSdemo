@@ -17,6 +17,8 @@ public interface FbanswerDao {
 
     Integer resetLocation(@Param("id") Integer id,@Param("location") Integer location);
 
+    Integer selectNewLocation(Integer questionId);
+
     Fbanswer selectOne(Integer id);
 
     Fbanswer selectSpecial(@Param("questionId") Integer questionId,@Param("location") Integer location);
