@@ -55,8 +55,10 @@ public class UserController {
     public ServerResponse updateUser(User user){
         ServerResponse serverResponse=null;
         try{
-            PasswordHelper passwordHelper=new PasswordHelper();
-            passwordHelper.encryptPassword(user);
+            if(user.getPassword()!=null&&user.getPassword().length()>0) {
+                PasswordHelper passwordHelper = new PasswordHelper();
+                passwordHelper.encryptPassword(user);
+            }
             userService.updateUser(user);
             serverResponse=serverResponse.createSuccessResponse(null);
         }catch (Exception e){
