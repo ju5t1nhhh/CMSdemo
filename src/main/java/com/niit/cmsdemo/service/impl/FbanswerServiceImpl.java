@@ -17,9 +17,13 @@ public class FbanswerServiceImpl implements FbanswerService{
 
     @Override
     public void addFbanswer(Fbanswer fbanswer) throws Exception {
-        if(fbanswerDao.selectByQuestionId(fbanswer.getQuestionId()).size()==11)
-            throw new Exception("问题"+fbanswer.getQuestionId()+"不能超过10个选项");
+        if(fbanswerDao.selectByQuestionId(fbanswer.getQuestionId()).size()==21)
+            throw new Exception("问题"+fbanswer.getQuestionId()+"不能超过20个选项");
         else{
+            if(fbanswer.getLocation()==null){
+                fbanswer.setLocation(fbanswerDao.selectNewLocation(fbanswer.getQuestionId()));
+            }
+            System.out.println(fbanswer);
             fbanswerDao.insertOne(fbanswer);
         }
     }

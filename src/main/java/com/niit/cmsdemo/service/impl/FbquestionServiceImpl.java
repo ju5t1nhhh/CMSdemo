@@ -2,6 +2,7 @@ package com.niit.cmsdemo.service.impl;
 
 import com.niit.cmsdemo.dao.FbanswerDao;
 import com.niit.cmsdemo.dao.FbquestionDao;
+import com.niit.cmsdemo.dao.FeedbackDao;
 import com.niit.cmsdemo.domain.Fbanswer;
 import com.niit.cmsdemo.domain.Fbquestion;
 import com.niit.cmsdemo.service.FbanswerService;
@@ -24,11 +25,18 @@ public class FbquestionServiceImpl implements FbquestionService{
     private FbanswerDao fbanswerDao;
 
     @Autowired
+    private FeedbackDao feedbackDao;
+
+    @Autowired
     private FbanswerService fbanswerService;
 
     @Override
     @Transactional
     public void addQuestion(Fbquestion fbquestion) {
+        Integer maxLocation=fbquestionDao.selectNewLocation();
+        Fbquestion maxFbquestion=fbquestionDao.selectByLocation(maxLocation);
+        fbquestionDao.resetLocation(maxFbquestion.getId(),maxLocation+1);
+        fbquestion.setLocation(maxLocation);
         fbquestionDao.insertOne(fbquestion);
         Fbanswer fbanswer=new Fbanswer();
         fbanswer.setQuestionId(fbquestion.getId());
@@ -46,10 +54,12 @@ public class FbquestionServiceImpl implements FbquestionService{
         }
         Fbquestion fbquestion=fbquestionDao.selectOne(id);
         int i=fbquestion.getLocation()+1;
+        feedbackDao.setFieldNull("answer"+(i-1));
         while(true){
             Fbquestion iFbquestion=fbquestionDao.selectByLocation(i);
             if(iFbquestion==null)break;
             fbquestionDao.resetLocation(iFbquestion.getId(),i-1);
+            feedbackDao.exchange("answer"+(i-1),"answer"+i);
             i++;
         }
         fbquestionDao.deleteOne(id);
@@ -65,11 +75,13 @@ public class FbquestionServiceImpl implements FbquestionService{
                 for(int i=dbFbquestion.getLocation()+1;i<=fbquestion.getLocation();i++){
                     Fbquestion iFbquestion=fbquestionDao.selectByLocation(i);
                     fbquestionDao.resetLocation(iFbquestion.getId(),i-1);
+                    feedbackDao.exchange("answer"+(i-1),"answer"+i);
                 }
             }else{
                 for(int i=dbFbquestion.getLocation()-1;i>=fbquestion.getLocation();i--){
                     Fbquestion iFbquestion=fbquestionDao.selectByLocation(i);
                     fbquestionDao.resetLocation(iFbquestion.getId(),i+1);
+                    feedbackDao.exchange("answer"+(i+1),"answer"+i);
                 }
             }
             fbquestionDao.updateOne(fbquestion);
