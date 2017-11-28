@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8"/>
 	<title>NIIT Manage System</title>
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--时间插件-->
+	<script type="text/javascript" src="js/laydate.js"></script>
 	<script>
         <shiro:hasPermission name="/user">
             $(function () {
@@ -26,6 +28,10 @@
 <body style="background: url('/img/demo-1-bg.jpg')">
 <div class="container" align="center" >
 	<h1 align="center" style="font-family: 'Segoe UI Semilight';color: #FFFFFF;font-size:50px;">NIIT System</h1>
+	<h3>
+		<span style="color: orangered">Welcomes</span>
+		<span style="color: green" th:text="${session.userSessionId}"></span>
+	</h3>
 	<br/>
 	<form action="/logout">
 		<button class="btn btn-warning" type="submit">logout</button>
@@ -90,27 +96,14 @@
 									<thead>
 									<tr>
 										<th>User ID</th>
-										<th>User Name</th>
+										<!--<th>User Name</th>-->
+										<th>Role</th>     <!--Add by Runner-->
 										<th>Create Time</th>
 										<th>Update Time</th>
 										<th>Operation</th>
 									</tr>
 									</thead>
 									<tbody id="userbody">
-									<tr>
-										<td>Tanmay</td>
-										<td>Bangalore</td>
-										<td>Tanmay</td>
-										<td>Bangalore</td>
-										<td>
-											<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#EditUser">
-												Edit
-											</button>
-											<button class="btn btn-xs btn-danger" onclick="">
-												Delete
-											</button>
-										</td>
-									</tr>
 									</tbody>
 								</table>
 							</div>
@@ -126,13 +119,17 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Date: </label>
 											<div class="col-sm-3">
-												<input type="text" class="form-control" id="userSearchStartDate" style="width: 90%" placeholder="YYYY-MM-DD"/>
+												<!--<input type="text" class="form-control" id="userSearchStartDate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
+												<!--Add by Runner-->
+												<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="userSearchStartDate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 											</div>
 											<div class="col-sm-1 control-label">
 												<span style="font-weight: bold;">To</span>
 											</div>
 											<div class="col-sm-3">
-												<input type="text" class="form-control" id="userSearchEndDate" style="width: 90%" placeholder="YYYY-MM-DD"/>
+												<!--<input type="text" class="form-control" id="userSearchEndDate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
+												<!--Add by Runner-->
+												<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="userSearchEndDate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -175,6 +172,7 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 					<tr>
+						<th>User ID</th>     <!--Add by Runner-->
 						<th>Date</th>
 						<th>Name</th>
 						<th>Gender</th>
@@ -191,19 +189,38 @@
 			</div>
 
 			<div class="tab-pane fade in active qwer" id="SearchStudents">
-				<div class="form-horizontal" role="form">
+				<div class="form-horizontal" role="form" style="padding-left: 3%;">
+					<div id="tableinsearch" style="display: none;">
+						<label class="col-sm-12 control-label" style="text-align: center; font-size: large">宣讲反馈表</label>
+						<div id="searchtablebody"></div>
+					</div>
+					<hr/>
 					<div class="form-group">
 						<label class="col-sm-1 control-label">StartDate: </label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="sssdate" style="width: 90%" placeholder="YYYY-MM-DD"/>
+							<!--<input type="text" class="form-control" id="sssdate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
+							<!--Add by Runner-->
+							<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="sssdate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 						</div>
 						<label class="col-sm-1 control-label">EndDate: </label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="ssedate" style="width: 90%" placeholder="YYYY-MM-DD"/>
+							<!--<input type="text" class="form-control" id="ssedate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
+							<!--Add by Runner-->
+							<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="ssedate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-1 control-label">UserID: </label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="ssuserId" style="width: 90%"/>
 						</div>
 						<label class="col-sm-1 control-label">Name: </label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="ssname" style="width: 90%"/>
+						</div>
+						<div class="col-sm-4">
+							<button id="searchShowTable" class="btn btn-xs btn-info">ShowTable</button>
 						</div>
 					</div>
 
@@ -241,6 +258,7 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 						<tr>
+							<th>User ID</th>
 							<th>Date</th>
 							<th>Name</th>
 							<th>Gender</th>
@@ -299,13 +317,21 @@
 
 			<div class="tab-pane fade in active qwer" id="History">
 				<div class="form-horizontal" role="form">
+					<shiro:hasPermission name="/user">
+						<label class="col-sm-2 control-label">User ID: </label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="hsuserid" style="width: 100%;"/>
+						</div>
+						<div class="clearfix"></div>
+						<br/>
+					</shiro:hasPermission>
 					<label class="col-sm-2 control-label">Start Date: </label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="hstartd" style="width: 90%" placeholder="YYYY-MM-DD" />
+						<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="hstartd" style="width: 100%;margin-top: 5px" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 					</div>
 					<label class="col-sm-2 control-label">End Date: </label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="hendd" style="width: 90%" placeholder="YYYY-MM-DD" />
+						<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="hendd" style="width: 100%;margin-top: 5px" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 					</div>
 					<div class="col-sm-4">
 						<form action="/taskExcel" method="post" style="display:inline;margin-right:15px;">
@@ -355,24 +381,28 @@
 								<input type="text" class="form-control" id="loginId" name="loginId" style="width: 90%"/>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label class="col-sm-2 control-label">User Name: </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="username" name="username" style="width: 90%"/>
-							</div>
-						</div>
-
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Password: </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="upassword" name="password" style="width: 90%"/>
 							</div>
 						</div>
+
+						<!-- Add by Runner-->
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Role: </label>
+							<div class="col-sm-10">
+								<select class="form-control" id="selRole" style="width: 90%">
+									<option value="user">user</option>
+									<option value="admin">admin</option>
+								</select>
+							</div>
+						</div>
+
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="submitu" onclick="adduser()">
+					<button type="button" class="btn btn-primary" id="submitu" onclick="adduser()" data-dismiss="modal">
 						Submit
 					</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -511,14 +541,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">User ID: </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="loginId" id="euid" style="width: 90%"/>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-sm-2 control-label">User Name: </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="username" id="eusername" style="width: 90%"/>
+								<input type="text" class="form-control" name="loginId" id="euid" style="width: 90%" disabled="disabled"/>
 							</div>
 						</div>
 
@@ -528,6 +551,18 @@
 								<input type="text" class="form-control" name="password" id="eupassword" style="width: 90%" placeholder="Fill me to reset password"/>
 							</div>
 						</div>
+
+						<!-- Add by Runner-->
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Role: </label>
+							<div class="col-sm-10">
+								<select class="form-control" name="role" id="eRole" style="width: 90%">
+									<option value="user">user</option>
+									<option value="admin">admin</option>
+								</select>
+							</div>
+						</div>
+
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -796,7 +831,9 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Walk-in Date: </label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>
+								<!--<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>-->
+								<!--Add by Runner-->
+								<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="dtwalkindate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 							</div>
 							<label class="col-sm-2 control-label">Marks: </label>
 							<div class="col-sm-4">
@@ -813,13 +850,13 @@
 
 						<div class="form-group" >
 							<label class="col-sm-2 control-label">Source: </label>
-							<div class="col-sm-3">
-								<select id="SSselect" class="form-control" style="width: 100%;display: inline-block;" onchange="showtable()">
+							<div class="col-sm-3" style="padding-left: 3%;">
+								<select id="SSselect" class="form-control" style="width: 100%;display: inline-block;">
 								</select>
 							</div>
 							<label class="col-sm-1 control-label" style="font-size: 10px;">自定义: </label>
 							<div class="col-sm-4">
-								<input id="stusource" class="form-control" type="text" placeholder="如 Web-Market"/>
+								<input id="stusource" class="form-control" type="text" placeholder="如:学校招聘会"/>
 							</div>
 						</div>
 
@@ -830,7 +867,7 @@
 							</div>
 							<label class="col-sm-2 control-label">Classification: </label>
 							<div class="col-sm-4">
-								<select id="dtclassification" class="form-control" style="width: 85%">
+								<select id="dtclassification" class="form-control" style="width: 85%" disabled="disabled">
 									<option></option>
 									<option value="A">A: Intersted</option>
 									<option value="B">B: Hesitate</option>
@@ -839,155 +876,31 @@
 							</div>
 						</div>
 						<hr/>
+						<button id="stable1" class="btn btn-xs btn-info">ShowTable</button>
 						<div id="fankuiTable" style="display: none;">
 							<label class="col-sm-12 control-label" style="text-align: center; font-size: large">宣讲反馈表</label>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">您对本次讲座的哪部分内容比较感兴趣？</label>
-								<div class="col-sm-12">
-									<label class="radio-inline">
-										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios11" value="0"/>就业指导
-									</label>
-									<label class="radio-inline">
-										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios12" value="1"/>IT前景
-									</label>
-									<label class="radio-inline">
-										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios13" value="2"/>NIIT实训课程
-									</label>
-									<label class="radio-inline">
-										<input type="checkbox" name="optionsRadiosinline1" id="optionsRadios14" value="3"/>NIIT人才定制企业
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">您觉得NIIT的实训课程对您今后职业发展有所帮助吗？</label>
-								<div class="col-sm-12">
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline2" id="optionsRadios21" value="0"/>我很需要，非常有帮助
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline2" id="optionsRadios22" value="1"/>暂时不需要，无帮助
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline2" id="optionsRadios23" value="2"/>根本不需要
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">您毕业后的就业方向定位在</label>
-								<div class="col-sm-12">
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline3" id="optionsRadios31" value="0"/>IT职位
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline3" id="optionsRadios32" value="1"/>非IT职位
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline3" id="optionsRadios33" value="2"/>就业方向尚不清晰
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">您是否愿意参加NIIT实训项目，更愿意参加哪种实训项目？（可多选）</label>
-								<div class="col-sm-12">
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios41" value="0"/>愿意
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios42" value="1"/>考虑中
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios43" value="2" /> VR
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios44" value="3"/>Java + Android
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios45" value="4"/>前端
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios46" value="5"/>UI
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios47" value="6"/>不愿意
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline4" id="optionsRadios48" value="7"/>其他
-									</label>
-									<input type="text" class="form-control checkbox-inline" id="other1" style="width: 20%"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">如果您愿意参加NIIT实训项目，希望开始的时间是？</label>
-								<div class="col-sm-12">
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline5" id="optionsRadios51" value="0"/>越快越好
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline5" id="optionsRadios52" value="1"/>1个月内
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline5" id="optionsRadios53" value="2"/>6个月内
-									</label>
-									<label class="radio-inline">
-										<input type="radio" name="optionsRadiosinline5" id="optionsRadios54" value="3"/>1年后
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">对于是否参加实训，您目前存在的问题是？（可多选）</label>
-								<div class="col-sm-12">
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios61" value="0"/>计划考研
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios62" value="1"/>自身是否适合职位
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios63" value="2"/>经济压力
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios64" value="3"/>就业担忧
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline6" id="optionsRadios65" value="4"/>对IT不感兴趣
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-12 control-label" style="text-align: center">对于专业IT实训，您更看中的是哪些方面？（可多选）</label>
-								<div class="col-sm-12">
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios71" value="0"/>师资配备
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios72" value="1"/>实训、住宿环境
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios73" value="2"/>就业安置服务
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios74" value="3"/>课程内容
-									</label>
-									<label class="checkbox-inline">
-										<input type="checkbox" name="optionsRadiosinline7" id="optionsRadios75" value="4"/>获得证书
-									</label>
-								</div>
-							</div>
+							<div id="fankuibody"></div>
 							<hr/>
 						</div>
+						<hr/>
 						<div id="followuplist">
 
 						</div>
+						<hr/>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Follow Up: </label>
+							<label class="col-sm-2 control-label">Follow Up:</label>
+							<div class="col-sm-4" style="text-align: left;padding-left: 4%;">
+								<select id="newcla" class="form-control" style="width: 85%;">
+								<option value="A">A: Interested</option>
+								<option value="B">B: Hesitate</option>
+								<option value="C">C: Rejected</option>
+							</select></div>
 							<br/><br/>
 							<div class="col-sm-2" align="center">
-								<!--<button class="btn btn-info btn-xs" type="button" onclick="">-->
-								<!--<span class="glyphicon glyphicon-ok"></span>-->
-								<!--</button>-->
+
 							</div>
-							<div id="newfudiv" class="col-sm-10">
-								<textarea class="form-control" id="dtfp1" style="width: 96%;resize: none;" rows="4"></textarea>
+							<div class="col-sm-10"><textarea id="dtfp1" class="form-control"
+															 style="width: 96%;resize: none;" rows="4"></textarea>
 							</div>
 						</div>
 					</form>
