@@ -7,6 +7,7 @@ USE `cmsdemo`;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`(
   `login_id` VARCHAR(20) NOT NULL COMMENT '登录ID',
+  `role` VARCHAR(10) NOT NULL COMMENT '角色',
   `password` VARCHAR(100) NOT NULL COMMENT '密码',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
@@ -34,14 +35,6 @@ CREATE TABLE `permission`(
   PRIMARY KEY (`id`),
   KEY `permission_type_INDEX` (`type`),
   KEY `permission_parent_id_INDEX` (`parent_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#user_role表
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE `user_role`(
-  `user_id` VARCHAR(20) NOT NULL COMMENT '用户ID',
-  `role_id` INT(4) NOT NULL COMMENT '角色ID',
-  PRIMARY KEY (`user_id`,`role_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #role_permission表
@@ -140,6 +133,16 @@ CREATE TABLE `feedback`(
   `answer9` TEXT COMMENT '回答9',
   `answer10` TEXT COMMENT '回答10',
   `answer11` TEXT COMMENT '回答11',
+  `answer12` TEXT COMMENT '回答12',
+  `answer13` TEXT COMMENT '回答13',
+  `answer14` TEXT COMMENT '回答14',
+  `answer15` TEXT COMMENT '回答15',
+  `answer16` TEXT COMMENT '回答16',
+  `answer17` TEXT COMMENT '回答17',
+  `answer18` TEXT COMMENT '回答18',
+  `answer19` TEXT COMMENT '回答19',
+  `answer20` TEXT COMMENT '回答20',
+  `answer21` TEXT COMMENT '回答21',
   `create_time` DATETIME NOT NULL,
   `update_time` DATETIME NOT NULL,
   PRIMARY KEY (`stu_id`),

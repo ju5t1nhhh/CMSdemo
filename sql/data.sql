@@ -3,7 +3,7 @@ USE `cmsdemo`;
 #user表初始数据
 INSERT INTO
 `user`
-VALUES('admin','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now());
+VALUES('admin','admin','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now());
 
 #role表初始数据
 INSERT INTO
@@ -56,12 +56,6 @@ VALUES
 ('删除答案','/delAnswer',3,5),
 ('更新答案','/updateAnswer',3,5),
 ('获取反馈表','/getTable',3,5);
-
-#user_role表初始数据
-INSERT INTO
-`user_role`
-VALUES
-('admin',2);
 
 #role_permission表初始数据
 INSERT INTO

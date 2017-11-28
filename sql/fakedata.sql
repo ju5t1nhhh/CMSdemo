@@ -4,17 +4,9 @@ USE `cmsdemo`;
 INSERT INTO
 `user`
 VALUES
-('jackie','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now()),
-('phil','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now()),
-('john','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now());
-
-#user_role
-INSERT INTO
-`user_role`
-VALUES
-('jackie',1),
-('phil',1),
-('john',1);
+('jackie','user','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now()),
+('phil','user','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now()),
+('john','user','3ef7164d1f6167cb9f2658c07d3c2f0a',now(),now());
 
 #stu_source
 INSERT INTO
@@ -52,7 +44,7 @@ VALUES
 
 #feedback
 INSERT INTO
-`feedback`(`stu_id`,`answer1`,`answer2`,`answer3`,`answer4`,`answer5`,`answer6`,`answer7`,`answer11`,`create_time`,`update_time`)
+`feedback`(`stu_id`,`answer1`,`answer2`,`answer3`,`answer4`,`answer5`,`answer6`,`answer7`,`answer21`,`create_time`,`update_time`)
 VALUES
 (1,'1,2','1','1','3,4','1','1,2','2,4','我觉得ok。。。',now(),now()),
 (2,'1,2','2','3','3,4,大数据','2','1,2','3,4','我觉得其实可以。。。',now(),now()),
