@@ -42,7 +42,8 @@ public class FeedbackDaoTest {
     @Test
     public void selectOne() throws Exception {
 //        System.out.println(feedbackDao.selectOne(1L));
-        feedbackDao.exchange("answer1","answer2");
+//        feedbackDao.exchange("answer1","answer2");
+        feedbackDao.setFieldNull("answer1");
     }
 
     @Test

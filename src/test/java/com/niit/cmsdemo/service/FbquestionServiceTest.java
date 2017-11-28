@@ -26,22 +26,21 @@ public class FbquestionServiceTest {
     @Test
     public void addQuestion() throws Exception {
         Fbquestion fbquestion=new Fbquestion();
-        fbquestion.setLocation(9);
-        fbquestion.setDetails("你猜Cai");
-        fbquestion.setType("text");
+        fbquestion.setDetails("你猜kkCai");
+        fbquestion.setType("radio");
         fbquestionService.addQuestion(fbquestion);
     }
 
     @Test
     public void delQuestion() throws Exception {
-        fbquestionService.delQuestion(9);
+        fbquestionService.delQuestion(1);
     }
 
     @Test
     public void updateQuestion() throws Exception {
         Fbquestion fbquestion=fbquestionDao.selectOne(6);
         System.out.println(fbquestion);
-        fbquestion.setLocation(5);
+        fbquestion.setLocation(2);
         fbquestionService.updateQuestion(fbquestion);
     }
 
