@@ -21,6 +21,7 @@ public class AdvertiseController {
     @PostMapping("/addAds")
     public ServerResponse addAds(Advertise advertise, HttpSession session){
         String userSessionId= (String) session.getAttribute("userSessionId");
+        System.out.println(userSessionId);
         ServerResponse serverResponse=null;
         try{
             advertiseService.addAdvertise(advertise,userSessionId);
@@ -45,8 +46,11 @@ public class AdvertiseController {
     }
 
     @PostMapping("/searchAds")
-    public ServerResponse searchAds(HttpSession session,String startDate,String endDate){
+    public ServerResponse searchAds(HttpSession session,String userId,String startDate,String endDate){
         Map<String,Object> map=new HashMap<>();
+        if(userId!=null){
+            map.put("userId",userId);
+        }
         if(startDate!=null&&endDate!=null){
             map.put("startDate", StringUtils.trimAllWhitespace(startDate));
             map.put("endDate",StringUtils.trimAllWhitespace(endDate));

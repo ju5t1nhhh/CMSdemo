@@ -18,12 +18,13 @@ public class FollowUpController {
     private FollowUpService followUpService;
 
     @PostMapping("/addFollowUp")
-    public ServerResponse addFollowUp(Long stuId, String note, HttpSession session){
+    public ServerResponse addFollowUp(Long stuId, String note, Character classification,HttpSession session){
         ServerResponse serverResponse=null;
         String userSessionId= (String) session.getAttribute("userSessionId");
         FollowUp followUp=new FollowUp();
         followUp.setStuId(stuId);
         followUp.setNote(note);
+        followUp.setClassification(classification);
         try {
             followUpService.addFollowUp(followUp,userSessionId);
             serverResponse=ServerResponse.createSuccessResponse(null);

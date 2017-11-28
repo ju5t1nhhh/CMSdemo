@@ -17,6 +17,7 @@ public class FeedbackController {
 
     @PostMapping("/updateFeedback")
     public ServerResponse updateFeedback(Feedback feedback, HttpSession session){
+        System.out.println(feedback);
         String userSessionId= (String) session.getAttribute("userSessionId");
         ServerResponse serverResponse=null;
         try {

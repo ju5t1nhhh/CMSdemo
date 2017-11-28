@@ -74,9 +74,12 @@ public class StudentController {
     }
 
     @PostMapping("/searchStudent")
-    public ServerResponse searchStudent(Feedback feedback,HttpSession session,String name,String startDate,String endDate,String classification,String source){
+    public ServerResponse searchStudent(Feedback feedback,HttpSession session,String userId,String name,String startDate,String endDate,String classification,String source){
         String userSessionId= (String) session.getAttribute("userSessionId");
         Map<String,Object> map=new HashMap<>();
+        if(userId!=null&&userId.length()>0){
+            map.put("writerId",userId);
+        }
         if(name!=null&&name.length()>0){
             map.put("name",name);
         }
@@ -102,7 +105,7 @@ public class StudentController {
             map.put("startDate",startDate);
         }
         if(endDate!=null&&endDate.length()>0) {
-            map.put("endDate", endDate+" 23:59:59");
+            map.put("endDate", endDate);
         }
         if(classification!=null&&classification.length()>0) {
             map.put("classification", classification);
