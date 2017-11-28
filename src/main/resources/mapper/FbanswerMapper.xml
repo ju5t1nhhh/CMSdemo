@@ -13,6 +13,10 @@
         VALUES(#{id},#{questionId},#{location},#{details})
     </insert>
 
+    <select id="selectNewLocation" resultType="Integer">
+        SELECT `location`+1 FROM `fbanswer` WHERE `question_id`=#{questionId} ORDER BY `location` DESC LIMIT 1,1
+    </select>
+
     <delete id="deleteOne" parameterType="java.lang.Integer">
         DELETE FROM `fbanswer`
         WHERE `id`=#{id}

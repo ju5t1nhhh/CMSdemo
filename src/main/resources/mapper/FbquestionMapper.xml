@@ -18,6 +18,10 @@
         WHERE `id`=#{id}
     </delete>
 
+    <select id="selectNewLocation" resultType="java.lang.Integer">
+        SELECT `location` FROM `fbquestion` ORDER BY `location` DESC LIMIT 0,1
+    </select>
+
     <update id="updateOne">
         UPDATE `fbquestion`
         <set>

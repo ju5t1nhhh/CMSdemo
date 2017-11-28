@@ -73,6 +73,10 @@
         SET a.${field1}=b.${field2},a.${field2}=b.${field1} WHERE a.`stu_id`=b.`stu_id`
     </update>
 
+    <update id="setFieldNull">
+        UPDATE `feedback` SET ${field}=NULL
+    </update>
+
     <select id="selectOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT * FROM `feedback`
         WHERE `stu_id`=#{stuId}
