@@ -33,6 +33,10 @@
         SELECT * FROM `follow_up` WHERE `id`=#{id}
     </select>
 
+    <select id="selectHot" resultMap="BaseResultMap">
+        SELECT * FROM `follow_up` WHERE `stu_id`=#{stuId} ORDER BY `create_time` DESC LIMIT 1
+    </select>
+
     <select id="selectByStuId" resultMap="BaseResultMap">
         SELECT * FROM `follow_up` WHERE `stu_id`=#{stuId} ORDER BY `update_time` DESC;
     </select>

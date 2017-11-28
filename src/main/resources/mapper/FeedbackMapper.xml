@@ -14,13 +14,24 @@
         <result column="answer9" property="answer9"/>
         <result column="answer10" property="answer10"/>
         <result column="answer11" property="answer11"/>
+        <result column="answer12" property="answer12"/>
+        <result column="answer13" property="answer13"/>
+        <result column="answer14" property="answer14"/>
+        <result column="answer15" property="answer15"/>
+        <result column="answer16" property="answer16"/>
+        <result column="answer17" property="answer17"/>
+        <result column="answer18" property="answer18"/>
+        <result column="answer19" property="answer19"/>
+        <result column="answer20" property="answer20"/>
+        <result column="answer21" property="answer21"/>
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <insert id="insertOne" parameterType="com.niit.cmsdemo.domain.Feedback">
         INSERT INTO `feedback`
-        VALUES(#{stuId},#{answer1},#{answer2},#{answer3},#{answer4},#{answer5},#{answer6},#{answer7},#{answer8},#{answer9},#{answer10},#{answer11},now(),now())
+        VALUES(#{stuId},#{answer1},#{answer2},#{answer3},#{answer4},#{answer5},#{answer6},#{answer7},#{answer8},#{answer9},#{answer10},
+        #{answer11},#{answer12},#{answer13},#{answer14},#{answer15},#{answer16},#{answer17},#{answer18},#{answer19},#{answer20},#{answer21},now(),now())
     </insert>
 
     <delete id="deleteOne" parameterType="java.lang.Long">
@@ -42,9 +53,24 @@
             <if test="answer9 != null and answer9.length()>0">`answer9`=#{answer9},</if>
             <if test="answer10 != null and answer10.length()>0">`answer10`=#{answer10},</if>
             <if test="answer11 != null and answer11.length()>0">`answer11`=#{answer11},</if>
+            <if test="answer12 != null and answer12.length()>0">`answer12`=#{answer12},</if>
+            <if test="answer13 != null and answer13.length()>0">`answer13`=#{answer13},</if>
+            <if test="answer14 != null and answer14.length()>0">`answer14`=#{answer14},</if>
+            <if test="answer15 != null and answer15.length()>0">`answer15`=#{answer15},</if>
+            <if test="answer16 != null and answer16.length()>0">`answer16`=#{answer16},</if>
+            <if test="answer17 != null and answer17.length()>0">`answer17`=#{answer17},</if>
+            <if test="answer18 != null and answer18.length()>0">`answer18`=#{answer18},</if>
+            <if test="answer19 != null and answer19.length()>0">`answer19`=#{answer19},</if>
+            <if test="answer20 != null and answer20.length()>0">`answer20`=#{answer20},</if>
+            <if test="answer21 != null and answer21.length()>0">`answer21`=#{answer21},</if>
             `update_time`=now()
         </set>
         WHERE `stu_id`=#{stuId}
+    </update>
+
+    <update id="exchange" parameterType="map">
+        UPDATE `feedback` as a,`feedback` as b
+        SET a.${field1}=b.${field2},a.${field2}=b.${field1} WHERE a.`stu_id`=b.`stu_id`
     </update>
 
     <select id="selectOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
