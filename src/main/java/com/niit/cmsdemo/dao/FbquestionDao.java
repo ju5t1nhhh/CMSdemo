@@ -17,6 +17,8 @@ public interface FbquestionDao {
 
     Integer resetLocation(@Param("id") Integer id, @Param("location") Integer location);
 
+    Integer selectNewLocation();
+
     Fbquestion selectOne(Integer id);
 
     Fbquestion selectByLocation(Integer location);
