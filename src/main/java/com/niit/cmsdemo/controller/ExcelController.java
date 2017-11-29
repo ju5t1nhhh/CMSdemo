@@ -2,10 +2,12 @@ package com.niit.cmsdemo.controller;
 
 import com.niit.cmsdemo.dao.FollowUpDao;
 import com.niit.cmsdemo.domain.Advertise;
+import com.niit.cmsdemo.domain.Feedback;
 import com.niit.cmsdemo.domain.FollowUp;
 import com.niit.cmsdemo.domain.Student;
 import com.niit.cmsdemo.service.AdvertiseService;
 import com.niit.cmsdemo.service.StudentService;
+import com.niit.cmsdemo.vo.FeedbackUtil;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -37,9 +39,12 @@ public class ExcelController {
     private FollowUpDao followUpDao;
 
     @PostMapping("/studentExcel")
-    public void studentExcel(HttpSession session,HttpServletResponse response,String name,String startDate,String endDate,String classification,String source){
+    public void studentExcel(HttpSession session, HttpServletResponse response, Feedback feedback,String userId,String name, String startDate, String endDate, String classification, String source){
         String userSessionId= (String) session.getAttribute("userSessionId");
         Map<String,Object> map=new HashMap<>();
+        if(userId!=null&&userId.length()>0){
+            map.put("writerId",userId);
+        }
         if(name!=null&&name.length()>0){
             map.put("name",name);
         }
@@ -55,13 +60,17 @@ public class ExcelController {
         if(source!=null&&source.length()>0) {
             map.put("studentSource", source);
         }
-        List<Student> students=studentService.findConditions(null,map,userSessionId);
+        List<Student> students=studentService.findConditions(FeedbackUtil.toArray(feedback),map,userSessionId);
 
         //excel
         HSSFWorkbook workbook=new HSSFWorkbook();
         HSSFSheet sheet=workbook.createSheet();
         //header
-        String[] headers={"ID","NAME","GENDER","AGE","PHONE","QQWECHAT","EMAIL","COLLEGE","MAJAR","WALKINDATE","INTERVIEWNOTE","MARKS","INTENTION","STUDENTSOURCE","CLASSIFICATION","CREATETIME","FOLLOWUP1","FOLLOWUP2","FOLLOWUP3","FOLLOWUP4","FOLLOWUP5"};
+        String[] headers={"USERID/录入人ID","ID/学生ID","NAME/姓名","GENDER/性别","AGE/年龄",
+                "PHONE/电话","QQWECHAT/QQ或微信","EMAIL/邮箱","COLLEGE/大学","MAJAR/专业",
+                "WALKINDATE/上门咨询日期","INTERVIEWNOTE/面试记录","MARKS/笔试成绩","INTENTION/学习意愿",
+                "STUDENTSOURCE/生源来自","CLASSIFICATION/参加实训可能性","CREATETIME/录入时间",
+                "FOLLOWUP1/跟进","CLASSIFICATION/参与可能性","FOLLOWUP2/跟进","CLASSIFICATION/参与可能性","FOLLOWUP3/跟进","CLASSIFICATION/参与可能性","FOLLOWUP4/跟进","CLASSIFICATION/参与可能性","FOLLOWUP5/跟进","CLASSIFICATION/参与可能性"};
         HSSFRow row=sheet.createRow(0);
         for(int i=0;i<headers.length;i++){
             HSSFCell cell=row.createCell(i);
@@ -76,32 +85,34 @@ public class ExcelController {
 
             Date walkDate=student.getWalkinDate();
             String walkinDate=walkDate==null?"":simpleDateFormat.format(walkDate);
-
-            newCell(0,dataRow).setCellValue(student.getId());
-            newCell(1,dataRow).setCellValue(objectToString(student.getName()));
-            newCell(2,dataRow).setCellValue(student.getGender());
-            newCell(3,dataRow).setCellValue(student.getAge()==null?0:student.getAge());
-            newCell(4,dataRow).setCellValue(objectToString(student.getPhone()));
-            newCell(5,dataRow).setCellValue(objectToString(student.getQqWechat()));
-            newCell(6,dataRow).setCellValue(objectToString(student.getEmail()));
-            newCell(7,dataRow).setCellValue(objectToString(student.getCollege()));
-            newCell(8,dataRow).setCellValue(objectToString(student.getMajor()));
-            newCell(9,dataRow).setCellValue(walkinDate);
-            newCell(10,dataRow).setCellValue(objectToString(student.getInterviewNote()));
-            newCell(11,dataRow).setCellValue(student.getMarks()==null?0:student.getMarks());
-            newCell(12,dataRow).setCellValue(objectToString(student.getIntention()));
-            newCell(13,dataRow).setCellValue(objectToString(student.getStudentSource()));
-            newCell(14,dataRow).setCellValue(objectToString(student.getClassification()));
-            newCell(15,dataRow).setCellValue(simpleDateFormat.format(student.getCreateTime()));
+            newCell(0,dataRow).setCellValue(student.getWriterId());
+            newCell(1,dataRow).setCellValue(student.getId());
+            newCell(2,dataRow).setCellValue(objectToString(student.getName()));
+            newCell(3,dataRow).setCellValue(""+student.getGender());
+            newCell(4,dataRow).setCellValue(student.getAge()==null?0:student.getAge());
+            newCell(5,dataRow).setCellValue(objectToString(student.getPhone()));
+            newCell(6,dataRow).setCellValue(objectToString(student.getQqWechat()));
+            newCell(7,dataRow).setCellValue(objectToString(student.getEmail()));
+            newCell(8,dataRow).setCellValue(objectToString(student.getCollege()));
+            newCell(9,dataRow).setCellValue(objectToString(student.getMajor()));
+            newCell(10,dataRow).setCellValue(walkinDate);
+            newCell(11,dataRow).setCellValue(objectToString(student.getInterviewNote()));
+            newCell(12,dataRow).setCellValue(student.getMarks()==null?0:student.getMarks());
+            newCell(13,dataRow).setCellValue(objectToString(student.getIntention()));
+            newCell(14,dataRow).setCellValue(objectToString(student.getStudentSource()));
+            String classifi=student.getClassification()==null?"":""+student.getClassification();
+            newCell(15,dataRow).setCellValue(classifi);
+            newCell(16,dataRow).setCellValue(simpleDateFormat.format(student.getCreateTime()));
 
             Map<String,Object> fuMap=new HashMap<>();
             fuMap.put("stuId",student.getId());
             List<FollowUp> followUps=followUpDao.selectConditions(fuMap);
 
-            int fu=16;
+            int fu=17;
             for(FollowUp followUp:followUps){
-                System.out.println(followUp);
                 newCell(fu++,dataRow).setCellValue(objectToString(followUp.getNote()));
+                String classi=student.getClassification()==null?"":""+student.getClassification();
+                newCell(fu++,dataRow).setCellValue(classi);
             }
         }
 
