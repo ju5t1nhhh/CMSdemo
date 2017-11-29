@@ -128,9 +128,12 @@ public class ExcelController {
     }
 
     @PostMapping("/taskExcel")
-    public void taskExcel(HttpSession session, HttpServletResponse response,String startDate,String endDate){
+    public void taskExcel(HttpSession session, HttpServletResponse response,String userId,String startDate,String endDate){
         //获取list
         Map<String,Object> map=new HashMap<>();
+        if(userId!=null&&userId.length()>0){
+            map.put("userId",userId);
+        }
         if(startDate!=null&&endDate!=null){
             map.put("startDate", StringUtils.trimAllWhitespace(startDate));
             map.put("endDate",StringUtils.trimAllWhitespace(endDate));
