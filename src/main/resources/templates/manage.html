@@ -34,7 +34,7 @@
 	</h3>
 	<br/>
 	<form action="/logout">
-		<button class="btn btn-warning" type="submit">logout</button>
+		<button class="btn btn-warning" type="submit">logout/登出</button>
 	</form>
 	<br/>
 	<div style="background-color: #FFFFFF;padding: 15px;border-radius: 20px">
@@ -43,33 +43,33 @@
 				<ul id="myTab1" class="nav nav-tabs">
 					<shiro:hasPermission name="/user">
 						<li>
-							<a href="#Employer" data-toggle="tab">Employer</a>
+							<a href="#Employer" data-toggle="tab">Employer/管理</a>
 						</li>
 					</shiro:hasPermission>
 					<li class="dropdown">
-						<a href="#" id="MyTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Students
+						<a href="#" id="MyTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Students/学生
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-							<li><a href="#StudentsList" data-toggle="tab">Students List</a></li>
-							<li><a data-toggle="modal" data-target="#NewStudent">New Student</a></li>
-							<li><a href="#SearchStudents" data-toggle="tab">Search Students</a></li>
+							<li><a href="#StudentsList" data-toggle="tab">Students List/学生列表</a></li>
+							<li><a data-toggle="modal" data-target="#NewStudent">New Student/添加学生</a></li>
+							<li><a href="#SearchStudents" data-toggle="tab">Search Students/搜索学生</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" id="MyTabDrop2" class="dropdown-toggle" data-toggle="dropdown">Task
+						<a href="#" id="MyTabDrop2" class="dropdown-toggle" data-toggle="dropdown">Task/链接
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
 							<li>
-							<li><a href="#Task" data-toggle="tab">New Url</a></li>
-							<li><a href="#History" data-toggle="tab">History</a></li>
+							<li><a href="#Task" data-toggle="tab">New Url/新增链接(今日)</a></li>
+							<li><a href="#History" data-toggle="tab">History/链接历史搜索</a></li>
 							</li>
 						</ul>
 					</li>
 					<shiro:hasPermission name="/user">
 						<li>
-							<a href="#Table" data-toggle="tab">Table</a>
+							<a href="#Table" data-toggle="tab">Table/反馈表管理</a>
 						</li>
 					</shiro:hasPermission>
 				</ul>
@@ -83,10 +83,10 @@
 					<div class="row">
 						<div class="col-sm-2" id="myScrollspy">
 							<ul id="myTab2" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="125">
-								<li><a href="#UserMgmt" data-toggle="pill">User</a></li>
+								<li><a href="#UserMgmt" data-toggle="pill">User/用户管理</a></li>
 								<!--<li><a href="#RoleMgmt" data-toggle="pill">Role</a></li>-->
 								<!--<li><a href="#ResourceMgmt" data-toggle="pill">Resource</a></li>-->
-								<li><a href="#Report" data-toggle="pill">Report</a></li>
+								<li><a href="#Report" data-toggle="pill">Report/工作情况</a></li>
 							</ul>
 						</div>
 						<div class="tab-content col-sm-10">
@@ -94,18 +94,18 @@
 								<div class="col-sm-10"></div>
 								<div class="col-sm-2">
 									<button class="btn btn-xs btn-success"  data-toggle="modal" data-target="#NewUser">
-										New User
+										New User/新建用户
 									</button>
 								</div><br/><br/>
 								<table class="table table-striped table-bordered table-hover">
 									<thead>
 									<tr>
-										<th>User ID</th>
+										<th>User ID/用户ID</th>
 										<!--<th>User Name</th>-->
-										<th>Role</th>     <!--Add by Runner-->
-										<th>Create Time</th>
-										<th>Update Time</th>
-										<th>Operation</th>
+										<th>Role/角色</th>     <!--Add by Runner-->
+										<th>Create Time/创建时间</th>
+										<th>Update Time/更新时间</th>
+										<th>Operation/操作</th>
 									</tr>
 									</thead>
 									<tbody id="userbody">
@@ -116,13 +116,13 @@
 								<div class="col-sm-10">
 									<form class="form-horizontal" role="form">
 										<div class="form-group">
-											<label class="col-sm-2 control-label">UserId: </label>
-											<div class="col-sm-3">
+											<label class="col-sm-2 control-label">UserId/用户ID: </label>
+											<div class="col-sm-2">
 												<input type="text" class="form-control" id="userSearchUserId" style="width: 90%"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-2 control-label">Date: </label>
+											<label class="col-sm-2 control-label">Date/日期范围: </label>
 											<div class="col-sm-3">
 												<!--<input type="text" class="form-control" id="userSearchStartDate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
 												<!--Add by Runner-->
@@ -138,18 +138,19 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-2 control-label">Classification: </label>
+											<label class="col-sm-3 control-label">Classifi/学生可能性: </label>
 											<div class="col-sm-4">
 												<select id="rcselect" class="form-control" style="width: 92%">
 													<option value=""></option>
-													<option value="A">A: Intersted</option>
-													<option value="B">B: Hesitate</option>
-													<option value="C">C: Rejected</option>
+													<option value="A">A: Yes/已入学</option>
+													<option value="B">B: Interested/有兴趣</option>
+													<option value="C">C: Hesitate/犹豫</option>
+													<option value="D">D: Rejected/拒绝</option>
 												</select>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-2 control-label">Source: </label>
+											<label class="col-sm-3 control-label">StuSource/学生来源: </label>
 											<div class="col-sm-4">
 												<select id="userSSselect" class="form-control" style="width: 92%">
 												</select>
@@ -157,12 +158,12 @@
 										</div>
 										<hr/>
 										<div class="col-sm-10">
-											<label class="col-sm-2 control-label">Count: </label>
+											<label class="col-sm-3 control-label">Count/完成数量: </label>
 											<label class="col-sm-1 control-label" id="count"></label>
 										</div>
 										<div class="col-sm-2">
 											<button type="button" class="btn btn-primary" id="research">
-												Search
+												Search/搜索
 											</button>
 										</div>
 									</form>
@@ -177,15 +178,15 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 					<tr>
-						<th>User ID</th>     <!--Add by Runner-->
-						<th>Date</th>
-						<th>Name</th>
-						<th>Gender</th>
-						<th>Age</th>
-						<th>Phone No</th>
-						<th>Email</th>
-						<th>College Name</th>
-						<th>Details</th>
+						<th>User ID/用户ID</th>     <!--Add by Runner-->
+						<th>Date/日期</th>
+						<th>Name/姓名</th>
+						<th>Gender/性别</th>
+						<th>Age/年龄</th>
+						<th>Phone/电话</th>
+						<th>Email/邮箱</th>
+						<th>College/大学</th>
+						<th>Details/详情</th>
 					</tr>
 					</thead>
 					<tbody id="stuListBody">
@@ -201,13 +202,13 @@
 					</div>
 					<hr/>
 					<div class="form-group">
-						<label class="col-sm-1 control-label">StartDate: </label>
+						<label class="col-sm-1 control-label">StartDate/开始日期: </label>
 						<div class="col-sm-3">
 							<!--<input type="text" class="form-control" id="sssdate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
 							<!--Add by Runner-->
 							<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="sssdate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 						</div>
-						<label class="col-sm-1 control-label">EndDate: </label>
+						<label class="col-sm-1 control-label">EndDate/结束日期: </label>
 						<div class="col-sm-3">
 							<!--<input type="text" class="form-control" id="ssedate" style="width: 90%" placeholder="YYYY-MM-DD"/>-->
 							<!--Add by Runner-->
@@ -216,30 +217,31 @@
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-1 control-label">UserID: </label>
+						<label class="col-sm-1 control-label">UserID/用户ID: </label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="ssuserId" style="width: 90%"/>
 						</div>
-						<label class="col-sm-1 control-label">Name: </label>
+						<label class="col-sm-1 control-label">Name/姓名: </label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="ssname" style="width: 90%"/>
 						</div>
 						<div class="col-sm-4">
-							<button id="searchShowTable" class="btn btn-xs btn-info">ShowTable</button>
+							<button id="searchShowTable" class="btn btn-xs btn-info">ShowTable/展开反馈表</button>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Classification: </label>
+						<label class="col-sm-1 control-label">Classification/参与可能性: </label>
 						<div class="col-sm-3">
 							<select id="selectclass" class="form-control" style="width: 85%">
 								<option value=""></option>
-								<option value="A">A: Intersted</option>
-								<option value="B">B: Hesitate</option>
-								<option value="C">C: Rejected</option>
+								<option value="A">A: Yes/已入学</option>
+								<option value="B">B: Interested/有兴趣</option>
+								<option value="C">C: Hesitate/犹豫</option>
+								<option value="D">D: Rejected/拒绝</option>
 							</select>
 						</div>
-						<label class="col-sm-1 control-label">Source: </label>
+						<label class="col-sm-1 control-label">StuSource/学生来源: </label>
 						<div class="col-sm-3">
 							<select id="SSSearchSelect" class="form-control" style="width: 92%">
 							</select>
@@ -275,7 +277,7 @@
 								<input type="submit" class="btn btn-success" value="导出Excel"/>
 							</form>
 							<button type="button" class="btn btn-primary" id="sssearch">
-								Search
+								Search/搜索
 							</button>
 						</div>
 					</div>
@@ -284,15 +286,15 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 						<tr>
-							<th>User ID</th>
-							<th>Date</th>
-							<th>Name</th>
-							<th>Gender</th>
-							<th>Age</th>
-							<th>Phone No</th>
-							<th>Email</th>
-							<th>College Name</th>
-							<th>Details</th>
+							<th>User ID/用户ID</th>
+							<th>Date/日期</th>
+							<th>Name/姓名</th>
+							<th>Gender/性别</th>
+							<th>Age/年龄</th>
+							<th>Phone/电话</th>
+							<th>Email/邮箱</th>
+							<th>College/大学</th>
+							<th>Details/详情</th>
 						</tr>
 						</thead>
 						<tbody id="ssbody">
@@ -303,13 +305,13 @@
 
 			<div class="tab-pane fade in active qwer" id="Task">
 				<div class="form-horizontal" role="form">
-					<label class="col-sm-1 control-label" >Url: </label>
+					<label class="col-sm-1 control-label" >Url/链接: </label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="urlinput" style="width: 90%"/>
 					</div>
 					<div class="col-sm-2">
 						<button type="button" class="btn btn-primary" id="urladdbtn" onclick="addAdvertise()">
-							Add
+							Add/添加
 						</button>
 					</div>
 				</div>
@@ -319,23 +321,13 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 						<tr>
-							<th class="col-sm-2">User ID</th>
-							<th class="col-sm-6">Submitted Url</th>
-							<th class="col-sm-2">Create Time</th>
-							<th class="col-sm-2">Delete</th>
+							<th class="col-sm-2">User ID/用户ID</th>
+							<th class="col-sm-6">Submitted Url/链接</th>
+							<th class="col-sm-2">Create Time/创建时间</th>
+							<th class="col-sm-2">Delete/删除</th>
 						</tr>
 						</thead>
 						<tbody id="adbody">
-						<tr>
-							<td>test</td>
-							<td>www.baidu.com</td>
-							<td>9999-99-99</td>
-							<td>
-								<button class="btn btn-danger btn-xs" onclick="">
-									<span class="glyphicon glyphicon-remove"></span>
-								</button>
-							</td>
-						</tr>
 						</tbody>
 					</table>
 				</div>
@@ -344,18 +336,18 @@
 			<div class="tab-pane fade in active qwer" id="History">
 				<div class="form-horizontal" role="form">
 					<shiro:hasPermission name="/user">
-						<label class="col-sm-2 control-label">User ID: </label>
+						<label class="col-sm-2 control-label">User ID/用户ID: </label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="hsuserid" style="width: 100%;"/>
 						</div>
 						<div class="clearfix"></div>
 						<br/>
 					</shiro:hasPermission>
-					<label class="col-sm-2 control-label">Start Date: </label>
+					<label class="col-sm-2 control-label">Start Date/开始日期: </label>
 					<div class="col-sm-2">
 						<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="hstartd" style="width: 100%;margin-top: 5px" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 					</div>
-					<label class="col-sm-2 control-label">End Date: </label>
+					<label class="col-sm-2 control-label">End Date/结束日期: </label>
 					<div class="col-sm-2">
 						<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="hendd" style="width: 100%;margin-top: 5px" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 					</div>
@@ -367,7 +359,7 @@
 							<input type="submit" class="btn btn-success" value="导出Excel"/>
 						</form>
 						<button type="button" class="btn btn-primary" id="urlsearch" onclick="searchHistory()">
-							Search
+							Search/搜索
 						</button>
 					</div>
 				</div>
@@ -377,14 +369,13 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 						<tr>
-							<th class="col-sm-2">User ID</th>
-							<th class="col-sm-6">Submitted Url</th>
-							<th class="col-sm-2">Create Time</th>
-							<th class="col-sm-2">Delete</th>
+							<th class="col-sm-2">User ID/用户ID</th>
+							<th class="col-sm-6">Submitted Url/链接</th>
+							<th class="col-sm-2">Create Time/创建时间</th>
+							<th class="col-sm-2">Delete/删除</th>
 						</tr>
 						</thead>
 						<tbody id="hisbody">
-
 						</tbody>
 					</table>
 				</div>
@@ -402,19 +393,19 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title">
-						New User:
+						New User/新建用户:
 					</h3>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">User ID: </label>
+							<label class="col-sm-2 control-label">User ID/用户ID: </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="loginId" name="loginId" style="width: 90%"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Password: </label>
+							<label class="col-sm-2 control-label">Password/密码: </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="upassword" name="password" style="width: 90%"/>
 							</div>
@@ -422,7 +413,7 @@
 
 						<!-- Add by Runner-->
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Role: </label>
+							<label class="col-sm-2 control-label">Role/角色: </label>
 							<div class="col-sm-10">
 								<select class="form-control" id="selRole" style="width: 90%">
 									<option value="user">user</option>
@@ -450,7 +441,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title">
-						New Role:
+						New Role/新角色:
 					</h3>
 				</div>
 				<div class="modal-body">
@@ -565,20 +556,20 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title">
-						Edit User:
+						Edit User/修改用户:
 					</h3>
 				</div>
 				<div class="modal-body">
 					<form id="euform" class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">User ID: </label>
+							<label class="col-sm-2 control-label">User ID/用户ID: </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" name="loginId" id="euid" style="width: 90%" disabled="disabled"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Password: </label>
+							<label class="col-sm-2 control-label">Password/密码: </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" name="password" id="eupassword" style="width: 90%" placeholder="Fill me to reset password"/>
 							</div>
@@ -586,7 +577,7 @@
 
 						<!-- Add by Runner-->
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Role: </label>
+							<label class="col-sm-2 control-label">Role/角色: </label>
 							<div class="col-sm-10">
 								<select class="form-control" name="role" id="eRole" style="width: 90%">
 									<option value="user">user</option>
@@ -729,18 +720,18 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title">
-						New Student:
+						New Student/新建学生:
 					</h3>
 				</div>
 				<div class="modal-body">
 					<form id="newStudentForm" class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Name: </label>
+							<label class="col-sm-2 control-label">Name/姓名: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="name" id="nsname" style="width: 90%"/>
 							</div>
 
-							<label class="col-sm-2 control-label">Gender: </label>
+							<label class="col-sm-2 control-label">Gender/性别: </label>
 							<div class="col-sm-4">
 								<select class="form-control" name="gender" id="nsgender" style="width: 90%;">
 									<option value="M">M</option>
@@ -751,12 +742,12 @@
 
 						<div class="form-group">
 
-							<label class="col-sm-2 control-label">Age: </label>
+							<label class="col-sm-2 control-label">Age/年龄: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="age" id="nsage" style="width: 90%"/>
 							</div>
 
-							<label class="col-sm-2 control-label">Phone No: </label>
+							<label class="col-sm-2 control-label">Phone/电话: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="phone" id="nsphonenum" style="width: 90%"/>
 							</div>
@@ -764,20 +755,19 @@
 
 						<div class="form-group">
 
-							<label class="col-sm-2 control-label">Email: </label>
+							<label class="col-sm-2 control-label">Email/邮箱: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="email" id="nsemail" style="width: 90%"/>
 							</div>
 
-							<label class="col-sm-2 control-label">College Name: </label>
+							<label class="col-sm-2 control-label">College/大学: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="college" id="nscollegename" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-
-							<label class="col-sm-2 control-label">Major: </label>
+							<label class="col-sm-2 control-label">Major/专业: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="major" id="nsmajor" style="width: 90%"/>
 							</div>
@@ -800,24 +790,24 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title" id="myModalLabel">Detailed Information: </h3>
+					<h3 class="modal-title" id="myModalLabel">Detailed Information/学生详情: </h3>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" role="form" id="inin" onsubmit="return false" >
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Date: </label>
+							<label class="col-sm-2 control-label">Date/日期: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtdate" style="width: 90%" disabled="disabled" />
 							</div>
 
-							<label class="col-sm-2 control-label">Name: </label>
+							<label class="col-sm-2 control-label">Name/姓名: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtname" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Gender: </label>
+							<label class="col-sm-2 control-label">Gender/性别: </label>
 							<div class="col-sm-4">
 								<select class="form-control" id="dtgender" style="width: 90%">
 									<option>M</option>
@@ -825,64 +815,64 @@
 								</select>
 								<!--<input type="text" class="form-control" id="dtgender" style="width: 90%"/>-->
 							</div>
-							<label class="col-sm-2 control-label">Age: </label>
+							<label class="col-sm-2 control-label">Age/年龄: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtage" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Phone No: </label>
+							<label class="col-sm-2 control-label">Phone/电话: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtphonenum" style="width: 90%"/>
 							</div>
-							<label class="col-sm-2 control-label">Email: </label>
+							<label class="col-sm-2 control-label">Email/邮箱: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtemail" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">College Name: </label>
+							<label class="col-sm-2 control-label">College/大学: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtcollegename" style="width: 90%"/>
 							</div>
-							<label class="col-sm-2 control-label">Major: </label>
+							<label class="col-sm-2 control-label">Major/专业: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtmajor" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">QQ or Wechat: </label>
+							<label class="col-sm-2 control-label">QQWechat/QQ微信: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtqqwechat" style="width: 90%"/>
 							</div>
 						</div>
 						<hr/>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Walk-in Date: </label>
+							<label class="col-sm-2 control-label">Walk-inDate/上门日期: </label>
 							<div class="col-sm-4">
 								<!--<input type="text" class="form-control" id="dtwalkindate" style="width: 90%"/>-->
 								<!--Add by Runner-->
 								<input placeholder="Date Time" class="laydate-icon timeUstyle stateUTime" id="dtwalkindate"  style="width: 90%" onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})"/>
 							</div>
-							<label class="col-sm-2 control-label">Marks: </label>
+							<label class="col-sm-2 control-label">Marks/笔试成绩: </label>
 							<div class="col-sm-4">
 								<input type="number" class="form-control" id="dtmarks" style="width: 90%"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Interview Situation: </label>
+							<label class="col-sm-2 control-label">InterviewNote/面试记录: </label>
 							<div class="col-sm-10">
 								<textarea class="form-control" id="dtinsit" style="width: 96%;resize: none;" rows="4"></textarea>
 							</div>
 						</div>
 
 						<div class="form-group" >
-							<label class="col-sm-2 control-label">Source: </label>
-							<div class="col-sm-3" style="padding-left: 3%;">
+							<label class="col-sm-2 control-label">StuSource/学生来源: </label>
+							<div class="col-sm-2" style="padding-left: 3%;">
 								<select id="SSselect" class="form-control" style="width: 100%;display: inline-block;">
 								</select>
 							</div>
@@ -893,22 +883,23 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Intention: </label>
+							<label class="col-sm-2 control-label">Intention/学习意愿: </label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="dtintention" style="width: 90%"/>
 							</div>
-							<label class="col-sm-2 control-label">Classification: </label>
+							<label class="col-sm-2 control-label">Classification/参与可能性: </label>
 							<div class="col-sm-4">
 								<select id="dtclassification" class="form-control" style="width: 85%" disabled="disabled">
 									<option></option>
-									<option value="A">A: Intersted</option>
-									<option value="B">B: Hesitate</option>
-									<option value="C">C: Rejected</option>
+									<option value="A">A: Yes/已入学</option>
+									<option value="B">B: Interested/有兴趣</option>
+									<option value="C">C: Hesitate/犹豫</option>
+									<option value="D">D: Rejected/拒绝</option>
 								</select>
 							</div>
 						</div>
 						<hr/>
-						<button id="stable1" class="btn btn-xs btn-info">ShowTable</button>
+						<button id="stable1" class="btn btn-xs btn-info">ShowTable/展开反馈表</button>
 						<div id="fankuiTable" style="display: none;">
 							<label class="col-sm-12 control-label" style="text-align: center; font-size: large">宣讲反馈表</label>
 							<div id="fankuibody"></div>
@@ -920,19 +911,19 @@
 						</div>
 						<hr/>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Follow Up:</label>
+							<label class="col-sm-2 control-label">Follow Up/跟进:</label>
 							<div class="col-sm-4" style="text-align: left;padding-left: 4%;">
 								<select id="newcla" class="form-control" style="width: 85%;">
-								<option value="A">A: Interested</option>
-								<option value="B">B: Hesitate</option>
-								<option value="C">C: Rejected</option>
+									<option value="A">A: Yes/已入学</option>
+									<option value="B">B: Interested/有兴趣</option>
+									<option value="C">C: Hesitate/犹豫</option>
+									<option value="D">D: Rejected/拒绝</option>
 							</select></div>
 							<br/><br/>
 							<div class="col-sm-2" align="center">
-
 							</div>
-							<div class="col-sm-10"><textarea id="dtfp1" class="form-control"
-															 style="width: 96%;resize: none;" rows="4"></textarea>
+							<div class="col-sm-10">
+								<textarea id="dtfp1" class="form-control" style="width: 96%;resize: none;" rows="4"></textarea>
 							</div>
 						</div>
 					</form>
@@ -955,13 +946,13 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title">
-						New Question:
+						New Question/新的问题:
 					</h3>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Type: </label>
+							<label class="col-sm-2 control-label">Type/类型: </label>
 							<div class="col-sm-10">
 								<select class="form-control" id="addQueType" style="width: 90%">
 									<option value="radio">radio</option>
@@ -970,7 +961,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Details: </label>
+							<label class="col-sm-2 control-label">Details/问题描述: </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="addQueDetails" style="width: 90%"/>
 							</div>

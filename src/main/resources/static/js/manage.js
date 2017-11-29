@@ -266,6 +266,7 @@ var flashFollowUp = function (stuId) {
             var claA = cla == 'A' ? "selected='selected'" : "";
             var claB = cla == 'B' ? "selected='selected'" : "";
             var claC = cla == 'C' ? "selected='selected'" : "";
+            var claD = cla == 'D' ? "selected='selected'" : "";
             $("#followuplist").append("" +
                 "<div class='form-group' id='fufg" + fu.id + "'>" +
                 "<label class='col-sm-2 control-label'>Follow Up:</label> " +
@@ -273,9 +274,10 @@ var flashFollowUp = function (stuId) {
                 "</div>" +
                 "<div class='col-sm-4' style='text-align: left;'> " +
                 "<select id='flid" + fu.id + "' class='form-control' style='width: 85%;' disabled='disabled'>" +
-                "<option value='A' " + claA + ">A: Interested</option>" +
-                "<option value='B' " + claB + ">B: Hesitate</option>" +
-                "<option value='C' " + claC + ">C: Rejected</option>" +
+                "<option value='A' " + claA + ">A: Yes/已入学</option>" +
+                "<option value='B' " + claB + ">B: Interested/有兴趣</option>" +
+                "<option value='C' " + claC + ">C: Hesitate/犹豫</option>" +
+                "<option value='D' " + claD + ">D: Rejected/拒绝</option>" +
                 "</select> " +
                 "</div>" +
                 "<br/><br/>" +
