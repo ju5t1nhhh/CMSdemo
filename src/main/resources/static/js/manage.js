@@ -179,6 +179,7 @@ function searchHistory() {
                 "</tr>");
         });
     });
+    $("#taskUserId").val(userId);
     $("#taskStartDate").val(sd);
     $("#taskEndDate").val(ed);
 };
@@ -548,7 +549,7 @@ var flashEditTable=function () {
     $("#Table").html("<hr/>");
     $.post("/getTable",function (res) {
         var list=res.data;
-        var locopt=list[list.length-1].fbquestion.id;
+        var locopt=list[list.length-1].fbquestion.location;
         $.each(list,function (idx,son) {
             var locoptstring="";
             for(var i=1;i<=locopt;i++){
@@ -560,23 +561,27 @@ var flashEditTable=function () {
             var txttypeopt=son.fbquestion.type=="text"?"selected='selected":"";
             var answers="";
             $.each(son.fbanswers,function (idx,gson) {
-                answers=answers+"<div class='col-xs-2' style='margin-top: 5px;'>" +
-                    "<div class='input-group'>" +
-                    "<input id='txtquestion"+son.fbquestion.location+"answer"+gson.location+"' type='text' class='form-control' value='"+gson.details+"' disabled='disabled'/> " +
-                    "<div class='input-group-btn'>" +
-                    "<button type='button' class='btn btn-info' onclick='updateAnswer("+gson.id+","+son.fbquestion.id+","+son.fbquestion.location+","+gson.location+")'><span id='spanquestion"+son.fbquestion.location+"answer"+gson.location+"' class='glyphicon glyphicon-edit'></span></button>" +
-                    "<button type='button' class='btn btn-danger' onclick='deleteAnswer("+gson.id+")'><span class='glyphicon glyphicon-remove'></span></button>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>";
+                if(gson.location!=99){
+                    answers=answers+"<div class='col-xs-2' style='margin-top: 5px;'>" +
+                        "<div class='input-group'>" +
+                        "<input id='txtquestion"+son.fbquestion.location+"answer"+gson.location+"' type='text' class='form-control' value='"+gson.details+"' disabled='disabled'/> " +
+                        "<div class='input-group-btn'>" +
+                        "<button type='button' class='btn btn-info' onclick='updateAnswer("+gson.id+","+son.fbquestion.id+","+son.fbquestion.location+","+gson.location+")'><span id='spanquestion"+son.fbquestion.location+"answer"+gson.location+"' class='glyphicon glyphicon-edit'></span></button>" +
+                        "<button type='button' class='btn btn-danger' onclick='deleteAnswer("+gson.id+")'><span class='glyphicon glyphicon-remove'></span></button>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                }
             });
-            answers+="" +
-                "<div class='col-xs-2' style='margin-top: 5px;' id='toadd"+son.fbquestion.location+"'>" +
-                "<div class='input-group'>" +
-                "<div class='input-group-btn'>" +
-                "<button class='btn btn-info' style='float: left;' onclick='toaddAnswer("+son.fbquestion.id+","+son.fbquestion.location+")'>" +
-                "<span class='glyphicon glyphicon-plus'></span>" +
-                "</button></div></div></div>";
+            if(son.fbquestion.type!="text"){
+                answers+="" +
+                    "<div class='col-xs-2' style='margin-top: 5px;' id='toadd"+son.fbquestion.location+"'>" +
+                    "<div class='input-group'>" +
+                    "<div class='input-group-btn'>" +
+                    "<button class='btn btn-info' style='float: left;' onclick='toaddAnswer("+son.fbquestion.id+","+son.fbquestion.location+")'>" +
+                    "<span class='glyphicon glyphicon-plus'></span>" +
+                    "</button></div></div></div>";
+            }
             $("#Table").append("<div class='row'>" +
                 "<div class='col-sm-6'>" +
                 "<div class='input-group'>" +
@@ -616,7 +621,6 @@ var flashEditTable=function () {
 $("#addQueBtn").click(function () {
     var type=$("#addQueType").val();
     var details=$("#addQueDetails").val();
-    alert("type:"+type+",details:"+details);
     $.post("/addQuestion",{type:type,details:details},function (res) {
         if(res.code==200){
             flashEditTable();
@@ -825,6 +829,26 @@ $("#sssearch").click(function () {
         answer18=updateAns("forsearch18");
         answer19=updateAns("forsearch19");
         answer20=updateAns("forsearch20");
+        $("#stuExcelAnswer1").val(answer1);
+        $("#stuExcelAnswer2").val(answer2);
+        $("#stuExcelAnswer3").val(answer3);
+        $("#stuExcelAnswer4").val(answer4);
+        $("#stuExcelAnswer5").val(answer5);
+        $("#stuExcelAnswer6").val(answer6);
+        $("#stuExcelAnswer7").val(answer7);
+        $("#stuExcelAnswer8").val(answer8);
+        $("#stuExcelAnswer9").val(answer9);
+        $("#stuExcelAnswer10").val(answer10);
+        $("#stuExcelAnswer11").val(answer11);
+        $("#stuExcelAnswer12").val(answer12);
+        $("#stuExcelAnswer13").val(answer13);
+        $("#stuExcelAnswer14").val(answer14);
+        $("#stuExcelAnswer15").val(answer15);
+        $("#stuExcelAnswer16").val(answer16);
+        $("#stuExcelAnswer17").val(answer17);
+        $("#stuExcelAnswer18").val(answer18);
+        $("#stuExcelAnswer19").val(answer19);
+        $("#stuExcelAnswer20").val(answer20);
     }
     $.post("/searchStudent", {
         name: name,
@@ -876,7 +900,7 @@ $("#sssearch").click(function () {
                     "<td>" + email + "</td>\n" +
                     "<td>" + college + "</td>\n" +
                     "<td>\n" +
-                    "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\">\n" +
+                    "<button class=\"btn btn-primary btn-xs\" data-toggle=\"modal\" data-target=\"#Details\" onclick='loadDetails(" + stu.id + ")'>\n" +
                     "More\n" +
                     "</button>\n" +
                     "<button class='btn btn-danger btn-xs' onclick='delStudent(" + stu.id + ");$(\"#sssearch\").click();'>" +
@@ -887,6 +911,7 @@ $("#sssearch").click(function () {
             });
         }
     });
+    $("#stuExcelUserId").val(ssuserID);
     $("#stuExcelName").val(name);
     $("#stuExcelStartDate").val(sd);
     $("#stuExcelEndDate").val(ed);
