@@ -1,6 +1,9 @@
 package com.niit.cmsdemo.service.impl;
 
-import com.niit.cmsdemo.dao.*;
+import com.github.pagehelper.util.StringUtil;
+import com.niit.cmsdemo.dao.FeedbackDao;
+import com.niit.cmsdemo.dao.StudentDao;
+import com.niit.cmsdemo.dao.UserDao;
 import com.niit.cmsdemo.domain.Feedback;
 import com.niit.cmsdemo.domain.Student;
 import com.niit.cmsdemo.service.StudentService;
@@ -9,6 +12,7 @@ import com.niit.cmsdemo.vo.FeedbackUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +39,7 @@ public class StudentServiceImpl implements StudentService {
         if(rows>0){
             Feedback feedback=new Feedback();
             feedback.setStuId(student.getId());
+            nullToString(feedback);
             feedbackDao.insertOne(feedback);
         }else{
             throw new Exception("添加学生失败");
@@ -138,4 +143,27 @@ public class StudentServiceImpl implements StudentService {
         return false;
     }
 
+    private void nullToString(Feedback feedback){
+        if(feedback.getAnswer1()==null)feedback.setAnswer1(" ");
+        if(feedback.getAnswer2()==null)feedback.setAnswer2(" ");
+        if(feedback.getAnswer3()==null)feedback.setAnswer3(" ");
+        if(feedback.getAnswer4()==null)feedback.setAnswer4(" ");
+        if(feedback.getAnswer5()==null)feedback.setAnswer5(" ");
+        if(feedback.getAnswer6()==null)feedback.setAnswer6(" ");
+        if(feedback.getAnswer7()==null)feedback.setAnswer7(" ");
+        if(feedback.getAnswer8()==null)feedback.setAnswer8(" ");
+        if(feedback.getAnswer9()==null)feedback.setAnswer9(" ");
+        if(feedback.getAnswer10()==null)feedback.setAnswer10(" ");
+        if(feedback.getAnswer11()==null)feedback.setAnswer11(" ");
+        if(feedback.getAnswer12()==null)feedback.setAnswer12(" ");
+        if(feedback.getAnswer13()==null)feedback.setAnswer13(" ");
+        if(feedback.getAnswer14()==null)feedback.setAnswer14(" ");
+        if(feedback.getAnswer15()==null)feedback.setAnswer15(" ");
+        if(feedback.getAnswer16()==null)feedback.setAnswer16(" ");
+        if(feedback.getAnswer17()==null)feedback.setAnswer17(" ");
+        if(feedback.getAnswer18()==null)feedback.setAnswer18(" ");
+        if(feedback.getAnswer19()==null)feedback.setAnswer19(" ");
+        if(feedback.getAnswer20()==null)feedback.setAnswer20(" ");
+        if(feedback.getAnswer21()==null)feedback.setAnswer21(" ");
+    }
 }
