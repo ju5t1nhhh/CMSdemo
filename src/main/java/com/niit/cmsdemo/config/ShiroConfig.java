@@ -71,6 +71,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/img/**","anon");
+        filterChainDefinitionMap.put("/bootstrap/**","anon");
         filterChainDefinitionMap.put("/font-awesome","anon");
         //过滤链定义，从上向下顺序执行
         //authc:所有url都必须认证通过才可以访问，anon：所有的url都可以匿名访问
