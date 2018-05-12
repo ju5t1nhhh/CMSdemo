@@ -33,6 +33,19 @@ public class StudentController {
         return serverResponse;
     }
 
+    @PostMapping("/delStudent")
+    public ServerResponse delStudent(Long stuId,HttpSession session){
+        ServerResponse serverResponse=null;
+        String userSessionId= (String) session.getAttribute("userSessionId");
+        try{
+            studentService.delStudents(stuId,userSessionId);
+            serverResponse=ServerResponse.createSuccessResponse(null);
+        }catch (Exception e){
+            serverResponse=ServerResponse.createErrorResponse(500,e.getMessage());
+        }
+        return serverResponse;
+    }
+
     @PostMapping("/updateStudent")
     public ServerResponse updateStudent(Student student,HttpSession session,String walkingDate){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,19 +54,6 @@ public class StudentController {
         try{
             student.setWalkinDate(sdf.parse(walkingDate));
             studentService.updateStudent(student,userSessionId);
-            serverResponse=ServerResponse.createSuccessResponse(null);
-        }catch (Exception e){
-            serverResponse=ServerResponse.createErrorResponse(500,e.getMessage());
-        }
-        return serverResponse;
-    }
-
-    @PostMapping("/delStudent")
-    public ServerResponse delStudent(Long stuId,HttpSession session){
-        ServerResponse serverResponse=null;
-        String userSessionId= (String) session.getAttribute("userSessionId");
-        try{
-            studentService.delStudents(stuId,userSessionId);
             serverResponse=ServerResponse.createSuccessResponse(null);
         }catch (Exception e){
             serverResponse=ServerResponse.createErrorResponse(500,e.getMessage());

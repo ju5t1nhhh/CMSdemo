@@ -31,6 +31,8 @@ public class UserController {
     public ServerResponse addUser(User user){
         ServerResponse serverResponse=null;
         try {
+            PasswordHelper ph = new PasswordHelper();
+            ph.encryptPassword(user);
             userService.addUser(user);
             serverResponse=serverResponse.createSuccessResponse(null);
         } catch (Exception e) {
