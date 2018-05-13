@@ -52,8 +52,8 @@ public class AdvertiseController {
             map.put("userId",userId);
         }
         if(startDate!=null&&endDate!=null){
-            map.put("startDate", StringUtils.trimAllWhitespace(startDate));
-            map.put("endDate",StringUtils.trimAllWhitespace(endDate));
+            map.put("startDate", StringUtils.trimWhitespace(startDate));
+            map.put("endDate",StringUtils.trimWhitespace(endDate));
         }
         String userSessionId= (String) session.getAttribute("userSessionId");
         return ServerResponse.createSuccessResponse(advertiseService.findConditions(map,userSessionId));

@@ -110,6 +110,7 @@ function addAdvertise() {
     var url = $("#urlinput").val();
     $.post("/addAds", {url: url}, function (res) {
         if (res.code == 200) {
+            $("#urlinput").val("");
             flashadvertise();
         } else {
             alert(res.code);
